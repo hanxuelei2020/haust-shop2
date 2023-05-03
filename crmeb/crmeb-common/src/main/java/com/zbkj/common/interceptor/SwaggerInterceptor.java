@@ -5,10 +5,10 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import sun.misc.BASE64Decoder;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+import java.util.Base64;
+import jakarta.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +25,7 @@ import java.io.PrintWriter;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
-public class SwaggerInterceptor extends HandlerInterceptorAdapter {
+public class SwaggerInterceptor implements HandlerInterceptor {
     private String username;
     private String password;
     private Boolean check;
@@ -34,8 +34,9 @@ public class SwaggerInterceptor extends HandlerInterceptorAdapter {
         this.password = password;
         this.check = check;
     }
+
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, Object handler) throws Exception {
         String authorization = request.getHeader("Authorization");
         boolean isAuthSuccess = httpBasicAuth(authorization);
         if (!isAuthSuccess) {
@@ -49,20 +50,14 @@ public class SwaggerInterceptor extends HandlerInterceptorAdapter {
         }
         return isAuthSuccess;
     }
-    public boolean httpBasicAuth(String authorization) throws IOException {
-        if(check){
-            if (authorization != null && authorization.split(" ").length == 2) {
-                String userAndPass = new String(new BASE64Decoder().decodeBuffer(authorization.split(" ")[1]));
-                String username = userAndPass.split(":").length == 2 ? userAndPass.split(":")[0] : null;
-                String password = userAndPass.split(":").length == 2 ? userAndPass.split(":")[1] : null;
-                return this.username.equals(username) && this.password.equals(password);
-            }
-            return false;
-        }
-        return true;
-    }
+
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void postHandle(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String uri = request.getRequestURI();
         AntPathMatcher pathMatcher = new AntPathMatcher();
         if (!pathMatcher.match("/swagger-ui.html", uri) && !pathMatcher.match("/webjars/**", uri)) {
@@ -76,5 +71,18 @@ public class SwaggerInterceptor extends HandlerInterceptorAdapter {
         } else {
             response.setStatus(404);
         }
+    }
+
+    public boolean httpBasicAuth(String authorization) throws IOException {
+        if(check){
+            if (authorization != null && authorization.split(" ").length == 2) {
+                String userAndPass = new String(Base64.getDecoder().decode(authorization.split(" ")[1]));
+                String username = userAndPass.split(":").length == 2 ? userAndPass.split(":")[0] : null;
+                String password = userAndPass.split(":").length == 2 ? userAndPass.split(":")[1] : null;
+                return this.username.equals(username) && this.password.equals(password);
+            }
+            return false;
+        }
+        return true;
     }
 }

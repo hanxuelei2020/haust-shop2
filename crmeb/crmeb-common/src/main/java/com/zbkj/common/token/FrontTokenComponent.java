@@ -8,13 +8,14 @@ import com.zbkj.common.model.user.User;
 import com.zbkj.common.utils.RedisUtil;
 import com.zbkj.common.utils.RequestUtil;
 import com.zbkj.common.vo.LoginUserVo;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;

@@ -8,7 +8,7 @@ import com.zbkj.common.vo.LoginUserVo;
 import org.springframework.stereotype.Component;
 
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
