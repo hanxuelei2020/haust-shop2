@@ -7,6 +7,7 @@ import com.zbkj.common.request.StoreOrderStaticsticsRequest;
 import com.zbkj.common.response.OrderBrokerageData;
 import com.zbkj.common.response.StoreOrderStatisticsChartItemResponse;
 import com.zbkj.common.response.StoreStaffDetail;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ import java.util.List;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface StoreOrderDao extends BaseMapper<StoreOrder> {
 
     /**

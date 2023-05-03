@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.product.StoreProductRelation;
 import com.zbkj.common.response.UserRelationResponse;
 
+
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface StoreProductRelationDao extends BaseMapper<StoreProductRelation> {
 
     /**

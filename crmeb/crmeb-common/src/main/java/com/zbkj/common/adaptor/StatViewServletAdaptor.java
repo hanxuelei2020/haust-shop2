@@ -1,4 +1,4 @@
-package com.zbkj.admin.adaptor;
+package com.zbkj.common.adaptor;
 
 import com.alibaba.druid.stat.DruidStatService;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -7,7 +7,6 @@ import com.alibaba.druid.support.logging.LogFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 
 import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatViewServletAdaptor extends ResourceServletAdaptor{
+public class StatViewServletAdaptor extends ResourceServletAdaptor {
     private static final Log LOG = LogFactory.getLog(StatViewServlet.class);
     private static final long serialVersionUID = 1L;
     public static final String PARAM_NAME_RESET_ENABLE = "resetEnable";

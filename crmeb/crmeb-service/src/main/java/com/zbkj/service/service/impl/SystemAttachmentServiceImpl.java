@@ -40,8 +40,16 @@ public class SystemAttachmentServiceImpl extends ServiceImpl<SystemAttachmentDao
     @Autowired
     private SystemAttachmentDao dao;
 
-    @Autowired
     private SystemConfigService systemConfigService;
+    public SystemAttachmentServiceImpl() {
+
+    }
+
+    // 解决循环依赖问题
+    @Autowired
+    public void setSystemConfigService(SystemConfigService systemConfigService) {
+        this.systemConfigService = systemConfigService;
+    }
 
     /**
      * 同步到云服务， 更新图片上传类型

@@ -4,6 +4,7 @@ import com.zbkj.common.model.express.ShippingTemplatesRegion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.request.ShippingTemplatesRegionRequest;
 
+
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
+
 public interface ShippingTemplatesRegionDao extends BaseMapper<ShippingTemplatesRegion> {
 
     List<ShippingTemplatesRegionRequest> getListGroup(Integer tempId);

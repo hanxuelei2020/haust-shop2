@@ -4,6 +4,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.product.StoreProductCoupon;
 
+
 /**
  *  Mapper 接口
  * +----------------------------------------------------------------------
@@ -16,6 +17,7 @@ import com.zbkj.common.model.product.StoreProductCoupon;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface StoreProductCouponDao extends BaseMapper<StoreProductCoupon> {
 
 }

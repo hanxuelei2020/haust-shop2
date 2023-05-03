@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.system.SystemConfig;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+
 /**
  * 配置表 Mapper 接口
  * +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface SystemConfigDao extends BaseMapper<SystemConfig> {
 
 }

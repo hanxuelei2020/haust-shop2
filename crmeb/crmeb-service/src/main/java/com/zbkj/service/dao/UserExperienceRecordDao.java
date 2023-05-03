@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.user.UserExperienceRecord;
 
+
 /**
  * 用户经验记录表 Mapper 接口
  * +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.zbkj.common.model.user.UserExperienceRecord;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface UserExperienceRecordDao extends BaseMapper<UserExperienceRecord> {
 
 }

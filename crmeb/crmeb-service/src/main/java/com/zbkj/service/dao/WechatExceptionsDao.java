@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.wechat.WechatExceptions;
 
+
 /**
  *  微信异常表 Mapper 接口
  *  +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.zbkj.common.model.wechat.WechatExceptions;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
+
 public interface WechatExceptionsDao extends BaseMapper<WechatExceptions> {
 
 }

@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.system.SystemAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+
 /**
  * 后台管理员表 Mapper 接口
  * +----------------------------------------------------------------------
@@ -15,5 +16,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface SystemAdminDao extends BaseMapper<SystemAdmin> {
 }

@@ -1,4 +1,4 @@
-package com.zbkj.admin.adaptor;
+package com.zbkj.common.adaptor;
 
 
 import com.alibaba.druid.filter.stat.StatFilterContext;
@@ -13,10 +13,10 @@ import com.alibaba.druid.util.DruidWebUtils;
 import com.alibaba.druid.util.PatternMatcher;
 import com.alibaba.druid.util.ServletPathMatcher;
 import jakarta.servlet.*;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class WebStatFilterAdaptor extends AbstractWebStatImplAdaptor implements 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpServletResponse httpResponse = (HttpServletResponse)response;
-        WebStatFilterAdaptor.StatHttpServletResponseWrapper responseWrapper = new WebStatFilterAdaptor.StatHttpServletResponseWrapper(httpResponse);
+        StatHttpServletResponseWrapper responseWrapper = new StatHttpServletResponseWrapper(httpResponse);
         String requestURI = this.getRequestURI(httpRequest);
         if (this.isExclusion(requestURI)) {
             chain.doFilter(request, response);
@@ -214,7 +214,7 @@ public class WebStatFilterAdaptor extends AbstractWebStatImplAdaptor implements 
         }
     }
 
-    public void init(javax.servlet.FilterConfig config) throws javax.servlet.ServletException {
+    public void init(FilterConfig config) throws ServletException {
         String param = config.getInitParameter("exclusions");
         if (param != null && param.trim().length() != 0) {
             this.excludesPattern = new HashSet(Arrays.asList(param.split("\\s*,\\s*")));
@@ -280,7 +280,7 @@ public class WebStatFilterAdaptor extends AbstractWebStatImplAdaptor implements 
         }
 
         StatFilterContext.getInstance().addContextListener(this.statFilterContextListener);
-        this.contextPath = DruidWebUtils.getContextPath(config.getServletContext());
+        this.contextPath = DruidWebUtilsAdaptor.getContextPath(config.getServletContext());
         if (this.webAppStat == null) {
             this.webAppStat = new WebAppStat(this.contextPath, this.sessionStatMaxCount);
         }
@@ -304,7 +304,7 @@ public class WebStatFilterAdaptor extends AbstractWebStatImplAdaptor implements 
         return this.webAppStat;
     }
 
-    public AbstractWebStatImplAdaptor.WebStatFilterContextListener getStatFilterContextListener() {
+    public WebStatFilterContextListener getStatFilterContextListener() {
         return this.statFilterContextListener;
     }
 

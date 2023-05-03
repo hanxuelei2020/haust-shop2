@@ -1,4 +1,4 @@
-package com.zbkj.admin.adaptor;
+package com.zbkj.common.adaptor;
 
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletContext;

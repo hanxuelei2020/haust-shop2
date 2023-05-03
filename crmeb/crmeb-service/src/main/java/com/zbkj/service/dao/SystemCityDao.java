@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.system.SystemCity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+
 /**
  * 城市表 Mapper 接口
  * +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface SystemCityDao extends BaseMapper<SystemCity> {
 
 }

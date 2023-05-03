@@ -5,6 +5,7 @@ import com.zbkj.common.vo.SystemStoreNearVo;
 import com.zbkj.common.model.system.SystemStore;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ import java.util.List;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface SystemStoreDao extends BaseMapper<SystemStore> {
 
     List<SystemStoreNearVo> getNearList(StoreNearRequest request);

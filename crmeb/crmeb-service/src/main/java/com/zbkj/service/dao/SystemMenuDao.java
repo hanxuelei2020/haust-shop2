@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.system.SystemMenu;
 
+
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
  * @author HZW
  * @since 2021-11-17
  */
+
 public interface SystemMenuDao extends BaseMapper<SystemMenu> {
 
     /**

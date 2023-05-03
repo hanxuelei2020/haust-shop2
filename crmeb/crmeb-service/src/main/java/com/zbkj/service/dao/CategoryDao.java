@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.category.Category;
 
+
 /**
  * 分类表 Mapper 接口
  *  +----------------------------------------------------------------------
@@ -15,5 +16,6 @@ import com.zbkj.common.model.category.Category;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
+
 public interface CategoryDao extends BaseMapper<Category> {
 }

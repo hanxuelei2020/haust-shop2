@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.vo.UserFundsMonitor;
 
+
 /**
  * 用户充值表 Mapper 接口
  *  +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.zbkj.common.vo.UserFundsMonitor;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
+
 public interface UserFundsMonitorDao extends BaseMapper<UserFundsMonitor> {
 
 }

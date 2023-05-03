@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.product.StoreProductAttrResult;
 
+
 /**
  * 商品属性详情表 Mapper 接口
  * +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.zbkj.common.model.product.StoreProductAttrResult;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface StoreProductAttrResultDao extends BaseMapper<StoreProductAttrResult> {
 
 }

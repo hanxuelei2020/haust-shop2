@@ -1,10 +1,10 @@
 package com.zbkj.service.dao;
-import org.apache.ibatis.annotations.Mapper;
+
 
 import java.util.List;
 import java.util.Map;
 
-@Mapper
+
 public interface MySqlGenDao {
     /**
      * Mysql 查询列表

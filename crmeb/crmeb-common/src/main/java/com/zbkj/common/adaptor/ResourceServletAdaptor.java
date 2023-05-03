@@ -1,4 +1,4 @@
-package com.zbkj.admin.adaptor;
+package com.zbkj.common.adaptor;
 
 
 import com.alibaba.druid.support.http.ResourceServlet;
@@ -27,10 +27,10 @@ public abstract class ResourceServletAdaptor extends HttpServlet {
     public static final String PARAM_NAME_ALLOW = "allow";
     public static final String PARAM_NAME_DENY = "deny";
     public static final String PARAM_REMOTE_ADDR = "remoteAddress";
-    protected final ResourceServletAdaptor.ResourceHandler handler;
+    protected final ResourceHandler handler;
 
     public ResourceServletAdaptor(String resourcePath) {
-        this.handler = new ResourceServletAdaptor.ResourceHandler(resourcePath);
+        this.handler = new ResourceHandler(resourcePath);
     }
 
     public void init() throws ServletException {

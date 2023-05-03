@@ -1,4 +1,4 @@
-package com.zbkj.admin.adaptor;
+package com.zbkj.common.adaptor;
 
 import com.alibaba.druid.filter.stat.StatFilterContextListenerAdapter;
 import com.alibaba.druid.support.http.AbstractWebStatImpl;
@@ -7,9 +7,9 @@ import com.alibaba.druid.support.http.stat.WebRequestStat;
 import com.alibaba.druid.support.http.stat.WebSessionStat;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Cookie;
 
 
 public class AbstractWebStatImplAdaptor {
@@ -24,7 +24,7 @@ public class AbstractWebStatImplAdaptor {
     protected String principalSessionName;
     protected String principalCookieName;
     protected String realIpHeader;
-    protected AbstractWebStatImplAdaptor.WebStatFilterContextListener statFilterContextListener = new AbstractWebStatImplAdaptor.WebStatFilterContextListener();
+    protected WebStatFilterContextListener statFilterContextListener = new WebStatFilterContextListener();
 
     public AbstractWebStatImplAdaptor() {
     }

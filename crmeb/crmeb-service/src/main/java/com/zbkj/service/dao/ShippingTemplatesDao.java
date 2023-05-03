@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.express.ShippingTemplates;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+
 /**
  *  Mapper 接口
  *  +----------------------------------------------------------------------
@@ -15,6 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
+
 public interface ShippingTemplatesDao extends BaseMapper<ShippingTemplates> {
 
 }

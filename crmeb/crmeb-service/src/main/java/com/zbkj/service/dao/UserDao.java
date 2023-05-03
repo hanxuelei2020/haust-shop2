@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.user.User;
 import com.zbkj.common.response.UserSpreadPeopleItemResponse;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import java.util.Map;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
+
 public interface UserDao extends BaseMapper<User> {
 
     List<UserSpreadPeopleItemResponse> getSpreadPeopleList(Map<String, Object> map);
