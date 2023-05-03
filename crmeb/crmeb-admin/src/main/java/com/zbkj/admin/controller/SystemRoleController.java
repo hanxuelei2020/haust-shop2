@@ -8,8 +8,10 @@ import com.zbkj.common.request.SystemRoleSearchRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.response.RoleInfoResponse;
 import com.zbkj.service.service.SystemRoleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/role")
-@Api(tags = "设置 -- 权限管理 -- 身份管理")
+@Tag(name ="设置 -- 权限管理 -- 身份管理")
 public class SystemRoleController {
 
     @Autowired
@@ -44,7 +46,7 @@ public class SystemRoleController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:role:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<SystemRole>> getList(@Validated SystemRoleSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<SystemRole> systemRoleCommonPage = CommonPage.restPage(systemRoleService.getList(request, pageParamRequest));
@@ -56,7 +58,7 @@ public class SystemRoleController {
      * @param systemRoleRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:system:role:save')")
-    @ApiOperation(value = "新增身份")
+    @Operation(summary = "新增身份")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated SystemRoleRequest systemRoleRequest) {
         if (systemRoleService.add(systemRoleRequest)) {
@@ -70,7 +72,7 @@ public class SystemRoleController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:role:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (systemRoleService.delete(id)) {
@@ -84,7 +86,7 @@ public class SystemRoleController {
      * @param systemRoleRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:role:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestBody @Validated SystemRoleRequest systemRoleRequest) {
         if (systemRoleService.edit(systemRoleRequest)) {
@@ -98,7 +100,7 @@ public class SystemRoleController {
      * @param id String
      */
     @PreAuthorize("hasAuthority('admin:system:role:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public CommonResult<RoleInfoResponse> info(@PathVariable Integer id) {
         return CommonResult.success(systemRoleService.getInfo(id));
@@ -108,7 +110,7 @@ public class SystemRoleController {
      * 修改身份状态
      */
     @PreAuthorize("hasAuthority('admin:system:role:update:status')")
-    @ApiOperation(value = "修改身份状态")
+    @Operation(summary = "修改身份状态")
     @RequestMapping(value = "/updateStatus", method = RequestMethod.GET)
     public CommonResult<Object> updateStatus(@Validated @RequestParam(value = "id") Integer id, @Validated @RequestParam(value = "status") Boolean status) {
         if (systemRoleService.updateStatus(id, status)) {

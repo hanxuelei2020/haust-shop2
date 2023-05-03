@@ -5,8 +5,10 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.constants.Constants;
 import com.zbkj.common.exception.CrmebException;
 import com.zbkj.front.service.QrCodeService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/front/qrcode")
-@Api(tags = "二维码服务")
+@Tag(name ="二维码服务")
 public class QrCodeController {
 
     @Autowired
@@ -39,7 +41,7 @@ public class QrCodeController {
      * 获取二维码
      * @return CommonResult
      */
-    @ApiOperation(value="获取二维码")
+    @Operation(summary ="获取二维码")
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> get(@RequestBody JSONObject data) {
         return CommonResult.success(qrCodeService.get(data));
@@ -49,7 +51,7 @@ public class QrCodeController {
      * 远程图片转base64
      * @return CommonResult
      */
-    @ApiOperation(value="远程图片转base64")
+    @Operation(summary ="远程图片转base64")
     @RequestMapping(value = "/base64", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> get(@RequestParam String url) {
         return CommonResult.success(qrCodeService.base64(url));
@@ -59,7 +61,7 @@ public class QrCodeController {
      * 将字符串 转base64
      * @return CommonResult
      */
-    @ApiOperation(value="将字符串 转base64")
+    @Operation(summary ="将字符串 转base64")
     @RequestMapping(value = "/str2base64", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> getQrcodeByString(
             @RequestParam String text,

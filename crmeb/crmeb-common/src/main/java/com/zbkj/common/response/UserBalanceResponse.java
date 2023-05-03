@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,7 +25,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserBalanceResponse对象", description="用户资金统计")
+@Schema(name ="UserBalanceResponse对象", description="用户资金统计")
 public class UserBalanceResponse implements Serializable {
     public UserBalanceResponse(){}
     public UserBalanceResponse(BigDecimal nowMoney, BigDecimal recharge, BigDecimal orderStatusSum) {
@@ -37,13 +37,13 @@ public class UserBalanceResponse implements Serializable {
     private static final long serialVersionUID=1L;
 
 
-    @ApiModelProperty(value = "当前总资金")
+    @Schema(name  = "当前总资金")
     private BigDecimal nowMoney;
 
-    @ApiModelProperty(value = "累计充值")
+    @Schema(name  = "累计充值")
     private BigDecimal recharge;
 
-    @ApiModelProperty(value = "累计消费")
+    @Schema(name  = "累计消费")
     private BigDecimal orderStatusSum;
 
 }

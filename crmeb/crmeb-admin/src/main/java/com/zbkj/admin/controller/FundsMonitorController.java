@@ -9,8 +9,10 @@ import com.zbkj.common.response.MonitorResponse;
 import com.zbkj.common.model.user.UserBrokerageRecord;
 import com.zbkj.service.service.UserBillService;
 import com.zbkj.service.service.UserFundsMonitorService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/finance/founds/monitor")
-@Api(tags = "财务 -- 资金监控")
+@Tag(name ="财务 -- 资金监控")
 public class FundsMonitorController {
 
     @Autowired
@@ -50,7 +52,7 @@ public class FundsMonitorController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:finance:monitor:list')")
-    @ApiOperation(value = "资金监控")
+    @Operation(summary = "资金监控")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<MonitorResponse>>  getList(@Validated FundsMonitorRequest request, @Validated PageParamRequest pageParamRequest){
         CommonPage<MonitorResponse> userExtractCommonPage = CommonPage.restPage(userBillService.fundMonitoring(request, pageParamRequest));
@@ -63,7 +65,7 @@ public class FundsMonitorController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:finance:monitor:brokerage:record')")
-    @ApiOperation(value = "佣金记录")
+    @Operation(summary = "佣金记录")
     @RequestMapping(value = "/brokerage/record", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserBrokerageRecord>> brokerageRecord(@Validated BrokerageRecordRequest request, @Validated PageParamRequest pageParamRequest){
         return CommonResult.success(CommonPage.restPage(userFundsMonitorService.getBrokerageRecord(request, pageParamRequest)));

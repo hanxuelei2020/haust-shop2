@@ -13,8 +13,10 @@ import com.zbkj.common.response.StoreProductInfoResponse;
 import com.zbkj.service.service.StoreBargainService;
 import com.zbkj.service.service.StoreBargainUserHelpService;
 import com.zbkj.service.service.StoreBargainUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,7 +41,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/store/bargain")
-@Api(tags = "商品 -- 砍价 -- 商品") //配合swagger使用
+@Tag(name ="商品 -- 砍价 -- 商品") //配合swagger使用
 public class StoreBargainController {
 
     @Autowired
@@ -57,7 +59,7 @@ public class StoreBargainController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:bargain:list')")
-    @ApiOperation(value = "分页显示砍价商品列表") //配合swagger使用
+    @Operation(summary = "分页显示砍价商品列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreBargainResponse>>  getList(@Validated StoreBargainSearchRequest request, @Validated PageParamRequest pageParamRequest){
         CommonPage<StoreBargainResponse> storeBargainCommonPage = CommonPage.restPage(storeBargainService.getList(request, pageParamRequest));
@@ -69,7 +71,7 @@ public class StoreBargainController {
      * @param storeBargainRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:bargain:save')")
-    @ApiOperation(value = "新增砍价商品")
+    @Operation(summary = "新增砍价商品")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated StoreBargainRequest storeBargainRequest){
         if(storeBargainService.saveBargain(storeBargainRequest)){
@@ -84,7 +86,7 @@ public class StoreBargainController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:bargain:delete')")
-    @ApiOperation(value = "删除砍价商品")
+    @Operation(summary = "删除砍价商品")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id){
         if(storeBargainService.deleteById(id)){
@@ -99,7 +101,7 @@ public class StoreBargainController {
      * @param storeBargainRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:bargain:update')")
-    @ApiOperation(value = "修改砍价商品")
+    @Operation(summary = "修改砍价商品")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestBody @Validated StoreBargainRequest storeBargainRequest){
         if (storeBargainService.updateBargain(storeBargainRequest)) {
@@ -114,7 +116,7 @@ public class StoreBargainController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:bargain:info')")
-    @ApiOperation(value = "查询砍价商品详情")
+    @Operation(summary = "查询砍价商品详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<StoreProductInfoResponse> info(@RequestParam(value = "id") Integer id){
         StoreProductInfoResponse storeBargainResponse = storeBargainService.getAdminDetail(id);
@@ -129,7 +131,7 @@ public class StoreBargainController {
     * @return {@link CommonResult<String>}
     */
    @PreAuthorize("hasAuthority('admin:bargain:update:status')")
-    @ApiOperation(value = "修改砍价商品状态")
+    @Operation(summary = "修改砍价商品状态")
     @RequestMapping(value = "/update/status", method = RequestMethod.POST)
     public CommonResult<String> updateStatus(@RequestParam @Validated Integer id, @RequestParam @Validated boolean status){
         if(storeBargainService.updateBargainStatus(id,status)){
@@ -145,7 +147,7 @@ public class StoreBargainController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:bargain:user:list')")
-    @ApiOperation(value = "分页显示砍价列表") //配合swagger使用
+    @Operation(summary = "分页显示砍价列表") //配合swagger使用
     @RequestMapping(value = "/bargain_list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreBargainUserResponse>> getBargainUserList(@Validated StoreBargainUserSearchRequest request, @Validated PageParamRequest pageParamRequest){
         CommonPage<StoreBargainUserResponse> bargainUserCommonPage = CommonPage.restPage(storeBargainUserService.getList(request, pageParamRequest));
@@ -157,7 +159,7 @@ public class StoreBargainController {
      * @param id StoreBargainUser 砍价参与用户编号
      */
     @PreAuthorize("hasAuthority('admin:bargain:user:help:list')")
-    @ApiOperation(value = "获取砍价参与详情列表") //配合swagger使用
+    @Operation(summary = "获取砍价参与详情列表") //配合swagger使用
     @RequestMapping(value = "/bargain_list/{id}", method = RequestMethod.GET)
     public CommonResult<List<StoreBargainUserHelpResponse>> getBargainUserHelpDetail(@PathVariable(value = "id") Integer id){
         List<StoreBargainUserHelpResponse> list = storeBargainUserHelpService.getList(id);

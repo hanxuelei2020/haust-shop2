@@ -3,7 +3,7 @@ package com.zbkj.common.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModelProperty;
+ 
 import lombok.Data;
 
 import java.io.Serializable;
@@ -31,37 +31,37 @@ public class SystemCityTreeVo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "城市id")
+    @Schema(name  = "城市id")
     private Integer cityId;
 
-    @ApiModelProperty(value = "省市级别")
+    @Schema(name  = "省市级别")
     private Integer level;
 
-    @ApiModelProperty(value = "父级id")
+    @Schema(name  = "父级id")
     private Integer parentId;
 
-    @ApiModelProperty(value = "区号")
+    @Schema(name  = "区号")
     private String areaCode;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(name  = "名称")
     private String name;
 
-    @ApiModelProperty(value = "合并名称")
+    @Schema(name  = "合并名称")
     private String mergerName;
 
-    @ApiModelProperty(value = "经度")
+    @Schema(name  = "经度")
     private String lng;
 
-    @ApiModelProperty(value = "纬度")
+    @Schema(name  = "纬度")
     private String lat;
 
-    @ApiModelProperty(value = "是否展示")
+    @Schema(name  = "是否展示")
     private Boolean isShow;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "修改时间")
+    @Schema(name  = "修改时间")
     private Date updateTime;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY) //属性为 空（""）[] 或者为 NULL 都不序列化

@@ -1,8 +1,8 @@
 package com.zbkj.common.response;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,21 +24,21 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SystemLoginResponse对象", description="PC登录返回对象")
+@Schema(name ="SystemLoginResponse对象", description="PC登录返回对象")
 public class SystemLoginResponse implements Serializable {
 
-    @ApiModelProperty(value = "id")
+    @Schema(name  = "id")
     private Integer id;
 
-    @ApiModelProperty(value = "管理员账号")
+    @Schema(name  = "管理员账号")
     private String account;
 
-    @ApiModelProperty(value = "管理员昵称")
+    @Schema(name  = "管理员昵称")
     private String realName;
 
-    @ApiModelProperty(value = "token")
+    @Schema(name  = "token")
     private String Token;
 
-    @ApiModelProperty(value = "是否接收短信")
+    @Schema(name  = "是否接收短信")
     private Boolean isSms;
 }

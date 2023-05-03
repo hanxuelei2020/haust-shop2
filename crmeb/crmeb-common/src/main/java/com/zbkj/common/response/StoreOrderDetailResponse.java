@@ -1,8 +1,8 @@
 package com.zbkj.common.response;
 
 import com.zbkj.common.vo.StoreOrderInfoOldVo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,83 +29,83 @@ import java.util.Map;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreOrderDetailResponse对象", description="订单信息响应对象（pc列表用）")
+@Schema(name ="StoreOrderDetailResponse对象", description="订单信息响应对象（pc列表用）")
 public class StoreOrderDetailResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "订单号")
+    @Schema(name  = "订单号")
     private String orderId;
 
-    @ApiModelProperty(value = "实际支付金额")
+    @Schema(name  = "实际支付金额")
     private BigDecimal payPrice;
 
-    @ApiModelProperty(value = "支付方式")
+    @Schema(name  = "支付方式")
     private String payType;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "订单状态（0：待发货；1：待收货；2：已收货，待评价；3：已完成；）")
+    @Schema(name  = "订单状态（0：待发货；1：待收货；2：已收货，待评价；3：已完成；）")
     private Integer status;
 
-    @ApiModelProperty(value = "商品信息")
+    @Schema(name  = "商品信息")
     private List<StoreOrderInfoOldVo> productList = new ArrayList<>();
 
-    @ApiModelProperty(value = "订单状态")
+    @Schema(name  = "订单状态")
     private Map<String, String> statusStr;
 
-    @ApiModelProperty(value = "支付方式")
+    @Schema(name  = "支付方式")
     private String payTypeStr;
 
-    @ApiModelProperty(value = "是否删除")
+    @Schema(name  = "是否删除")
     private Boolean isDel;
 
-    @ApiModelProperty(value = "退款图片")
+    @Schema(name  = "退款图片")
     private String refundReasonWapImg;
 
-    @ApiModelProperty(value = "退款用户说明")
+    @Schema(name  = "退款用户说明")
     private String refundReasonWapExplain;
 
-    @ApiModelProperty(value = "退款时间")
+    @Schema(name  = "退款时间")
     private Date refundReasonTime;
 
-    @ApiModelProperty(value = "前台退款原因")
+    @Schema(name  = "前台退款原因")
     private String refundReasonWap;
 
-    @ApiModelProperty(value = "不退款的理由")
+    @Schema(name  = "不退款的理由")
     private String refundReason;
 
-    @ApiModelProperty(value = "退款金额")
+    @Schema(name  = "退款金额")
     private BigDecimal refundPrice;
 
-    @ApiModelProperty(value = "0 未退款 1 申请中 2 已退款")
+    @Schema(name  = "0 未退款 1 申请中 2 已退款")
     private Integer refundStatus;
 
-    @ApiModelProperty(value = "核销码")
+    @Schema(name  = "核销码")
     private String verifyCode;
 
-    @ApiModelProperty(value = "订单类型")
+    @Schema(name  = "订单类型")
     private String orderType;
 
-    @ApiModelProperty(value = "订单管理员备注")
+    @Schema(name  = "订单管理员备注")
     private String remark;
 
-    @ApiModelProperty(value = "用户姓名")
+    @Schema(name  = "用户姓名")
     private String realName;
 
-//    @ApiModelProperty(value = "备注")
+//    @Schema(name  = "备注")
 //    private String mark;
 
-//    @ApiModelProperty(value = "订单总价")
+//    @Schema(name  = "订单总价")
 //    private BigDecimal totalPrice;
 
-    @ApiModelProperty(value = "支付状态")
+    @Schema(name  = "支付状态")
     private Boolean paid;
 
-    @ApiModelProperty(value = "订单类型:0-普通订单，1-视频号订单")
+    @Schema(name  = "订单类型:0-普通订单，1-视频号订单")
     private Integer type;
 
-    @ApiModelProperty(value = "是否改价,0-否，1-是")
+    @Schema(name  = "是否改价,0-否，1-是")
     private Boolean isAlterPrice;
 }

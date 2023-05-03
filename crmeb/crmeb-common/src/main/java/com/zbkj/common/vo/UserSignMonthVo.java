@@ -1,8 +1,8 @@
 package com.zbkj.common.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,7 +26,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_user_sign")
-@ApiModel(value="UserSign对象", description="签到记录表")
+@Schema(name ="UserSign对象", description="签到记录表")
 public class UserSignMonthVo implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -37,9 +37,9 @@ public class UserSignMonthVo implements Serializable {
         this.list = list;
     }
 
-    @ApiModelProperty(value = "月")
+    @Schema(name  = "月")
     private String month;
 
-    @ApiModelProperty(value = "签到列表")
+    @Schema(name  = "签到列表")
     private List<UserSignVo> list;
 }

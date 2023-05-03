@@ -7,8 +7,10 @@ import com.zbkj.common.request.NotificationUpdateRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.response.NotificationInfoResponse;
 import com.zbkj.service.service.SystemNotificationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,7 +34,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/notification")
-@Api(tags = "通知设置-前端控制器") //配合swagger使用
+@Tag(name ="通知设置-前端控制器") //配合swagger使用
 public class SystemNotificationController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class SystemNotificationController {
      * @param request ExpressSearchRequest 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:system:notification:list')")
-    @ApiOperation(value = "系统通知列表")
+    @Operation(summary = "系统通知列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<List<SystemNotification>> getList(@Validated NotificationSearchRequest request) {
         return CommonResult.success(systemNotificationService.getList(request));
@@ -53,7 +55,7 @@ public class SystemNotificationController {
      * 公众号模板开关
      */
     @PreAuthorize("hasAuthority('admin:system:notification:wechat:switch')")
-    @ApiOperation(value = "公众号模板开关")
+    @Operation(summary = "公众号模板开关")
     @RequestMapping(value = "/wechat/switch/{id}", method = RequestMethod.POST)
     public CommonResult<Object> wechatSwitch(@PathVariable Integer id) {
         if (systemNotificationService.wechatSwitch(id)) {
@@ -66,7 +68,7 @@ public class SystemNotificationController {
      * 小程序订阅模板开关
      */
     @PreAuthorize("hasAuthority('admin:system:notification:routine:switch')")
-    @ApiOperation(value = "小程序订阅模板开关")
+    @Operation(summary = "小程序订阅模板开关")
     @RequestMapping(value = "/routine/switch/{id}", method = RequestMethod.POST)
     public CommonResult<Object> routineSwitch(@PathVariable Integer id) {
         if (systemNotificationService.routineSwitch(id)) {
@@ -79,7 +81,7 @@ public class SystemNotificationController {
      * 发送短信开关
      */
     @PreAuthorize("hasAuthority('admin:system:notification:sms:switch')")
-    @ApiOperation(value = "发送短信开关")
+    @Operation(summary = "发送短信开关")
     @RequestMapping(value = "/sms/switch/{id}", method = RequestMethod.POST)
     public CommonResult<Object> smsSwitch(@PathVariable Integer id) {
         if (systemNotificationService.smsSwitch(id)) {
@@ -92,7 +94,7 @@ public class SystemNotificationController {
      * 通知详情
      */
     @PreAuthorize("hasAuthority('admin:system:notification:detail')")
-    @ApiOperation(value = "通知详情")
+    @Operation(summary = "通知详情")
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public CommonResult<NotificationInfoResponse> info(@Validated NotificationInfoRequest request) {
         return CommonResult.success(systemNotificationService.getDetail(request));
@@ -102,7 +104,7 @@ public class SystemNotificationController {
      * 修改通知
      */
     @PreAuthorize("hasAuthority('admin:system:notification:update')")
-    @ApiOperation(value = "修改通知")
+    @Operation(summary = "修改通知")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<Object> update(@Validated @RequestBody NotificationUpdateRequest request) {
         if (systemNotificationService.modify(request)) {

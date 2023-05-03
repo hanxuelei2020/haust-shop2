@@ -1,8 +1,8 @@
 package com.zbkj.admin.pub;
 
 import com.zbkj.admin.service.WeChatMessageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +31,7 @@ import java.io.PrintWriter;
 @Slf4j
 @RestController
 @RequestMapping("api/public/wechat/message")
-@Api(tags = "微信开放平台 -- 消息")
+@Tag(name ="微信开放平台 -- 消息")
 public class WeChatMessageController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class WeChatMessageController {
      * @author Mr.Zhang
      * @since 2020-04-22
      */
-    @ApiOperation(value = "接受微信推送过来的消息")
+    @Operation(summary = "接受微信推送过来的消息")
     @RequestMapping(value = "/webHook", method = RequestMethod.POST)
     public String webHook(HttpServletRequest request){
        return weChatMessageService.init(request);

@@ -6,8 +6,10 @@ import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.request.UserRechargeSearchRequest;
 import com.zbkj.common.response.UserRechargeResponse;
 import com.zbkj.service.service.UserRechargeService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +37,7 @@ import java.util.HashMap;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/user/topUpLog")
-@Api(tags = "财务 -- 充值")
+@Tag(name ="财务 -- 充值")
 public class UserRechargeController {
 
     @Autowired
@@ -47,7 +49,7 @@ public class UserRechargeController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:recharge:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserRechargeResponse>>  getList(@Validated UserRechargeSearchRequest request, @Validated PageParamRequest pageParamRequest){
         CommonPage<UserRechargeResponse> userRechargeCommonPage = CommonPage.restPage(userRechargeService.getList(request, pageParamRequest));
@@ -58,7 +60,7 @@ public class UserRechargeController {
      * 充值总金额
      */
     @PreAuthorize("hasAuthority('admin:recharge:balance')")
-    @ApiOperation(value = "提现总金额")
+    @Operation(summary = "提现总金额")
     @RequestMapping(value = "/balance", method = RequestMethod.POST)
     public CommonResult<HashMap<String, BigDecimal>> balance(){
         return CommonResult.success(userRechargeService.getBalanceList());

@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.zbkj.common.request.*;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.service.service.OnePassService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +33,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/pass")
-@Api(tags = "一号通服务")
+@Tag(name ="一号通服务")
 public class OnePassController {
 
     @Autowired
@@ -42,11 +44,11 @@ public class OnePassController {
      * @param phone 手机号码
      */
     @PreAuthorize("hasAuthority('admin:pass:send:code')")
-    @ApiOperation(value = "获取用户验证码")
+    @Operation(summary = "获取用户验证码")
     @RequestMapping(value = "/sendUserCode", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="phone", value="手机号"),
-            @ApiImplicitParam(name="types", value="验证码类型1:修改，0:注册")
+     @Parameters({
+             @Parameter(name="phone", description="手机号"),
+             @Parameter(name="types", description="验证码类型1:修改，0:注册")
     })
     public CommonResult<Object> sendUserCode(@RequestParam(name = "phone") String phone,@RequestParam(name = "types", required = false) Integer types) {
         return CommonResult.success(onePassService.sendUserCode(phone, types));
@@ -57,7 +59,7 @@ public class OnePassController {
      * @param registerRequest 注册参数
      */
     @PreAuthorize("hasAuthority('admin:pass:register')")
-    @ApiOperation(value = "账号注册")
+    @Operation(summary = "账号注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public CommonResult<String> register(@Validated @RequestBody OnePassRegisterRequest registerRequest) {
         return CommonResult.success(onePassService.register(registerRequest));
@@ -68,7 +70,7 @@ public class OnePassController {
      * @return
      */
     @PreAuthorize("hasAuthority('admin:pass:login')")
-    @ApiOperation(value = "一号通用户登录")
+    @Operation(summary = "一号通用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> account(@Validated @RequestBody OnePassLoginRequest request) {
         return CommonResult.success(onePassService.login(request));
@@ -79,7 +81,7 @@ public class OnePassController {
      * @return
      */
     @PreAuthorize("hasAuthority('admin:pass:is:login')")
-    @ApiOperation(value = "是否已经登录")
+    @Operation(summary = "是否已经登录")
     @RequestMapping(value = "/isLogin", method = RequestMethod.GET)
     public CommonResult<Map<String, Object>> isLogin() {
         return CommonResult.success(onePassService.isLogin());
@@ -89,7 +91,7 @@ public class OnePassController {
      * 一号通用户信息
      */
     @PreAuthorize("hasAuthority('admin:pass:info')")
-    @ApiOperation(value = "一号通用户信息")
+    @Operation(summary = "一号通用户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<JSONObject> getInfo() {
         return CommonResult.success(onePassService.info());
@@ -100,7 +102,7 @@ public class OnePassController {
      * @return result
      */
     @PreAuthorize("hasAuthority('admin:pass:logout')")
-    @ApiOperation(value = "注销")
+    @Operation(summary = "注销")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public CommonResult<JSONObject> logOut() {
         if (onePassService.logOut()) {
@@ -114,7 +116,7 @@ public class OnePassController {
      * 手机号+验证码方式修改
      */
     @PreAuthorize("hasAuthority('admin:pass:update:password')")
-    @ApiOperation(value = "修改密码")
+    @Operation(summary = "修改密码")
     @RequestMapping(value = "/update/password", method = RequestMethod.POST)
     public CommonResult<JSONObject> updatePassword(@Validated @RequestBody OnePassUpdateRequest request) {
         if (onePassService.updatePassword(request)) {
@@ -127,7 +129,7 @@ public class OnePassController {
      * 修改手机号——验证账号密码
      */
     @PreAuthorize("hasAuthority('admin:pass:update:phone:validator')")
-    @ApiOperation(value = "修改手机号——验证账号密码")
+    @Operation(summary = "修改手机号——验证账号密码")
     @RequestMapping(value = "/update/phone/validator", method = RequestMethod.POST)
     public CommonResult<JSONObject> updatePhone(@Validated @RequestBody OnePassLoginRequest request) {
         if (onePassService.beforeUpdatePhoneValidator(request)) {
@@ -140,7 +142,7 @@ public class OnePassController {
      * 修改手机号
      */
     @PreAuthorize("hasAuthority('admin:pass:update:phone')")
-    @ApiOperation(value = "修改手机号")
+    @Operation(summary = "修改手机号")
     @RequestMapping(value = "/update/phone", method = RequestMethod.POST)
     public CommonResult<JSONObject> updatePhone(@Validated @RequestBody OnePassUpdateRequest request) {
         if (onePassService.updatePhone(request)) {
@@ -154,9 +156,9 @@ public class OnePassController {
      * @param type 套餐类型：sms,短信；expr_query,物流查询；expr_dump,电子面单；copy,产品复制
      */
     @PreAuthorize("hasAuthority('admin:pass:meal:list')")
-    @ApiOperation(value = "套餐列表")
+    @Operation(summary = "套餐列表")
     @RequestMapping(value = "/meal/list", method = RequestMethod.GET)
-    @ApiImplicitParam(name="type", value="套餐类型：sms,短信；expr_query,物流查询；expr_dump,电子面单；copy,产品复制")
+     @Parameter(name="type", description="套餐类型：sms,短信；expr_query,物流查询；expr_dump,电子面单；copy,产品复制")
     public CommonResult<JSONObject> mealList(@Validated @RequestParam String type) {
         return CommonResult.success(onePassService.mealList(type));
     }
@@ -165,7 +167,7 @@ public class OnePassController {
      * 套餐购买
      */
     @PreAuthorize("hasAuthority('admin:pass:meal:code')")
-    @ApiOperation(value = "套餐购买")
+    @Operation(summary = "套餐购买")
     @RequestMapping(value = "/meal/code", method = RequestMethod.POST)
     public CommonResult<JSONObject> mealCode(@RequestBody @Validated MealCodeRequest request) {
         return CommonResult.success(onePassService.mealCode(request));
@@ -175,7 +177,7 @@ public class OnePassController {
      * 服务开通
      */
     @PreAuthorize("hasAuthority('admin:pass:service:open')")
-    @ApiOperation(value = "服务开通")
+    @Operation(summary = "服务开通")
     @RequestMapping(value = "/service/open", method = RequestMethod.POST)
     public CommonResult<JSONObject> serviceOpen(@RequestBody @Validated ServiceOpenRequest request) {
         if (onePassService.serviceOpen(request)) {
@@ -188,7 +190,7 @@ public class OnePassController {
      * 用量记录
      */
     @PreAuthorize("hasAuthority('admin:pass:user:record')")
-    @ApiOperation(value = "用量记录")
+    @Operation(summary = "用量记录")
     @RequestMapping(value = "/user/record", method = RequestMethod.GET)
     public CommonResult<JSONObject> record(@Validated OnePassUserRecordRequest request) {
         return CommonResult.success(onePassService.userRecord(request));

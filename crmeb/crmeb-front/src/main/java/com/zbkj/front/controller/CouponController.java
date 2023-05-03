@@ -6,10 +6,12 @@ import com.zbkj.common.response.StoreCouponFrontResponse;
 import com.zbkj.common.response.StoreCouponUserOrder;
 import com.zbkj.service.service.StoreCouponService;
 import com.zbkj.service.service.StoreCouponUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +35,7 @@ import java.util.List;
 @Slf4j
 @RestController("CouponFrontController")
 @RequestMapping("api/front")
-@Api(tags = "优惠券")
+@Tag(name ="优惠券")
 public class CouponController {
 
     @Autowired
@@ -49,13 +51,13 @@ public class CouponController {
      * @param productId 产品id，搜索产品指定优惠券
      * @param pageParamRequest 分页参数
      */
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/coupons", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="type", value="类型，1-通用，2-商品，3-品类", required = true),
-            @ApiImplicitParam(name="productId", value="产品id"),
-            @ApiImplicitParam(name="page", value="页码", required = true),
-            @ApiImplicitParam(name="limit", value="每页数量", required = true)
+     @Parameters({
+             @Parameter(name="type", description="类型，1-通用，2-商品，3-品类", required = true),
+             @Parameter(name="productId", description="产品id"),
+             @Parameter(name="page", description="页码", required = true),
+             @Parameter(name="limit", description="每页数量", required = true)
     })
     public CommonResult<List<StoreCouponFrontResponse>>  getList(@RequestParam(value = "type", defaultValue = "0") int type,
             @RequestParam(value = "productId", defaultValue = "0") int productId, @Validated PageParamRequest pageParamRequest) {
@@ -65,7 +67,7 @@ public class CouponController {
     /**
      * 根据购物车id获取可用优惠券
      */
-    @ApiOperation(value = "当前订单可用优惠券")
+    @Operation(summary = "当前订单可用优惠券")
     @RequestMapping(value = "coupons/order/{preOrderNo}", method = RequestMethod.GET)
     public CommonResult<List<StoreCouponUserOrder>> getCouponsListByPreOrderNo(@PathVariable String preOrderNo) {
         return CommonResult.success(storeCouponUserService.getListByPreOrderNo(preOrderNo));

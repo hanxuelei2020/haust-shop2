@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,7 +29,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_user_level")
-@ApiModel(value="UserLevel对象", description="用户等级记录表")
+@Schema(name ="UserLevel对象", description="用户等级记录表")
 public class UserLevel implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -37,34 +37,34 @@ public class UserLevel implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "用户uid")
+    @Schema(name  = "用户uid")
     private Integer uid;
 
-    @ApiModelProperty(value = "等级vip")
+    @Schema(name  = "等级vip")
     private Integer levelId;
 
-    @ApiModelProperty(value = "会员等级")
+    @Schema(name  = "会员等级")
     private Integer grade;
 
-    @ApiModelProperty(value = "0:禁止,1:正常")
+    @Schema(name  = "0:禁止,1:正常")
     private Boolean status;
 
-    @ApiModelProperty(value = "备注")
+    @Schema(name  = "备注")
     private String mark;
 
-    @ApiModelProperty(value = "是否已通知")
+    @Schema(name  = "是否已通知")
     private Boolean remind;
 
-    @ApiModelProperty(value = "是否删除,0=未删除,1=删除")
+    @Schema(name  = "是否删除,0=未删除,1=删除")
     private Boolean isDel;
 
-    @ApiModelProperty(value = "享受折扣")
+    @Schema(name  = "享受折扣")
     private Integer discount;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date updateTime;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
 }

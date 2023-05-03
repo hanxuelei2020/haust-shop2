@@ -10,9 +10,11 @@ import com.zbkj.common.response.UserRechargeBillRecordResponse;
 import com.zbkj.common.response.UserRechargeFrontResponse;
 import com.zbkj.common.utils.CrmebUtil;
 import com.zbkj.front.service.UserCenterService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -38,7 +40,7 @@ import java.util.Map;
 @Slf4j
 @RestController("UserRechargeController")
 @RequestMapping("api/front/recharge")
-@Api(tags = "用户 -- 充值")
+@Tag(name ="用户 -- 充值")
 public class UserRechargeController {
     @Autowired
     private UserCenterService userCenterService;
@@ -46,7 +48,7 @@ public class UserRechargeController {
     /**
      * 充值额度选择
      */
-    @ApiOperation(value = "充值额度选择")
+    @Operation(summary = "充值额度选择")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public CommonResult<UserRechargeFrontResponse> getRechargeConfig() {
         return CommonResult.success(userCenterService.getRechargeConfig());
@@ -55,7 +57,7 @@ public class UserRechargeController {
     /**
      * 小程序充值
      */
-    @ApiOperation(value = "小程序充值")
+    @Operation(summary = "小程序充值")
     @RequestMapping(value = "/routine", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> routineRecharge(HttpServletRequest httpServletRequest, @RequestBody @Validated UserRechargeRequest request) {
         request.setFromType(Constants.PAY_TYPE_WE_CHAT_FROM_PROGRAM);
@@ -70,7 +72,7 @@ public class UserRechargeController {
     /**
      * 公众号充值
      */
-    @ApiOperation(value = "公众号充值")
+    @Operation(summary = "公众号充值")
     @RequestMapping(value = "/wechat", method = RequestMethod.POST)
     public CommonResult<OrderPayResultResponse> weChatRecharge(HttpServletRequest httpServletRequest, @RequestBody @Validated UserRechargeRequest request) {
         request.setClientIp(CrmebUtil.getClientIp(httpServletRequest));
@@ -80,7 +82,7 @@ public class UserRechargeController {
     /**
      * 佣金转入余额
      */
-    @ApiOperation(value = "佣金转入余额")
+    @Operation(summary = "佣金转入余额")
     @RequestMapping(value = "/transferIn", method = RequestMethod.POST)
     public CommonResult<Boolean> transferIn(@RequestParam(name = "price") BigDecimal price) {
         return CommonResult.success(userCenterService.transferIn(price));
@@ -89,9 +91,9 @@ public class UserRechargeController {
     /**
      * 用户账单记录
      */
-    @ApiOperation(value = "用户账单记录")
+    @Operation(summary = "用户账单记录")
     @RequestMapping(value = "/bill/record", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "type", value = "记录类型：all-全部，expenditure-支出，income-收入", required = true)
+     @Parameter(name = "type", description = "记录类型：all-全部，expenditure-支出，income-收入", required = true)
     public CommonResult<CommonPage<UserRechargeBillRecordResponse>> billRecord(@RequestParam(name = "type") String type, @ModelAttribute PageParamRequest pageRequest) {
         return CommonResult.success(userCenterService.nowMoneyBillRecord(type, pageRequest));
     }

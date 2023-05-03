@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zbkj.common.model.system.SystemStore;
 import com.zbkj.common.model.user.User;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -30,7 +30,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_store_staff")
-@ApiModel(value="SystemStoreStaffResponse对象", description="门店店员表")
+@Schema(name ="SystemStoreStaffResponse对象", description="门店店员表")
 public class SystemStoreStaffResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -38,36 +38,36 @@ public class SystemStoreStaffResponse implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "微信用户id")
+    @Schema(name  = "微信用户id")
     private Integer uid;
 
-    @ApiModelProperty(value = "店员头像")
+    @Schema(name  = "店员头像")
     private String avatar;
 
-    @ApiModelProperty(value = "用户信息")
+    @Schema(name  = "用户信息")
     private User user;
 
-    @ApiModelProperty(value = "门店id")
+    @Schema(name  = "门店id")
     private Integer storeId;
 
-    @ApiModelProperty(value = "门店")
+    @Schema(name  = "门店")
     private SystemStore systemStore;
 
-    @ApiModelProperty(value = "店员名称")
+    @Schema(name  = "店员名称")
     private String staffName;
 
-    @ApiModelProperty(value = "手机号码")
+    @Schema(name  = "手机号码")
     private String phone;
 
-    @ApiModelProperty(value = "核销开关")
+    @Schema(name  = "核销开关")
     private Integer verifyStatus;
 
-    @ApiModelProperty(value = "状态")
+    @Schema(name  = "状态")
     private Integer status;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name  = "更新时间")
     private Date updateTime;
 }

@@ -1,6 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -22,11 +23,11 @@ import javax.validation.constraints.NotNull;
 public class SystemAttachmentMoveRequest {
 
 
-    @ApiModelProperty(value = "父级id")
+    @Schema(name  = "父级id")
     @NotNull(message = "父级id不能为空")
     private Integer pid;
 
-    @ApiModelProperty(value = "附件id")
+    @Schema(name  = "附件id")
     @NotBlank(message = "请选择附件")
     private String attrId;
 }

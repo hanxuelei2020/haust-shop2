@@ -1,7 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,29 +23,29 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="MenuCheckVo对象", description="菜单待选中Vo对象")
+@Schema(name ="MenuCheckVo对象", description="菜单待选中Vo对象")
 public class MenuCheckVo implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "菜单ID")
+    @Schema(name  = "菜单ID")
     private Integer id;
 
-    @ApiModelProperty(value = "父级ID")
+    @Schema(name  = "父级ID")
     private Integer pid;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(name  = "名称")
     private String name;
 
-    @ApiModelProperty(value = "icon")
+    @Schema(name  = "icon")
     private String icon;
 
-    @ApiModelProperty(value = "是否选中")
+    @Schema(name  = "是否选中")
     private Boolean checked;
 
-    @ApiModelProperty(value = "排序")
+    @Schema(name  = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "子对象列表")
+    @Schema(name  = "子对象列表")
     private List<MenuCheckVo> childList;
 }

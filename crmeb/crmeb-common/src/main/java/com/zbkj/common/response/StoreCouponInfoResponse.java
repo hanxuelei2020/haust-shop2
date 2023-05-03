@@ -3,8 +3,8 @@ package com.zbkj.common.response;
 import com.zbkj.common.model.category.Category;
 import com.zbkj.common.request.StoreCouponRequest;
 import com.zbkj.common.model.product.StoreProduct;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,7 +27,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreCouponInfoResponse对象", description="优惠券详情")
+@Schema(name ="StoreCouponInfoResponse对象", description="优惠券详情")
 public class StoreCouponInfoResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -38,13 +38,13 @@ public class StoreCouponInfoResponse implements Serializable {
         this.category = category;
     }
 
-    @ApiModelProperty(value = "优惠券发布id")
+    @Schema(name  = "优惠券发布id")
     private StoreCouponRequest coupon;
 
-    @ApiModelProperty(value = "商品信息")
+    @Schema(name  = "商品信息")
     private List<StoreProduct> product;
 
-    @ApiModelProperty(value = "分类信息")
+    @Schema(name  = "分类信息")
     private List<Category> category;
 
 }

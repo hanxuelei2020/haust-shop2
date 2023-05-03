@@ -12,10 +12,12 @@ import com.zbkj.common.response.StoreProductResponse;
 import com.zbkj.common.response.StoreProductTabsHeader;
 import com.zbkj.service.service.StoreCartService;
 import com.zbkj.service.service.StoreProductService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/store/product")
-@Api(tags = "商品") //配合swagger使用
+@Tag(name ="商品") //配合swagger使用
 public class StoreProductController {
 
     @Autowired
@@ -59,7 +61,7 @@ public class StoreProductController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:product:list')")
-    @ApiOperation(value = "分页列表") //配合swagger使用
+    @Operation(summary = "分页列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreProductResponse>> getList(@Validated StoreProductSearchRequest request,
                                                                   @Validated PageParamRequest pageParamRequest) {
@@ -71,7 +73,7 @@ public class StoreProductController {
      * @param request 新增参数
      */
     @PreAuthorize("hasAuthority('admin:product:save')")
-    @ApiOperation(value = "新增商品")
+    @Operation(summary = "新增商品")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated StoreProductAddRequest request) {
         if (storeProductService.save(request)) {
@@ -86,7 +88,7 @@ public class StoreProductController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:product:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestBody @PathVariable Integer id, @RequestParam(value = "type", required = false, defaultValue = "recycle")String type) {
         if (storeProductService.deleteProduct(id, type)) {
@@ -106,7 +108,7 @@ public class StoreProductController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:product:restore')")
-    @ApiOperation(value = "恢复商品")
+    @Operation(summary = "恢复商品")
     @RequestMapping(value = "/restore/{id}", method = RequestMethod.GET)
     public CommonResult<String> restore(@RequestBody @PathVariable Integer id) {
         if (storeProductService.reStoreProduct(id)) {
@@ -121,7 +123,7 @@ public class StoreProductController {
      * @param storeProductRequest 商品参数
      */
     @PreAuthorize("hasAuthority('admin:product:update')")
-    @ApiOperation(value = "商品修改")
+    @Operation(summary = "商品修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestBody @Validated StoreProductAddRequest storeProductRequest) {
         if (storeProductService.update(storeProductRequest)) {
@@ -136,7 +138,7 @@ public class StoreProductController {
      * @param id 商品id
      */
     @PreAuthorize("hasAuthority('admin:product:info')")
-    @ApiOperation(value = "商品详情")
+    @Operation(summary = "商品详情")
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public CommonResult<StoreProductInfoResponse> info(@PathVariable Integer id) {
         return CommonResult.success(storeProductService.getInfo(id));
@@ -146,7 +148,7 @@ public class StoreProductController {
      * 商品tabs表头数据
      */
     @PreAuthorize("hasAuthority('admin:product:tabs:headers')")
-   @ApiOperation(value = "商品表头数量")
+   @Operation(summary = "商品表头数量")
    @RequestMapping(value = "/tabs/headers", method = RequestMethod.GET)
    public CommonResult<List<StoreProductTabsHeader>> getTabsHeader() {
         return CommonResult.success(storeProductService.getTabsHeader());
@@ -157,7 +159,7 @@ public class StoreProductController {
      * 上架
      */
     @PreAuthorize("hasAuthority('admin:product:up')")
-    @ApiOperation(value = "上架")
+    @Operation(summary = "上架")
     @RequestMapping(value = "/putOnShell/{id}", method = RequestMethod.GET)
     public CommonResult<String> putOn(@PathVariable Integer id) {
         if (storeProductService.putOnShelf(id)) {
@@ -171,7 +173,7 @@ public class StoreProductController {
      * 下架
      */
     @PreAuthorize("hasAuthority('admin:product:down')")
-    @ApiOperation(value = "下架")
+    @Operation(summary = "下架")
     @RequestMapping(value = "/offShell/{id}", method = RequestMethod.GET)
     public CommonResult<String> offShell(@PathVariable Integer id) {
         if (storeProductService.offShelf(id)) {
@@ -182,11 +184,11 @@ public class StoreProductController {
     }
 
     @PreAuthorize("hasAuthority('admin:product:import:product')")
-    @ApiOperation(value = "导入99Api商品")
+    @Operation(summary = "导入99Api商品")
     @RequestMapping(value = "/importProduct", method = RequestMethod.POST)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "form", value = "导入平台1=淘宝，2=京东，3=苏宁，4=拼多多, 5=天猫", dataType = "int",  required = true),
-            @ApiImplicitParam(name = "url", value = "URL", dataType = "String", required = true),
+     @Parameters({
+             @Parameter(name = "form", description = "导入平台1=淘宝，2=京东，3=苏宁，4=拼多多, 5=天猫",  required = true),
+             @Parameter(name = "url", description = "URL",  required = true),
     })
     public CommonResult<StoreProductRequest> importProduct(
             @RequestParam @Valid int form,
@@ -199,14 +201,14 @@ public class StoreProductController {
      * 获取复制商品配置
      */
     @PreAuthorize("hasAuthority('admin:product:copy:config')")
-    @ApiOperation(value = "获取复制商品配置")
+    @Operation(summary = "获取复制商品配置")
     @RequestMapping(value = "/copy/config", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> copyConfig() {
         return CommonResult.success(storeProductService.copyConfig());
     }
 
     @PreAuthorize("hasAuthority('admin:product:copy:product')")
-    @ApiOperation(value = "复制平台商品")
+    @Operation(summary = "复制平台商品")
     @RequestMapping(value = "/copy/product", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> copyProduct(@RequestBody @Valid StoreCopyProductRequest request) {
         return CommonResult.success(storeProductService.copyProduct(request.getUrl()));

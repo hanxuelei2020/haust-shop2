@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,39 +29,39 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_store_bargain_user_help")
-@ApiModel(value="StoreBargainUserHelp对象", description="砍价用户帮助表")
+@Schema(name ="StoreBargainUserHelp对象", description="砍价用户帮助表")
 public class StoreBargainUserHelp implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "砍价用户帮助表ID")
+    @Schema(name  = "砍价用户帮助表ID")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "帮助的用户id")
+    @Schema(name  = "帮助的用户id")
     private Integer uid;
 
-    @ApiModelProperty(value = "砍价商品ID")
+    @Schema(name  = "砍价商品ID")
     private Integer bargainId;
 
-    @ApiModelProperty(value = "用户参与砍价表id")
+    @Schema(name  = "用户参与砍价表id")
     private Integer bargainUserId;
 
-    @ApiModelProperty(value = "帮助砍价多少金额")
+    @Schema(name  = "帮助砍价多少金额")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "添加时间")
+    @Schema(name  = "添加时间")
     private Long addTime;
 
-    @ApiModelProperty(value = "用户昵称")
+    @Schema(name  = "用户昵称")
     @TableField(exist = false)
     private String nickname;
 
-    @ApiModelProperty(value = "用户头像")
+    @Schema(name  = "用户头像")
     @TableField(exist = false)
     private String avatar;
 
-    @ApiModelProperty(value = "添加时间(前端用)")
+    @Schema(name  = "添加时间(前端用)")
     @TableField(exist = false)
     private String addTimeStr;
 }

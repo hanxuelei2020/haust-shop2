@@ -1,8 +1,10 @@
 package com.zbkj.admin.controller;
 
 import com.zbkj.service.service.WechatCallbackService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +29,7 @@ import java.io.PrintWriter;
 @Slf4j
 @RestController
 @RequestMapping("api/public/wechat/mini/callback")
-@Api(tags = "微信开放平台 -- 小程序回调")
+@Tag(name ="微信开放平台 -- 小程序回调")
 public class WechatCallbackController {
 
     @Autowired
@@ -36,7 +38,7 @@ public class WechatCallbackController {
     /**
      * 小程序回调-自己模拟
      */
-    @ApiOperation(value = "小程序回调-自己模拟")
+    @Operation(summary = "小程序回调-自己模拟")
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public String test(@RequestBody String request) {
         return wechatCallbackService.callback(request);
@@ -46,7 +48,7 @@ public class WechatCallbackController {
      * 小程序回调
      * 目前只用于视频号直播
      */
-    @ApiOperation(value = "小程序回调")
+    @Operation(summary = "小程序回调")
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     public String webHook(@RequestBody String request) {
        return wechatCallbackService.callback(request);

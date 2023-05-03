@@ -1,8 +1,8 @@
 package com.zbkj.common.response;
 
 import com.zbkj.common.model.user.UserBill;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,14 +25,14 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserRechargeBillRecordResponse对象", description="用户余额账单记录")
+@Schema(name ="UserRechargeBillRecordResponse对象", description="用户余额账单记录")
 public class UserRechargeBillRecordResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "月份")
+    @Schema(name  = "月份")
     private String date;
 
-    @ApiModelProperty(value = "数据")
+    @Schema(name  = "数据")
     private List<UserBill> list;
 }

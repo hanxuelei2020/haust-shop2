@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,47 +25,47 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="IndexInfoResponse对象", description="用户登录返回数据")
+@Schema(name ="IndexInfoResponse对象", description="用户登录返回数据")
 public class IndexInfoResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "首页banner滚动图")
+    @Schema(name  = "首页banner滚动图")
     private List<HashMap<String, Object>> banner;
 
-    @ApiModelProperty(value = "导航模块")
+    @Schema(name  = "导航模块")
     private List<HashMap<String, Object>> menus;
 
-    @ApiModelProperty(value = "新闻简报消息滚动")
+    @Schema(name  = "新闻简报消息滚动")
     private List<HashMap<String, Object>> roll;
 
-    @ApiModelProperty(value = "企业logo")
+    @Schema(name  = "企业logo")
     private String logoUrl;
 
-    @ApiModelProperty(value = "是否关注公众号")
+    @Schema(name  = "是否关注公众号")
     private boolean subscribe;
 
-    @ApiModelProperty(value = "首页超值爆款")
+    @Schema(name  = "首页超值爆款")
     private List<HashMap<String, Object>> explosiveMoney;
 
-    @ApiModelProperty(value = "首页精品推荐图片")
+    @Schema(name  = "首页精品推荐图片")
     private List<HashMap<String, Object>> bastBanner;
 
-    @ApiModelProperty(value = "云智服H5 url")
+    @Schema(name  = "云智服H5 url")
     private String yzfUrl;
 
-    @ApiModelProperty(value = "商品分类页配置")
+    @Schema(name  = "商品分类页配置")
     private String categoryPageConfig;
 
-    @ApiModelProperty(value = "是否隐藏一级分类")
+    @Schema(name  = "是否隐藏一级分类")
     private String isShowCategory;
 
-    @ApiModelProperty(value = "客服电话")
+    @Schema(name  = "客服电话")
     private String consumerHotline;
 
-    @ApiModelProperty(value = "客服电话服务开关")
+    @Schema(name  = "客服电话服务开关")
     private String telephoneServiceSwitch;
 
-    @ApiModelProperty(value = "首页商品列表模板配置")
+    @Schema(name  = "首页商品列表模板配置")
     private String homePageSaleListStyle;
 }

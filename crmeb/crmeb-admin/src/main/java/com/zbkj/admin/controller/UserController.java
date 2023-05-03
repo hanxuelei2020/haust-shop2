@@ -8,10 +8,12 @@ import com.zbkj.common.model.user.User;
 import com.zbkj.common.response.TopDetail;
 import com.zbkj.common.response.UserResponse;
 import com.zbkj.service.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/user")
-@Api(tags = "会员管理")
+@Tag(name ="会员管理")
 @Validated
 public class UserController {
     @Autowired
@@ -51,7 +53,7 @@ public class UserController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:user:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserResponse>> getList(@ModelAttribute @Validated UserSearchRequest request,
                                                           @ModelAttribute PageParamRequest pageParamRequest) {
@@ -65,7 +67,7 @@ public class UserController {
      * @param userRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:user:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated UserUpdateRequest userRequest) {
         userRequest.setUid(id);
@@ -81,7 +83,7 @@ public class UserController {
      * @param phone 手机号
      */
     @PreAuthorize("hasAuthority('admin:user:update:phone')")
-    @ApiOperation(value = "修改用户手机号")
+    @Operation(summary = "修改用户手机号")
     @RequestMapping(value = "/update/phone", method = RequestMethod.GET)
     public CommonResult<String> updatePhone(@RequestParam(name = "id") Integer id, @RequestParam(name = "phone") String phone) {
         if (userService.updateUserPhone(id, phone)) {
@@ -95,7 +97,7 @@ public class UserController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:user:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<User> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(userService.getInfoByUid(id));
@@ -108,11 +110,11 @@ public class UserController {
      * @param pageParamRequest PageParamRequest 分页
      */
     @PreAuthorize("hasAuthority('admin:user:infobycondition')")
-    @ApiOperation(value="会员详情")
+    @Operation(summary ="会员详情")
     @RequestMapping(value = "/infobycondition", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId",example = "1", required = true),
-            @ApiImplicitParam(name = "type", value="0=消费记录，1=积分明细，2=签到记录，3=持有优惠券，4=余额变动，5=好友关系", example = "0"
+     @Parameters({
+             @Parameter(name = "userId",example = "1", required = true),
+             @Parameter(name = "type", description="0=消费记录，1=积分明细，2=签到记录，3=持有优惠券，4=余额变动，5=好友关系", example = "0"
                     , required = true)
     })
     public CommonResult<CommonPage<T>> infoByCondition(@RequestParam(name = "userId") @Valid Integer userId,
@@ -125,7 +127,7 @@ public class UserController {
      * 会员详情页Top数据
      */
     @PreAuthorize("hasAuthority('admin:user:topdetail')")
-    @ApiOperation(value = "会员详情页Top数据")
+    @Operation(summary = "会员详情页Top数据")
     @RequestMapping(value = "topdetail", method = RequestMethod.GET)
     public CommonResult<TopDetail> topDetail (@RequestParam @Valid Integer userId) {
         return CommonResult.success(userService.getTopDetail(userId));
@@ -135,7 +137,7 @@ public class UserController {
      * 操作积分
      */
     @PreAuthorize("hasAuthority('admin:user:operate:founds')")
-    @ApiOperation(value = "积分余额")
+    @Operation(summary = "积分余额")
     @RequestMapping(value = "/operate/founds", method = RequestMethod.GET)
     public CommonResult<Object> founds(@Validated UserOperateIntegralMoneyRequest request) {
         if (userService.updateIntegralMoney(request)) {
@@ -150,7 +152,7 @@ public class UserController {
      * @param groupId Integer 分组Id
      */
     @PreAuthorize("hasAuthority('admin:user:group')")
-    @ApiOperation(value = "分组")
+    @Operation(summary = "分组")
     @RequestMapping(value = "/group", method = RequestMethod.POST)
     public CommonResult<String> group(@RequestParam String id, @RequestParam String groupId) {
         if (userService.group(id, groupId)) {
@@ -165,7 +167,7 @@ public class UserController {
      * @param tagId Integer 标签id
      */
     @PreAuthorize("hasAuthority('admin:user:tag')")
-    @ApiOperation(value = "标签")
+    @Operation(summary = "标签")
     @RequestMapping(value = "/tag", method = RequestMethod.POST)
     public CommonResult<String> tag(@RequestParam String id, @RequestParam String tagId) {
         if (userService.tag(id, tagId)) {
@@ -178,7 +180,7 @@ public class UserController {
      * 修改上级推广人
      */
     @PreAuthorize("hasAuthority('admin:user:update:spread')")
-    @ApiOperation(value = "修改上级推广人")
+    @Operation(summary = "修改上级推广人")
     @RequestMapping(value = "/update/spread", method = RequestMethod.POST)
     public CommonResult<String> editSpread(@Validated @RequestBody UserUpdateSpreadRequest request) {
         if (userService.editSpread(request)) {
@@ -191,7 +193,7 @@ public class UserController {
      * 更新用户会员等级
      */
     @PreAuthorize("hasAuthority('admin:user:update:level')")
-    @ApiOperation(value = "更新用户会员等级")
+    @Operation(summary = "更新用户会员等级")
     @RequestMapping(value = "/update/level", method = RequestMethod.POST)
     public CommonResult<Object> updateUserLevel(@Validated @RequestBody UpdateUserLevelRequest request) {
         if (userService.updateUserLevel(request)) {

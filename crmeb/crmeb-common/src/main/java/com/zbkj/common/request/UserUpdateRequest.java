@@ -1,7 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,43 +24,43 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserUpdateRequest", description="用户更新请求对象")
+@Schema(name ="UserUpdateRequest", description="用户更新请求对象")
 public class UserUpdateRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "uid")
+    @Schema(name  = "uid")
     private Integer uid;
 
-    @ApiModelProperty(value = "真实姓名")
+    @Schema(name  = "真实姓名")
     private String realName;
 
-    @ApiModelProperty(value = "生日")
+    @Schema(name  = "生日")
     private String birthday;
 
-    @ApiModelProperty(value = "身份证号码")
+    @Schema(name  = "身份证号码")
     private String cardId;
 
-    @ApiModelProperty(value = "用户备注")
+    @Schema(name  = "用户备注")
     private String mark;
 
-    @ApiModelProperty(value = "状态是否正常， 0 = 禁止， 1 = 正常")
+    @Schema(name  = "状态是否正常， 0 = 禁止， 1 = 正常")
     @NotNull(message = "状态不能为空")
     private Boolean status;
 
-    @ApiModelProperty(value = "详细地址")
+    @Schema(name  = "详细地址")
     private String addres;
 
-//    @ApiModelProperty(value = "等级")
+//    @Schema(name  = "等级")
 //    private Integer level;
 
-    @ApiModelProperty(value = "用户分组id")
+    @Schema(name  = "用户分组id")
     private String groupId;
 
-    @ApiModelProperty(value = "用户标签id")
+    @Schema(name  = "用户标签id")
     private String tagId;
 
-    @ApiModelProperty(value = "是否为推广员")
+    @Schema(name  = "是否为推广员")
     @NotNull(message = "是否为推广员不能为空")
     private Boolean isPromoter;
 

@@ -5,8 +5,10 @@ import com.zbkj.common.request.SystemWriteOffOrderSearchRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.response.SystemWriteOffOrderResponse;
 import com.zbkj.service.service.StoreOrderService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/store/order")
-@Api(tags = "设置 -- 提货点 -- 核销订单") //配合swagger使用
+@Tag(name ="设置 -- 提货点 -- 核销订单") //配合swagger使用
 public class SystemWriteOffOrderController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class SystemWriteOffOrderController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:order:list')")
-    @ApiOperation(value = "分页列表") //配合swagger使用
+    @Operation(summary = "分页列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public CommonResult<SystemWriteOffOrderResponse>  getList(
             @Validated SystemWriteOffOrderSearchRequest request,

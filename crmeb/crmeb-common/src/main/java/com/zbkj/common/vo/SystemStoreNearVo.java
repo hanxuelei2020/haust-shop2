@@ -3,8 +3,7 @@ package com.zbkj.common.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,7 +27,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_store")
-@ApiModel(value="SystemStoreNearVo对象", description="门店自提")
+@Schema(name ="SystemStoreNearVo对象", description="门店自提")
 public class SystemStoreNearVo implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -36,49 +35,49 @@ public class SystemStoreNearVo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "门店名称")
+    @Schema(name  = "门店名称")
     private String name;
 
-    @ApiModelProperty(value = "简介")
+    @Schema(name  = "简介")
     private String introduction;
 
-    @ApiModelProperty(value = "手机号码")
+    @Schema(name  = "手机号码")
     private String phone;
 
-    @ApiModelProperty(value = "省市区")
+    @Schema(name  = "省市区")
     private String address;
 
-    @ApiModelProperty(value = "详细地址")
+    @Schema(name  = "详细地址")
     private String detailedAddress;
 
-    @ApiModelProperty(value = "门店logo")
+    @Schema(name  = "门店logo")
     private String image;
 
-    @ApiModelProperty(value = "纬度")
+    @Schema(name  = "纬度")
     private String latitude;
 
-    @ApiModelProperty(value = "经度")
+    @Schema(name  = "经度")
     private String longitude;
 
-    @ApiModelProperty(value = "核销有效日期")
+    @Schema(name  = "核销有效日期")
     private String validTime;
 
-    @ApiModelProperty(value = "每日营业开关时间")
+    @Schema(name  = "每日营业开关时间")
     private String dayTime;
 
-    @ApiModelProperty(value = "是否显示")
+    @Schema(name  = "是否显示")
     private Boolean isShow;
 
-    @ApiModelProperty(value = "是否删除")
+    @Schema(name  = "是否删除")
     private Boolean isDel;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "修改时间")
+    @Schema(name  = "修改时间")
     private Date updateTime;
 
-    @ApiModelProperty(value = "距离，单位米")
+    @Schema(name  = "距离，单位米")
     private String distance;
 
 }

@@ -4,10 +4,12 @@ import com.zbkj.common.page.CommonPage;
 import com.zbkj.common.request.*;
 import com.zbkj.common.response.*;
 import com.zbkj.service.service.OrderService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +33,7 @@ import java.util.Map;
 @Slf4j
 @RestController("StoreOrderFrontController")
 @RequestMapping("api/front/order")
-@Api(tags = "订单")
+@Tag(name ="订单")
 public class StoreOrderController {
 
     @Autowired
@@ -40,7 +42,7 @@ public class StoreOrderController {
     /**
      * 预下单
      */
-    @ApiOperation(value = "预下单")
+    @Operation(summary = "预下单")
     @RequestMapping(value = "/pre/order", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> preOrder(@RequestBody @Validated PreOrderRequest request) {
         return CommonResult.success(orderService.preOrder(request));
@@ -49,7 +51,7 @@ public class StoreOrderController {
     /**
      * 加载预下单
      */
-    @ApiOperation(value = "加载预下单")
+    @Operation(summary = "加载预下单")
     @RequestMapping(value = "load/pre/{preOrderNo}", method = RequestMethod.GET)
     public CommonResult<PreOrderResponse> loadPreOrder(@PathVariable String preOrderNo) {
         return CommonResult.success(orderService.loadPreOrder(preOrderNo));
@@ -58,7 +60,7 @@ public class StoreOrderController {
     /**
      * 根据参数计算订单价格
      */
-    @ApiOperation(value = "计算订单价格")
+    @Operation(summary = "计算订单价格")
     @RequestMapping(value = "/computed/price", method = RequestMethod.POST)
     public CommonResult<ComputedOrderPriceResponse> computedPrice(@Validated @RequestBody OrderComputedPriceRequest request) {
         return CommonResult.success(orderService.computedOrderPrice(request));
@@ -67,7 +69,7 @@ public class StoreOrderController {
     /**
      * 创建订单
      */
-    @ApiOperation(value = "创建订单")
+    @Operation(summary = "创建订单")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> createOrder(@Validated @RequestBody CreateOrderRequest orderRequest) {
         return CommonResult.success(orderService.createOrder(orderRequest));
@@ -79,10 +81,10 @@ public class StoreOrderController {
      * @param pageRequest 分页
      * @return 订单列表
      */
-    @ApiOperation(value = "订单列表")
+    @Operation(summary = "订单列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ApiImplicitParams ({
-        @ApiImplicitParam(name = "type", value = "评价等级|0=未支付,1=待发货,2=待收货,3=待评价,4=已完成,-3=售后/退款", required = true)
+     @Parameters ({
+         @Parameter(name = "type", description = "评价等级|0=未支付,1=待发货,2=待收货,3=待评价,4=已完成,-3=售后/退款", required = true)
     })
     public CommonResult<CommonPage<OrderDetailResponse>> orderList(@RequestParam(name = "type") Integer type,
                                                                    @ModelAttribute PageParamRequest pageRequest) {
@@ -94,7 +96,7 @@ public class StoreOrderController {
      * @param orderId 订单编号
      * @return 订单详情
      */
-    @ApiOperation(value = "订单详情")
+    @Operation(summary = "订单详情")
     @RequestMapping(value = "/detail/{orderId}", method = RequestMethod.GET)
     public CommonResult<StoreOrderDetailInfoResponse> orderDetail(@PathVariable String orderId) {
         return CommonResult.success(orderService.detailOrder(orderId));
@@ -104,7 +106,7 @@ public class StoreOrderController {
      * 订单头部信息
      * @return 查询集合数量
      */
-    @ApiOperation(value = "订单头部数量")
+    @Operation(summary = "订单头部数量")
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     public CommonResult<OrderDataResponse> orderData() {
         return CommonResult.success(orderService.orderData());
@@ -115,7 +117,7 @@ public class StoreOrderController {
      * @param id String 订单号
      * @return 删除结果
      */
-    @ApiOperation(value = "删除订单")
+    @Operation(summary = "删除订单")
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     public CommonResult<Boolean> delete(@RequestParam Integer id) {
         if( orderService.delete(id)) {
@@ -129,7 +131,7 @@ public class StoreOrderController {
      * 订单评价
      * @param request StoreProductReplyAddRequest 评论参数
      */
-    @ApiOperation(value = "评价订单")
+    @Operation(summary = "评价订单")
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public CommonResult<Boolean> comment(@RequestBody @Validated StoreProductReplyAddRequest request) {
         if(orderService.reply(request)) {
@@ -143,7 +145,7 @@ public class StoreOrderController {
      * 订单收货
      * @param id Integer 订单id
      */
-    @ApiOperation(value = "订单收货")
+    @Operation(summary = "订单收货")
     @RequestMapping(value = "/take", method = RequestMethod.POST)
     public CommonResult<Boolean> take(@RequestParam(value = "id") Integer id) {
         if(orderService.take(id)) {
@@ -157,7 +159,7 @@ public class StoreOrderController {
      * 订单取消
      * @param id Integer 订单id
      */
-    @ApiOperation(value = "订单取消")
+    @Operation(summary = "订单取消")
     @RequestMapping(value = "/cancel", method = RequestMethod.POST)
     public CommonResult<Boolean> cancel(@RequestParam(value = "id") Integer id) {
         if(orderService.cancel(id)) {
@@ -171,7 +173,7 @@ public class StoreOrderController {
      * 获取申请订单退款信息
      * @param orderId 订单编号
      */
-    @ApiOperation(value = "获取申请订单退款信息")
+    @Operation(summary = "获取申请订单退款信息")
     @RequestMapping(value = "/apply/refund/{orderId}", method = RequestMethod.GET)
     public CommonResult<ApplyRefundOrderInfoResponse> refundApplyOrder(@PathVariable String orderId) {
         return CommonResult.success(orderService.applyRefundOrderInfo(orderId));
@@ -181,7 +183,7 @@ public class StoreOrderController {
      * 订单退款申请
      * @param request OrderRefundApplyRequest 订单id
      */
-    @ApiOperation(value = "订单退款申请")
+    @Operation(summary = "订单退款申请")
     @RequestMapping(value = "/refund", method = RequestMethod.POST)
     public CommonResult<Boolean> refundApply(@RequestBody @Validated OrderRefundApplyRequest request) {
         if(orderService.refundApply(request)) {
@@ -195,7 +197,7 @@ public class StoreOrderController {
      * 查询订单退款理由
      * @return 退款理由
      */
-    @ApiOperation(value = "订单退款理由（商家提供）")
+    @Operation(summary = "订单退款理由（商家提供）")
     @RequestMapping(value = "/refund/reason", method = RequestMethod.GET)
     public CommonResult<List<String>> refundReason() {
         return CommonResult.success(orderService.getRefundReason());
@@ -206,13 +208,13 @@ public class StoreOrderController {
      * @param orderId 订单号
      * @return 物流信息
      */
-    @ApiOperation(value = "物流信息查询")
+    @Operation(summary = "物流信息查询")
     @RequestMapping(value = "/express/{orderId}", method = RequestMethod.GET)
     public CommonResult<Object> getExpressInfo(@PathVariable String orderId) {
         return CommonResult.success(orderService.expressOrder(orderId));
     }
 
-    @ApiOperation(value = "待评价商品信息查询")
+    @Operation(summary = "待评价商品信息查询")
     @RequestMapping(value = "/product", method = RequestMethod.POST)
     public CommonResult<OrderProductReplyResponse> getOrderProductForReply(@Validated @RequestBody GetProductReply request) {
         return CommonResult.success(orderService.getReplyProduct(request));
@@ -221,7 +223,7 @@ public class StoreOrderController {
     /**
      * 获取支付配置
      */
-    @ApiOperation(value = "获取支付配置")
+    @Operation(summary = "获取支付配置")
     @RequestMapping(value = "get/pay/config", method = RequestMethod.GET)
     public CommonResult<PreOrderResponse> getPayConfig() {
         return CommonResult.success(orderService.getPayConfig());

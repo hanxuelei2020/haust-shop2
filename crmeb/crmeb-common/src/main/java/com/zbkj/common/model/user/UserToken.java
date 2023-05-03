@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_user_token")
-@ApiModel(value="UserToken对象", description="")
+@Schema(name ="UserToken对象", description="")
 public class UserToken implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -35,22 +35,22 @@ public class UserToken implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "用户 id")
+    @Schema(name  = "用户 id")
     private Integer uid;
 
-    @ApiModelProperty(value = "token")
+    @Schema(name  = "token")
     private String token;
 
-    @ApiModelProperty(value = "类型， 1公众号， 2小程序, 5AppIos,6AppAndroid,7ios")
+    @Schema(name  = "类型， 1公众号， 2小程序, 5AppIos,6AppAndroid,7ios")
     private int type;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "到期事件")
+    @Schema(name  = "到期事件")
     private Date expiresTime;
 
-    @ApiModelProperty(value = "登录ip")
+    @Schema(name  = "登录ip")
     private String loginIp;
 
 

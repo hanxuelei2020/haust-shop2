@@ -3,8 +3,8 @@ package com.zbkj.common.model.system;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,28 +23,28 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 //@TableName("eb_system_permissions")
-@ApiModel(value="SystemPermissions对象", description="系统权限表")
+@Schema(name ="SystemPermissions对象", description="系统权限表")
 public class SystemPermissions implements Serializable {
 
     private static final long serialVersionUID=1L;
 
 //    @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty(value = "id")
+    @Schema(name  = "id")
     private Integer id;
 
-    @ApiModelProperty(value = "父级ID")
+    @Schema(name  = "父级ID")
     private Integer pid;
 
-    @ApiModelProperty(value = "权限名称")
+    @Schema(name  = "权限名称")
     private String name;
 
-    @ApiModelProperty(value = "权限地址")
+    @Schema(name  = "权限地址")
     private String path;
 
-    @ApiModelProperty(value = "排序")
+    @Schema(name  = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "是否删除")
+    @Schema(name  = "是否删除")
     private Boolean isDelte;
 
 

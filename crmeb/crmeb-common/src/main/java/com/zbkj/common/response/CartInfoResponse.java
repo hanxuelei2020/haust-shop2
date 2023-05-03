@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,44 +24,44 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="CartInfoResponse对象", description="购物车详情响应对象")
+@Schema(name ="CartInfoResponse对象", description="购物车详情响应对象")
 public class CartInfoResponse implements Serializable {
 
     private static final long serialVersionUID = 3558884699193209193L;
 
-    @ApiModelProperty(value = "购物车表ID")
+    @Schema(name  = "购物车表ID")
     private Long id;
 
-    @ApiModelProperty(value = "商品ID")
+    @Schema(name  = "商品ID")
     private Integer productId;
 
-    @ApiModelProperty(value = "商品属性")
+    @Schema(name  = "商品属性")
     private String productAttrUnique;
 
-    @ApiModelProperty(value = "商品数量")
+    @Schema(name  = "商品数量")
     private Integer cartNum;
 
-    @ApiModelProperty(value = "商品图片")
+    @Schema(name  = "商品图片")
     private String image;
 
-    @ApiModelProperty(value = "商品名称")
+    @Schema(name  = "商品名称")
     private String storeName;
 
-    @ApiModelProperty(value = "商品规格id")
+    @Schema(name  = "商品规格id")
     private Integer attrId;
 
-    @ApiModelProperty(value = "商品属性索引值 (attr_value|attr_value[|....])")
+    @Schema(name  = "商品属性索引值 (attr_value|attr_value[|....])")
     private String suk;
 
-    @ApiModelProperty(value = "sku价格")
+    @Schema(name  = "sku价格")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "商品是否有效")
+    @Schema(name  = "商品是否有效")
     private Boolean attrStatus;
 
-    @ApiModelProperty(value = "sku库存")
+    @Schema(name  = "sku库存")
     private Integer stock;
 
-    @ApiModelProperty(value = "sku会员价格")
+    @Schema(name  = "sku会员价格")
     private BigDecimal vipPrice;
 }

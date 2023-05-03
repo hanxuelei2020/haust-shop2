@@ -1,7 +1,8 @@
 package com.zbkj.common.response;
 
 import com.zbkj.common.model.product.StoreProductAttr;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,27 +26,27 @@ public class CombinationDetailResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "拼团列表")
+    @Schema(name  = "拼团列表")
     private List<StorePinkResponse> pinkList;
 
-    @ApiModelProperty(value = "拼团成功列表")
+    @Schema(name  = "拼团成功列表")
     private List<StorePinkResponse> pinkOkList;
 
-    @ApiModelProperty(value = "拼团完成的商品总件数")
+    @Schema(name  = "拼团完成的商品总件数")
     private Integer pinkOkSum;
 
-    @ApiModelProperty(value = "拼团商品信息")
+    @Schema(name  = "拼团商品信息")
     private CombinationDetailH5Response storeCombination;
 
-    @ApiModelProperty(value = "商品规格")
+    @Schema(name  = "商品规格")
     private List<StoreProductAttr> productAttr;
 
-    @ApiModelProperty(value = "商品规格值")
+    @Schema(name  = "商品规格值")
     private HashMap<String,Object> productValue;
 
-    @ApiModelProperty(value = "收藏标识")
+    @Schema(name  = "收藏标识")
     private Boolean userCollect;
 
-    @ApiModelProperty(value = "主商品状态:normal-正常，sellOut-售罄，soldOut-下架,delete-删除")
+    @Schema(name  = "主商品状态:normal-正常，sellOut-售罄，soldOut-下架,delete-删除")
     private String masterStatus;
 }

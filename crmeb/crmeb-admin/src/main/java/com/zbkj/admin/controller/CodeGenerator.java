@@ -6,8 +6,10 @@ import com.zbkj.common.utils.DateUtil;
 import com.zbkj.common.utils.genutils.GenCodePageListUtils;
 import com.zbkj.common.utils.genutils.GenCodePageQueryUtils;
 import com.zbkj.service.service.impl.CrmebGeneratorCodeService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,14 +37,14 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("api/codegen")
-@Api(tags = "代码生成")
+@Tag(name ="代码生成")
 public class CodeGenerator {
 
     @Autowired
     private CrmebGeneratorCodeService crmebGeneratorCodeService;
 
     @ResponseBody
-    @ApiOperation(value="代码生成-新列表")
+    @Operation(summary ="代码生成-新列表")
     @GetMapping("/list")
     public CommonResult<Object> listNew(@RequestParam Map<String, Object> params){
         GenCodePageListUtils pageUtil = crmebGeneratorCodeService.queryList(new GenCodePageQueryUtils(params));

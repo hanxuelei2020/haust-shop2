@@ -7,8 +7,10 @@ import com.zbkj.common.request.StoreOrderSearchRequest;
 import com.zbkj.common.request.StoreProductSearchRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.service.service.ExcelService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +37,7 @@ import java.util.HashMap;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/export/excel")
-@Api(tags = "导出 -- Excel")
+@Tag(name ="导出 -- Excel")
 public class ExcelController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class ExcelController {
      * @param request 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:export:excel:product')")
-    @ApiOperation(value = "产品")
+    @Operation(summary = "产品")
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public CommonResult<HashMap<String, String>> export(@Validated StoreProductSearchRequest request) {
         String fileName = excelService.exportProduct(request);
@@ -60,7 +62,7 @@ public class ExcelController {
      * @param request 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:export:excel:bargain')")
-    @ApiOperation(value = "砍价商品导出")
+    @Operation(summary = "砍价商品导出")
     @RequestMapping(value = "/bargain/product", method = RequestMethod.GET)
     public CommonResult<HashMap<String, String>> exportBargainProduct(@Validated StoreBargainSearchRequest request) {
         String fileName = excelService.exportBargainProduct(request);
@@ -74,7 +76,7 @@ public class ExcelController {
      * @param request 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:export:excel:combiantion')")
-    @ApiOperation(value = "拼团商品导出")
+    @Operation(summary = "拼团商品导出")
     @RequestMapping(value = "/combiantion/product", method = RequestMethod.GET)
     public CommonResult<HashMap<String, String>> exportCombinationProduct(@Validated StoreCombinationSearchRequest request) {
         String fileName = excelService.exportCombinationProduct(request);
@@ -88,7 +90,7 @@ public class ExcelController {
      * @param request 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:export:excel:order')")
-    @ApiOperation(value = "订单导出")
+    @Operation(summary = "订单导出")
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public CommonResult<HashMap<String, String>> exportOrder(@Validated StoreOrderSearchRequest request){
         String fileName = excelService.exportOrder(request);

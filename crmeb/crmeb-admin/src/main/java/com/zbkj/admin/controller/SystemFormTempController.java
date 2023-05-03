@@ -7,8 +7,10 @@ import com.zbkj.common.model.system.SystemFormTemp;
 import com.zbkj.common.request.SystemFormTempRequest;
 import com.zbkj.common.request.SystemFormTempSearchRequest;
 import com.zbkj.service.service.SystemFormTempService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +33,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/form/temp")
-@Api(tags = "设置 -- 表单模板")
+@Tag(name ="设置 -- 表单模板")
 public class SystemFormTempController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class SystemFormTempController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:form:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<SystemFormTemp>>  getList(@Validated SystemFormTempSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<SystemFormTemp> systemFormTempCommonPage = CommonPage.restPage(systemFormTempService.getList(request, pageParamRequest));
@@ -55,7 +57,7 @@ public class SystemFormTempController {
      * @param systemFormTempRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:system:form:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated SystemFormTempRequest systemFormTempRequest) {
         if (systemFormTempService.add(systemFormTempRequest)) {
@@ -70,7 +72,7 @@ public class SystemFormTempController {
      * @param systemFormTempRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:form:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated SystemFormTempRequest systemFormTempRequest) {
         if (systemFormTempService.edit(id, systemFormTempRequest)) {
@@ -84,7 +86,7 @@ public class SystemFormTempController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:form:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<SystemFormTemp> info(@RequestParam(value = "id") Integer id) {
         SystemFormTemp systemFormTemp = systemFormTempService.getById(id);

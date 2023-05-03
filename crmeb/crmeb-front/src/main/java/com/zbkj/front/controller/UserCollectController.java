@@ -7,8 +7,10 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.response.UserRelationResponse;
 import com.zbkj.service.service.StoreProductRelationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/front/collect")
-@Api(tags = "用户 -- 点赞/收藏")
+@Tag(name ="用户 -- 点赞/收藏")
 public class UserCollectController {
 
     @Autowired
@@ -39,7 +41,7 @@ public class UserCollectController {
     /**
      * 我的收藏列表
      */
-    @ApiOperation(value = "我的收藏列表")
+    @Operation(summary = "我的收藏列表")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserRelationResponse>> getList(@Validated PageParamRequest pageParamRequest) {
         return CommonResult.success(CommonPage.restPage(storeProductRelationService.getUserList(pageParamRequest)));
@@ -49,7 +51,7 @@ public class UserCollectController {
      * 添加收藏产品
      * @param request StoreProductRelationRequest 新增参数
      */
-    @ApiOperation(value = "添加收藏产品")
+    @Operation(summary = "添加收藏产品")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated UserCollectRequest request) {
         if (storeProductRelationService.add(request)) {
@@ -63,7 +65,7 @@ public class UserCollectController {
      * 添加收藏产品
      * @param request UserCollectAllRequest 新增参数
      */
-    @ApiOperation(value = "批量收藏")
+    @Operation(summary = "批量收藏")
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public CommonResult<String> all(@RequestBody @Validated UserCollectAllRequest request) {
         if (storeProductRelationService.all(request)) {
@@ -76,7 +78,7 @@ public class UserCollectController {
     /**
      * 取消收藏产品
      */
-    @ApiOperation(value = "取消收藏产品")
+    @Operation(summary = "取消收藏产品")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public CommonResult<String> delete(@RequestBody String requestJson) {
         if (storeProductRelationService.delete(requestJson)) {
@@ -89,7 +91,7 @@ public class UserCollectController {
     /**
      * 取消收藏产品(通过商品)
      */
-    @ApiOperation(value = "取消收藏产品(通过商品)")
+    @Operation(summary = "取消收藏产品(通过商品)")
     @RequestMapping(value = "/cancel/{proId}", method = RequestMethod.POST)
     public CommonResult<String> cancel(@PathVariable Integer proId) {
         if (storeProductRelationService.deleteByProIdAndUid(proId)) {

@@ -2,7 +2,8 @@ package com.zbkj.common.response;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -23,39 +24,39 @@ import java.util.Date;
 @Data
 public class UserRechargeResponse {
 
-    @ApiModelProperty(value = "充值记录ID")
+    @Schema(name  = "充值记录ID")
     private Integer id;
 
-    @ApiModelProperty(value = "充值用户UID")
+    @Schema(name  = "充值用户UID")
     private Integer uid;
 
-    @ApiModelProperty(value = "订单号")
+    @Schema(name  = "订单号")
     private String orderId;
 
-    @ApiModelProperty(value = "充值金额")
+    @Schema(name  = "充值金额")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "购买赠送金额")
+    @Schema(name  = "购买赠送金额")
     private BigDecimal givePrice;
 
-    @ApiModelProperty(value = "充值类型")
+    @Schema(name  = "充值类型")
     private String rechargeType;
 
-    @ApiModelProperty(value = "是否充值")
+    @Schema(name  = "是否充值")
     private Boolean paid;
 
-    @ApiModelProperty(value = "充值支付时间")
+    @Schema(name  = "充值支付时间")
     private Date payTime;
 
-    @ApiModelProperty(value = "充值时间")
+    @Schema(name  = "充值时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "退款金额")
+    @Schema(name  = "退款金额")
     private BigDecimal refundPrice;
 
-    @ApiModelProperty(value = "头像")
+    @Schema(name  = "头像")
     private String avatar;
 
-    @ApiModelProperty(value = "昵称")
+    @Schema(name  = "昵称")
     private String nickname;
 }

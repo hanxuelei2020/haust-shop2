@@ -1,7 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,51 +23,51 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SystemConfigFormItemVo对象", description="item对象")
+@Schema(name ="SystemConfigFormItemVo对象", description="item对象")
 public class SystemConfigFormItemConfigVo implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String label;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String showLabel;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String changeTag;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String labelWidth;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String tag;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String tagIcon;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String span;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String layout;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private Boolean required;
 
-    @ApiModelProperty(value = "验证规则")
+    @Schema(name  = "验证规则")
     private List<SystemConfigFormItemConfigRegListVo> regList;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String document;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String formId;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String renderKey;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String defaultValue;
 
 

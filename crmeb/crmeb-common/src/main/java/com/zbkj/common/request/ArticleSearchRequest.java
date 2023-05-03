@@ -1,7 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,15 +24,15 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ArticleSearchRequest对象", description="文章管理表")
+@Schema(name ="ArticleSearchRequest对象", description="文章管理表")
 public class ArticleSearchRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "分类id")
+    @Schema(name  = "分类id")
     private String cid;
 
-    @ApiModelProperty(value = "搜索关键字")
+    @Schema(name  = "搜索关键字")
     private String keywords;
 
 }

@@ -3,8 +3,10 @@ package com.zbkj.admin.controller;
 import com.zbkj.common.request.ShippingTemplatesRegionRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.service.service.ShippingTemplatesRegionService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +32,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/express/shipping/region")
-@Api(tags = "设置 -- 物流 -- 付费")
+@Tag(name ="设置 -- 物流 -- 付费")
 public class ShippingTemplatesRegionController {
 
     @Autowired
@@ -41,7 +43,7 @@ public class ShippingTemplatesRegionController {
      * @param tempId Integer 模板id
      */
     @PreAuthorize("hasAuthority('admin:shipping:templates:region:list')")
-    @ApiOperation(value = "根据模板id查询数据")
+    @Operation(summary = "根据模板id查询数据")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<List<ShippingTemplatesRegionRequest>> getList(@RequestParam Integer tempId){
         return CommonResult.success(shippingTemplatesRegionService.getListGroup(tempId));

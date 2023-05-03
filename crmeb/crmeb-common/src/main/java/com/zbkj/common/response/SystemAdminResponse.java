@@ -1,7 +1,8 @@
 package com.zbkj.common.response;
 
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -51,12 +52,12 @@ public class SystemAdminResponse implements Serializable {
 
     private String Token;
 
-    @ApiModelProperty(value = "手机号码")
+    @Schema(name  = "手机号码")
     private String phone;
 
-    @ApiModelProperty(value = "是否接收短信")
+    @Schema(name  = "是否接收短信")
     private Boolean isSms;
 
-    @ApiModelProperty(value = "权限标识数组")
+    @Schema(name  = "权限标识数组")
     private List<String> permissionsList;
 }

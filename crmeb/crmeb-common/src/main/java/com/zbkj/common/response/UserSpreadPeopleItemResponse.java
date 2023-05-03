@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,31 +24,31 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserSpreadPeopleItemResponse对象", description="推广人信息")
+@Schema(name ="UserSpreadPeopleItemResponse对象", description="推广人信息")
 public class UserSpreadPeopleItemResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
 
-    @ApiModelProperty(value = "用户编号")
+    @Schema(name  = "用户编号")
     private Integer uid;
 
-    @ApiModelProperty(value = "用户昵称")
+    @Schema(name  = "用户昵称")
     private String nickname;
 
-    @ApiModelProperty(value = "用户头像")
+    @Schema(name  = "用户头像")
     private String avatar;
 
-    @ApiModelProperty(value = "添加时间")
+    @Schema(name  = "添加时间")
     private String time;
 
-    @ApiModelProperty(value = "推广人数")
+    @Schema(name  = "推广人数")
     private Integer childCount;
 
-    @ApiModelProperty(value = "订单数量")
+    @Schema(name  = "订单数量")
     private Integer orderCount;
 
-    @ApiModelProperty(value = "订单金额")
+    @Schema(name  = "订单金额")
     private BigDecimal numberCount;
 
 }

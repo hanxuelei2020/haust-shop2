@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,13 +24,13 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BargainHeaderResponse对象", description="砍价商品列表header响应对象")
+@Schema(name ="BargainHeaderResponse对象", description="砍价商品列表header响应对象")
 public class BargainHeaderResponse {
 
-    @ApiModelProperty(value = "参与砍价总人数")
+    @Schema(name  = "参与砍价总人数")
     private Integer bargainTotal;
 
-    @ApiModelProperty(value = "砍价成功列表（默认7条）")
+    @Schema(name  = "砍价成功列表（默认7条）")
     private List<HashMap<String, Object>> bargainSuccessList;
 
 }

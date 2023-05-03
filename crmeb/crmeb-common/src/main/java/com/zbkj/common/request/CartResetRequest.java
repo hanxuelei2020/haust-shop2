@@ -1,7 +1,8 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
+
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -21,19 +22,19 @@ import javax.validation.constraints.NotNull;
 @Data
 public class CartResetRequest {
 
-    @ApiModelProperty(value = "购物车id")
+    @Schema(name  = "购物车id")
     @NotNull(message = "id 不能为空")
     private Long id;
 
-    @ApiModelProperty(value = "购物车数量")
+    @Schema(name  = "购物车数量")
     @NotNull(message = "num 不能为空")
     private Integer num;
 
-    @ApiModelProperty(value = "商品id")
+    @Schema(name  = "商品id")
     @NotNull(message = "productId 不能为空")
     private Integer productId;
 
-    @ApiModelProperty(value = "AttrValue Id")
+    @Schema(name  = "AttrValue Id")
     @NotNull(message = "unique 不能为空")
     private Integer unique;
 }

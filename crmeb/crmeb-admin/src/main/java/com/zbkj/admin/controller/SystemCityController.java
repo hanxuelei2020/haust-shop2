@@ -6,8 +6,10 @@ import com.zbkj.common.request.SystemCitySearchRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.vo.SystemCityTreeVo;
 import com.zbkj.service.service.SystemCityService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +37,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/city")
-@Api(tags = "城市管理")
+@Tag(name ="城市管理")
 public class SystemCityController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class SystemCityController {
      * @param request 搜索条件
      */
     @PreAuthorize("hasAuthority('admin:system:city:list')")
-    @ApiOperation(value = "分页城市列表")
+    @Operation(summary = "分页城市列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<Object> getList(@Validated SystemCitySearchRequest request) {
         return CommonResult.success(systemCityService.getList(request));
@@ -58,7 +60,7 @@ public class SystemCityController {
      * @param request 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:city:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @Validated SystemCityRequest request) {
         if (systemCityService.update(id, request)) {
@@ -73,7 +75,7 @@ public class SystemCityController {
      * @param status 状态
      */
     @PreAuthorize("hasAuthority('admin:system:city:update:status')")
-    @ApiOperation(value = "修改状态")
+    @Operation(summary = "修改状态")
     @RequestMapping(value = "/update/status", method = RequestMethod.POST)
     public CommonResult<String> updateStatus(@RequestParam Integer id, @RequestParam Boolean status) {
         if (systemCityService.updateStatus(id, status)) {
@@ -87,7 +89,7 @@ public class SystemCityController {
      * @param id 城市id
      */
     @PreAuthorize("hasAuthority('admin:system:city:info')")
-    @ApiOperation(value = "城市详情")
+    @Operation(summary = "城市详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<SystemCity> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(systemCityService.getById(id));
@@ -97,7 +99,7 @@ public class SystemCityController {
      * 获取tree结构的列表
      */
     @PreAuthorize("hasAuthority('admin:system:city:list:tree')")
-    @ApiOperation(value = "获取tree结构的列表")
+    @Operation(summary = "获取tree结构的列表")
     @RequestMapping(value = "/list/tree", method = RequestMethod.GET)
     public CommonResult<List<SystemCityTreeVo>> getListTree() {
         return CommonResult.success(systemCityService.getListTree());

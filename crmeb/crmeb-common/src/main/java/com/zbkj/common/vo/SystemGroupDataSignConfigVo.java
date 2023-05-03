@@ -1,8 +1,7 @@
 package com.zbkj.common.vo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,7 +23,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SystemGroupDataSignConfigVo对象", description="签到记录")
+@Schema(name ="SystemGroupDataSignConfigVo对象", description="签到记录")
 public class SystemGroupDataSignConfigVo implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -32,17 +31,17 @@ public class SystemGroupDataSignConfigVo implements Serializable {
     @TableId(value = "id")
     private Integer id;
 
-    @ApiModelProperty(value = "显示文字")
+    @Schema(name  = "显示文字")
     private String title;
 
-    @ApiModelProperty(value = "第几天")
+    @Schema(name  = "第几天")
     private Integer day;
 
 
-    @ApiModelProperty(value = "积分")
+    @Schema(name  = "积分")
     private Integer integral;
 
-    @ApiModelProperty(value = "经验")
+    @Schema(name  = "经验")
     private Integer experience;
 
 

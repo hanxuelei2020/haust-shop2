@@ -1,8 +1,8 @@
 package com.zbkj.common.response;
 
 import com.zbkj.common.model.user.UserBrokerageRecord;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,7 +25,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "SpreadCommissionDetailResponse对象", description = "推广佣金明细响应对象")
+@Schema(name  = "SpreadCommissionDetailResponse对象", description = "推广佣金明细响应对象")
 public class SpreadCommissionDetailResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,10 +37,10 @@ public class SpreadCommissionDetailResponse implements Serializable {
         this.list = list;
     }
 
-    @ApiModelProperty(value = "月份")
+    @Schema(name  = "月份")
     private String date;
 
-    @ApiModelProperty(value = "数据")
+    @Schema(name  = "数据")
     private List<UserBrokerageRecord> list;
 
 

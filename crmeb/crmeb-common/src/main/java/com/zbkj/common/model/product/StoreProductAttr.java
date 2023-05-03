@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,27 +26,27 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_store_product_attr")
-@ApiModel(value="StoreProductAttr对象", description="商品属性表")
+@Schema(name ="StoreProductAttr对象", description="商品属性表")
 public class StoreProductAttr implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "attrId")
+    @Schema(name  = "attrId")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "商品ID")
+    @Schema(name  = "商品ID")
     private Integer productId;
 
-    @ApiModelProperty(value = "属性名")
+    @Schema(name  = "属性名")
     private String attrName;
 
-    @ApiModelProperty(value = "属性值")
+    @Schema(name  = "属性值")
     private String attrValues;
 
-    @ApiModelProperty(value = "活动类型 0=商品，1=秒杀，2=砍价，3=拼团")
+    @Schema(name  = "活动类型 0=商品，1=秒杀，2=砍价，3=拼团")
     private Integer type;
 
-    @ApiModelProperty(value = "是否删除,0-否，1-是")
+    @Schema(name  = "是否删除,0-否，1-是")
     private Boolean isDel;
 }

@@ -1,6 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -19,9 +20,9 @@ import lombok.Data;
 public class SystemRoleSearchRequest {
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "身份管理名称")
+    @Schema(name  = "身份管理名称")
     private String roleName;
 
-    @ApiModelProperty(value = "状态")
+    @Schema(name  = "状态")
     private Boolean status;
 }

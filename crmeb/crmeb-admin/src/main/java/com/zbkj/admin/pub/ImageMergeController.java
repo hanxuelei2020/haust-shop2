@@ -3,8 +3,8 @@ package com.zbkj.admin.pub;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.utils.ImageMergeUtil;
 import com.zbkj.common.vo.ImageMergeUtilVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -29,11 +29,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/public/qrcode")
-@Api(tags = "图片操作")
+@Tag(name ="图片操作")
 public class ImageMergeController {
 
     @PreAuthorize("hasAuthority('public:qrcode:merge:list')")
-    @ApiOperation(value = "合并图片返回文件")
+    @Operation(summary = "合并图片返回文件")
     @RequestMapping(value = "/mergeList", method = RequestMethod.POST)
     public CommonResult<Map<String, String>> mergeList(@RequestBody @Validated List<ImageMergeUtilVo> list){
         Map<String, String> map = new HashMap<>();

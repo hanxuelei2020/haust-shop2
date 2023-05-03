@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,37 +24,37 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ProductReplyResponse对象", description="商品评论H5详情响应对象")
+@Schema(name ="ProductReplyResponse对象", description="商品评论H5详情响应对象")
 public class ProductReplyResponse {
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "评论ID")
+    @Schema(name  = "评论ID")
     private Integer id;
 
-    @ApiModelProperty(value = "用户ID")
+    @Schema(name  = "用户ID")
     private Integer uid;
 
-    @ApiModelProperty(value = "商品分数")
+    @Schema(name  = "商品分数")
     private Integer score;
 
-    @ApiModelProperty(value = "评论内容")
+    @Schema(name  = "评论内容")
     private String comment;
 
-    @ApiModelProperty(value = "评论图片")
+    @Schema(name  = "评论图片")
     private List<String> pics;
 
-    @ApiModelProperty(value = "管理员回复内容")
+    @Schema(name  = "管理员回复内容")
     private String merchantReplyContent;
 
-    @ApiModelProperty(value = "用户名称")
+    @Schema(name  = "用户名称")
     private String nickname;
 
-    @ApiModelProperty(value = "用户头像")
+    @Schema(name  = "用户头像")
     private String avatar;
 
-    @ApiModelProperty(value = "评论时间")
+    @Schema(name  = "评论时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "商品规格属性值")
+    @Schema(name  = "商品规格属性值")
     private String sku;
 }

@@ -10,10 +10,12 @@ import com.zbkj.common.response.WeChatJsSdkConfigResponse;
 import com.zbkj.front.service.UserCenterService;
 import com.zbkj.service.service.SystemNotificationService;
 import com.zbkj.service.service.WechatNewService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -39,7 +41,7 @@ import java.util.Map;
 @Slf4j
 @RestController("WeChatFrontController")
 @RequestMapping("api/front/wechat")
-@Api(tags = "微信 -- 开放平台")
+@Tag(name ="微信 -- 开放平台")
 public class WeChatController {
 
     @Autowired
@@ -54,11 +56,11 @@ public class WeChatController {
     /**
      * 通过微信code登录
      */
-    @ApiOperation(value = "微信登录公共号授权登录")
+    @Operation(summary = "微信登录公共号授权登录")
     @RequestMapping(value = "/authorize/login", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "spread_spid", value = "推荐人id", dataType = "Integer"),
-            @ApiImplicitParam(name = "code", value = "code码", dataType = "String", required = true)
+     @Parameters({
+             @Parameter(name = "spread_spid", description = "推荐人id"),
+             @Parameter(name = "code", description = "code码", required = true)
     })
     public CommonResult<LoginResponse> login(@RequestParam(value = "spread_spid", defaultValue = "0", required = false) Integer spreadUid,
                                              @RequestParam(value = "code") String code){
@@ -68,7 +70,7 @@ public class WeChatController {
     /**
      * 微信登录小程序授权登录
      */
-    @ApiOperation(value = "微信登录小程序授权登录")
+    @Operation(summary = "微信登录小程序授权登录")
     @RequestMapping(value = "/authorize/program/login", method = RequestMethod.POST)
     public CommonResult<LoginResponse> programLogin(@RequestParam String code, @RequestBody @Validated RegisterThirdUserRequest request){
         return CommonResult.success(userCenterService.weChatAuthorizeProgramLogin(code, request));
@@ -77,7 +79,7 @@ public class WeChatController {
     /**
      * 微信注册绑定手机号
      */
-    @ApiOperation(value = "微信注册绑定手机号")
+    @Operation(summary = "微信注册绑定手机号")
     @RequestMapping(value = "/register/binding/phone", method = RequestMethod.POST)
     public CommonResult<LoginResponse> registerBindingPhone(@RequestBody @Validated WxBindingPhoneRequest request){
         return CommonResult.success(userCenterService.registerBindingPhone(request));
@@ -86,9 +88,9 @@ public class WeChatController {
     /**
      * 获取微信公众号js配置
      */
-    @ApiOperation(value = "获取微信公众号js配置")
+    @Operation(summary = "获取微信公众号js配置")
     @RequestMapping(value = "/config", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "url", value = "页面地址url")
+     @Parameter(name = "url", description = "页面地址url")
     public CommonResult<WeChatJsSdkConfigResponse> configJs(@RequestParam(value = "url") String url){
         return CommonResult.success(wechatNewService.getJsSdkConfig(url));
     }
@@ -96,7 +98,7 @@ public class WeChatController {
     /**
      * 小程序获取授权logo
      */
-    @ApiOperation(value = "小程序获取授权logo")
+    @Operation(summary = "小程序获取授权logo")
     @RequestMapping(value = "/getLogo", method = RequestMethod.GET)
     public CommonResult<Map<String, String>> getLogo(){
         Map<String, String> map = new HashMap<>();
@@ -107,9 +109,9 @@ public class WeChatController {
     /**
      * 订阅消息模板列表
      */
-    @ApiOperation(value = "订阅消息模板列表")
+    @Operation(summary = "订阅消息模板列表")
     @RequestMapping(value = "/program/my/temp/list", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "type", value = "支付之前：beforePay|支付成功：afterPay|申请退款：refundApply|充值之前：beforeRecharge|创建砍价：createBargain|参与拼团：pink|取消拼团：cancelPink")
+     @Parameter(name = "type", description = "支付之前：beforePay|支付成功：afterPay|申请退款：refundApply|充值之前：beforeRecharge|创建砍价：createBargain|参与拼团：pink|取消拼团：cancelPink")
     public CommonResult<List<TemplateMessage>> programMyTempList(@RequestParam(name = "type") String type){
         return CommonResult.success(systemNotificationService.getMiniTempList(type));
     }

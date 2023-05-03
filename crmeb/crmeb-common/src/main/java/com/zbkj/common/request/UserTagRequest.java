@@ -3,8 +3,8 @@ package com.zbkj.common.request;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,12 +29,12 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserTagRequest对象", description="会员标签")
+@Schema(name ="UserTagRequest对象", description="会员标签")
 public class UserTagRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "标签名称")
+    @Schema(name  = "标签名称")
     @NotBlank(message = "请填写标签名称")
     @Length(max = 50, message = "标签名称不能超过50个字符")
     private String name;

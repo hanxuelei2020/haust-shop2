@@ -1,8 +1,8 @@
 package com.zbkj.common.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,41 +26,41 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="FundsMonitorSearchRequest对象", description="资金监控")
+@Schema(name ="FundsMonitorSearchRequest对象", description="资金监控")
 public class FundsMonitorSearchRequest implements Serializable {
 
-    @ApiModelProperty(value = "搜索关键字")
+    @Schema(name  = "搜索关键字")
     private String keywords;
 
-    @ApiModelProperty(value = "类型")
+    @Schema(name  = "类型")
     private String category;
 
-    @ApiModelProperty(value = "类型")
+    @Schema(name  = "类型")
     private String type;
 
-    @ApiModelProperty(value = "添加时间")
+    @Schema(name  = "添加时间")
     private String dateLimit;
 
-    @ApiModelProperty(value = "最大佣金")
+    @Schema(name  = "最大佣金")
     private BigDecimal max;
 
-    @ApiModelProperty(value = "最小佣金")
+    @Schema(name  = "最小佣金")
     private BigDecimal min;
 
-    @ApiModelProperty(value = "排序 asc/desc")
+    @Schema(name  = "排序 asc/desc")
     private String sort;
 
     @JsonIgnore
-    @ApiModelProperty(value = "关联id")
+    @Schema(name  = "关联id")
     private String linkId;
 
     @JsonIgnore
-    @ApiModelProperty(value = "操作类型")
+    @Schema(name  = "操作类型")
     private Integer pm;
 
-    @ApiModelProperty(value = "用户id list")
+    @Schema(name  = "用户id list")
     private List<Integer> userIdList;
 
-    @ApiModelProperty(value = "用户id list")
+    @Schema(name  = "用户id list")
     private Integer uid;
 }

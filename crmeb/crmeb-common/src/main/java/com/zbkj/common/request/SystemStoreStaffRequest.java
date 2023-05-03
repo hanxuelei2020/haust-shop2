@@ -3,8 +3,8 @@ package com.zbkj.common.request;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -31,34 +31,34 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_store_staff")
-@ApiModel(value="SystemStoreStaff对象", description="门店店员表")
+@Schema(name ="SystemStoreStaff对象", description="门店店员表")
 public class SystemStoreStaffRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "管理员 id")
+    @Schema(name  = "管理员 id")
     @Min(value = 1, message = "请选择管理员")
     private Integer uid;
 
-    @ApiModelProperty(value = "管理员头像")
+    @Schema(name  = "管理员头像")
     private String avatar;
 
-    @ApiModelProperty(value = "提货点id")
+    @Schema(name  = "提货点id")
     @Min(value = 1, message = "请选择提货点")
     private Integer storeId;
 
-    @ApiModelProperty(value = "核销员 名称 [昵称]")
+    @Schema(name  = "核销员 名称 [昵称]")
     @NotBlank(message = "核销员名称不能为空")
     @Length(max = 64,message = "核销员名称不能超过64个字符")
     private String staffName;
 
-    @ApiModelProperty(value = "手机号码")
+    @Schema(name  = "手机号码")
     private String phone;
 
-    @ApiModelProperty(value = "核销开关")
+    @Schema(name  = "核销开关")
     private boolean verifyStatus = false;
 
-    @ApiModelProperty(value = "状态")
+    @Schema(name  = "状态")
     private boolean status = false;
 
 

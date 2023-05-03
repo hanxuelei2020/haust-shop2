@@ -1,8 +1,10 @@
 package com.zbkj.admin.controller;
 
 import com.zbkj.service.service.CallbackService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/payment/callback")
-@Api(tags = "支付回调")
+@Tag(name ="支付回调")
 public class CallbackController {
 
     @Autowired
@@ -35,7 +37,7 @@ public class CallbackController {
     /**
      * 微信支付回调
      */
-    @ApiOperation(value = "微信支付回调")
+    @Operation(summary = "微信支付回调")
     @RequestMapping(value = "/wechat", method = RequestMethod.POST)
     public String weChat(@RequestBody String  request) {
         System.out.println("微信支付回调 request ===> " + request);
@@ -47,7 +49,7 @@ public class CallbackController {
     /**
      * 微信退款回调
      */
-    @ApiOperation(value = "微信退款回调")
+    @Operation(summary = "微信退款回调")
     @RequestMapping(value = "/wechat/refund", method = RequestMethod.POST)
     public String weChatRefund(@RequestBody String request) {
         System.out.println("微信退款回调 request ===> " + request);

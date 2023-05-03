@@ -3,8 +3,8 @@ package com.zbkj.common.response;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,33 +28,33 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="HomeOperatingDataResponse对象", description="首页经营数据响应对象")
+@Schema(name ="HomeOperatingDataResponse对象", description="首页经营数据响应对象")
 public class HomeOperatingDataResponse implements Serializable {
 
     private static final long serialVersionUID = -1486435421582495511L;
 
-    @ApiModelProperty(value = "待发货订单数量")
+    @Schema(name  = "待发货订单数量")
     private Integer notShippingOrderNum;
 
-    @ApiModelProperty(value = "退款中订单数量")
+    @Schema(name  = "退款中订单数量")
     private Integer refundingOrderNum;
 
-    @ApiModelProperty(value = "待核销订单数量")
+    @Schema(name  = "待核销订单数量")
     private Integer notWriteOffOrderNum;
 
-    @ApiModelProperty(value = "库存预警商品数量")
+    @Schema(name  = "库存预警商品数量")
     private Integer vigilanceInventoryNum;
 
-    @ApiModelProperty(value = "上架商品数量")
+    @Schema(name  = "上架商品数量")
     private Integer onSaleProductNum;
 
-    @ApiModelProperty(value = "仓库中商品数量")
+    @Schema(name  = "仓库中商品数量")
     private Integer notSaleProductNum;
 
-    @ApiModelProperty(value = "提现申请待审核数量")
+    @Schema(name  = "提现申请待审核数量")
     private Integer notAuditNum;
 
-    @ApiModelProperty(value = "用户充值总金额")
+    @Schema(name  = "用户充值总金额")
     private BigDecimal totalRechargeAmount;
 
 }

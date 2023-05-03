@@ -6,8 +6,10 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.response.StoreNearResponse;
 import com.zbkj.service.service.SystemStoreService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController("StoreController")
 @RequestMapping("api/front/store")
-@Api(tags = "提货点")
+@Tag(name ="提货点")
 public class StoreController {
     @Autowired
     private SystemStoreService systemStoreService;
@@ -38,7 +40,7 @@ public class StoreController {
     /**
      * 附近的提货点
      */
-    @ApiOperation(value = "附近的提货点")
+    @Operation(summary = "附近的提货点")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public CommonResult<StoreNearResponse> register(@Validated StoreNearRequest request, @Validated PageParamRequest pageParamRequest){
         return CommonResult.success(systemStoreService.getNearList(request, pageParamRequest));

@@ -1,7 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,7 +20,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="CreateOrderH5SceneInfoDetailVo对象", description="上报支付的场景信息详情")
+@Schema(name ="CreateOrderH5SceneInfoDetailVo对象", description="上报支付的场景信息详情")
 public class CreateOrderH5SceneInfoDetailVo {
     public CreateOrderH5SceneInfoDetailVo() {
     }
@@ -31,12 +30,12 @@ public class CreateOrderH5SceneInfoDetailVo {
         this.wap_name = name;
     }
 
-    @ApiModelProperty(value = "场景类型", required = true)
+    @Schema(name  = "场景类型", required = true)
     private String type = "Wap";
 
-    @ApiModelProperty(value = "WAP网站URL地址", required = true)
+    @Schema(name  = "WAP网站URL地址", required = true)
     private String wap_url;
 
-    @ApiModelProperty(value = "WAP 网站名", required = true)
+    @Schema(name  = "WAP 网站名", required = true)
     private String wap_name;
 }

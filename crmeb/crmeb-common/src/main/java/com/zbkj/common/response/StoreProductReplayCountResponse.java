@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreProductReplayCountResponse对象", description="产品评价数量和好评度")
+@Schema(name ="StoreProductReplayCountResponse对象", description="产品评价数量和好评度")
 public class StoreProductReplayCountResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -38,22 +38,22 @@ public class StoreProductReplayCountResponse implements Serializable {
         this.replyStar = replyStar;
     }
 
-    @ApiModelProperty(value = "评论总数")
+    @Schema(name  = "评论总数")
     private Long sumCount;
 
-    @ApiModelProperty(value = "好评总数")
+    @Schema(name  = "好评总数")
     private Long goodCount;
 
-    @ApiModelProperty(value = "中评总数")
+    @Schema(name  = "中评总数")
     private Long inCount;
 
-    @ApiModelProperty(value = "差评总数")
+    @Schema(name  = "差评总数")
     private Long poorCount;
 
-    @ApiModelProperty(value = "好评率")
+    @Schema(name  = "好评率")
     private String replyChance;
 
-    @ApiModelProperty(value = "评分星数")
+    @Schema(name  = "评分星数")
     private Integer replyStar;
 
 

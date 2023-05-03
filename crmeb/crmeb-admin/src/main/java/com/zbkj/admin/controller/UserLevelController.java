@@ -5,8 +5,10 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.model.user.UserLevel;
 import com.zbkj.service.service.UserLevelService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/user/level")
-@Api(tags = "会员 -- 等级")
+@Tag(name ="会员 -- 等级")
 public class UserLevelController {
 
     @Autowired
@@ -42,7 +44,7 @@ public class UserLevelController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:user:level:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserLevel>>  getList(@Validated PageParamRequest pageParamRequest) {
         CommonPage<UserLevel> userLevelCommonPage = CommonPage.restPage(userLevelService.getList(pageParamRequest));

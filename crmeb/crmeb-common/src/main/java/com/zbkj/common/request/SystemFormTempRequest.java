@@ -3,8 +3,8 @@ package com.zbkj.common.request;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -31,22 +31,22 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_form_temp")
-@ApiModel(value="SystemFormTempRequest对象", description="表单模板")
+@Schema(name ="SystemFormTempRequest对象", description="表单模板")
 public class SystemFormTempRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "表单名称", required = true)
+    @Schema(name  = "表单名称", required = true)
     @NotBlank(message = "请填写表单名称")
     @Length(max = 500, message = "表单名称长度不能超过500个字符")
     private String name;
 
-    @ApiModelProperty(value = "表单简介", required = true)
+    @Schema(name  = "表单简介", required = true)
     @NotBlank(message = "请填写表单简介")
     @Length(max = 500, message = "表单简介长度不能超过500个字符")
     private String info;
 
-    @ApiModelProperty(value = "表单内容", required = true)
+    @Schema(name  = "表单内容", required = true)
     @NotBlank(message = "请填写表单内容")
     private String content;
 

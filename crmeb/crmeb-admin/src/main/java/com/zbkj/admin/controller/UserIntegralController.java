@@ -6,8 +6,10 @@ import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.request.AdminIntegralSearchRequest;
 import com.zbkj.common.response.UserIntegralRecordResponse;
 import com.zbkj.service.service.UserIntegralRecordService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/user/integral")
-@Api(tags = "用户积分管理")
+@Tag(name ="用户积分管理")
 public class UserIntegralController {
 
     @Autowired
@@ -44,7 +46,7 @@ public class UserIntegralController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:user:integral:list')")
-    @ApiOperation(value = "积分分页列表")
+    @Operation(summary = "积分分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public CommonResult<CommonPage<UserIntegralRecordResponse>> getList(@RequestBody @Validated AdminIntegralSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<UserIntegralRecordResponse> restPage = CommonPage.restPage(integralRecordService.findAdminList(request, pageParamRequest));

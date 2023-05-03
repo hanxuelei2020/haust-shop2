@@ -7,12 +7,14 @@ import com.zbkj.common.request.StoreCouponUserRequest;
 import com.zbkj.common.request.StoreCouponUserSearchRequest;
 import com.zbkj.common.response.StoreCouponUserResponse;
 import com.zbkj.service.service.StoreCouponUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -31,7 +33,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/marketing/coupon/user")
-@Api(tags = "营销 -- 优惠券 -- 领取记录")
+@Tag(name ="营销 -- 优惠券 -- 领取记录")
 public class StoreCouponUserController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class StoreCouponUserController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:coupon:user:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreCouponUserResponse>>  getList(@Validated StoreCouponUserSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<StoreCouponUserResponse> storeCouponUserCommonPage = CommonPage.restPage(storeCouponUserService.getList(request, pageParamRequest));
@@ -55,7 +57,7 @@ public class StoreCouponUserController {
      * @param storeCouponUserRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:coupon:user:receive')")
-    @ApiOperation(value = "领券")
+    @Operation(summary = "领券")
     @RequestMapping(value = "/receive", method = RequestMethod.POST)
     public CommonResult<String> receive(@Validated StoreCouponUserRequest storeCouponUserRequest) {
         if(storeCouponUserService.receive(storeCouponUserRequest)) {

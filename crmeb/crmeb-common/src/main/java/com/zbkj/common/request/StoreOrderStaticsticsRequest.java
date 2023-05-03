@@ -2,7 +2,8 @@ package com.zbkj.common.request;
 
 import com.zbkj.common.constants.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -19,13 +20,13 @@ import lombok.Data;
  */
 @Data
 public class StoreOrderStaticsticsRequest {
-    @ApiModelProperty(value = "页码", example= Constants.DEFAULT_PAGE + "")
+    @Schema(name  = "页码", example= Constants.DEFAULT_PAGE + "")
     private int page = Constants.DEFAULT_PAGE;
 
-    @ApiModelProperty(value = "每页数量", example = Constants.DEFAULT_LIMIT + "")
+    @Schema(name  = "每页数量", example = Constants.DEFAULT_LIMIT + "")
     private int limit = Constants.DEFAULT_LIMIT;
 
-    @ApiModelProperty(value = "today,yesterday,lately7,lately30,month,year,/yyyy-MM-dd hh:mm:ss,yyyy-MM-dd hh:mm:ss/")
+    @Schema(name  = "today,yesterday,lately7,lately30,month,year,/yyyy-MM-dd hh:mm:ss,yyyy-MM-dd hh:mm:ss/")
     private String dateLimit;
 
     @JsonIgnore

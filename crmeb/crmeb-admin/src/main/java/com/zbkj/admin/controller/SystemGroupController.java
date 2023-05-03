@@ -6,12 +6,14 @@ import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.request.SystemGroupRequest;
 import com.zbkj.common.request.SystemGroupSearchRequest;
 import com.zbkj.service.service.SystemGroupService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
 import org.springframework.web.bind.annotation.*;
 import com.zbkj.common.model.system.SystemGroup;
 
@@ -31,7 +33,7 @@ import com.zbkj.common.model.system.SystemGroup;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/group")
-@Api(tags = "设置 -- 组合数据")
+@Tag(name ="设置 -- 组合数据")
 public class SystemGroupController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class SystemGroupController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:group:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<SystemGroup>>  getList(@Validated SystemGroupSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<SystemGroup> systemGroupCommonPage = CommonPage.restPage(systemGroupService.getList(request, pageParamRequest));
@@ -55,7 +57,7 @@ public class SystemGroupController {
      * @param systemGroupRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:system:group:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@Validated SystemGroupRequest systemGroupRequest) {
         if (systemGroupService.add(systemGroupRequest)) {
@@ -69,7 +71,7 @@ public class SystemGroupController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:group:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (systemGroupService.delete(id)) {
@@ -84,7 +86,7 @@ public class SystemGroupController {
      * @param systemGroupRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:group:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @Validated SystemGroupRequest systemGroupRequest) {
         if (systemGroupService.edit(id, systemGroupRequest)) {
@@ -98,7 +100,7 @@ public class SystemGroupController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:group:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<SystemGroup> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(systemGroupService.getById(id));

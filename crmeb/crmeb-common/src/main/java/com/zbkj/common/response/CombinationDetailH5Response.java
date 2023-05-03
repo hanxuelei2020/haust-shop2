@@ -2,8 +2,8 @@ package com.zbkj.common.response;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,56 +27,56 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="CombinationDetailH5Response对象", description="拼团商品移动端对象")
+@Schema(name ="CombinationDetailH5Response对象", description="拼团商品移动端对象")
 public class CombinationDetailH5Response implements Serializable {
 
     private static final long serialVersionUID = -885733985825623484L;
 
-    @ApiModelProperty(value = "拼团商品ID")
+    @Schema(name  = "拼团商品ID")
     private Integer id;
 
-    @ApiModelProperty(value = "商品id")
+    @Schema(name  = "商品id")
     private Integer productId;
 
-    @ApiModelProperty(value = "推荐图")
+    @Schema(name  = "推荐图")
     private String image;
 
-    @ApiModelProperty(value = "轮播图")
+    @Schema(name  = "轮播图")
     private String sliderImage;
 
-    @ApiModelProperty(value = "活动标题")
+    @Schema(name  = "活动标题")
     private String storeName;
 
-    @ApiModelProperty(value = "参团人数")
+    @Schema(name  = "参团人数")
     private Integer people;
 
-    @ApiModelProperty(value = "简介")
+    @Schema(name  = "简介")
     private String storeInfo;
 
-    @ApiModelProperty(value = "价格")
+    @Schema(name  = "价格")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "销量")
+    @Schema(name  = "销量")
     private Integer sales;
 
-    @ApiModelProperty(value = "单位名")
+    @Schema(name  = "单位名")
     private String unitName;
 
-    @ApiModelProperty(value = "限购总数")
+    @Schema(name  = "限购总数")
     private Integer quota;
 
-    @ApiModelProperty(value = "限量总数显示")
+    @Schema(name  = "限量总数显示")
     private Integer quotaShow;
 
-    @ApiModelProperty(value = "原价")
+    @Schema(name  = "原价")
     private BigDecimal otPrice;
 
-    @ApiModelProperty(value = "每个订单可购买数量")
+    @Schema(name  = "每个订单可购买数量")
     private Integer onceNum;
 
-    @ApiModelProperty(value = "虚拟销量")
+    @Schema(name  = "虚拟销量")
     private Integer ficti;
 
-    @ApiModelProperty(value = "商品详情")
+    @Schema(name  = "商品详情")
     private String content;
 }

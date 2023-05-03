@@ -8,8 +8,10 @@ import com.zbkj.common.vo.SystemGroupDataSignConfigVo;
 import com.zbkj.common.vo.UserSignMonthVo;
 import com.zbkj.common.vo.UserSignVo;
 import com.zbkj.service.service.UserSignService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -36,7 +38,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("api/front/user/sign")
-@Api(tags = "用户 -- 签到")
+@Tag(name ="用户 -- 签到")
 public class UserSignController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class UserSignController {
      * 签到列表
      * @param pageParamRequest 分页参数
      */
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserSignVo>>  getList(@Validated PageParamRequest pageParamRequest) {
         CommonPage<UserSignVo> userSignCommonPage = CommonPage.restPage(userSignService.getList(pageParamRequest));
@@ -57,7 +59,7 @@ public class UserSignController {
      * 签到列表，年月纬度
      * @param pageParamRequest 分页参数
      */
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/month", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserSignMonthVo>>  getListGroupMonth(@Validated PageParamRequest pageParamRequest) {
         CommonPage<UserSignMonthVo> userSignCommonPage = CommonPage.restPage(userSignService.getListGroupMonth(pageParamRequest));
@@ -67,7 +69,7 @@ public class UserSignController {
     /**
      * 配置
      */
-    @ApiOperation(value = "配置")
+    @Operation(summary = "配置")
     @RequestMapping(value = "/config", method = RequestMethod.GET)
     public CommonResult<List<SystemGroupDataSignConfigVo>> config() {
         return CommonResult.success(userSignService.getSignConfig());
@@ -76,7 +78,7 @@ public class UserSignController {
     /**
      * 签到
      */
-    @ApiOperation(value = "签到")
+    @Operation(summary = "签到")
     @RequestMapping(value = "/integral", method = RequestMethod.GET)
     public CommonResult<SystemGroupDataSignConfigVo> info() {
         return CommonResult.success(userSignService.sign());
@@ -85,7 +87,7 @@ public class UserSignController {
     /**
      * 今日记录详情
      */
-    @ApiOperation(value = "今日记录详情")
+    @Operation(summary = "今日记录详情")
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public CommonResult<HashMap<String, Object>> get() {
         return CommonResult.success(userSignService.get());
@@ -94,7 +96,7 @@ public class UserSignController {
     /**
      * 签到用户信息
      */
-    @ApiOperation(value = "签到用户信息")
+    @Operation(summary = "签到用户信息")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public CommonResult<UserSignInfoResponse> getUserInfo() {
         return CommonResult.success(userSignService.getUserSignInfo());

@@ -1,8 +1,8 @@
 package com.zbkj.common.request;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,16 +26,16 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_express")
-@ApiModel(value="ExpressRequest对象", description="快递公司编辑请求体")
+@Schema(name ="ExpressRequest对象", description="快递公司编辑请求体")
 public class ExpressUpdateShowRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "快递公司id")
+    @Schema(name  = "快递公司id")
     @NotNull(message = "快递公司id不能为空")
     private Integer id;
 
-    @ApiModelProperty(value = "是否显示")
+    @Schema(name  = "是否显示")
     @NotNull(message = "是否显示不能为空")
     private Boolean isShow;
 }

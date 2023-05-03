@@ -2,8 +2,8 @@ package com.zbkj.common.request;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -30,17 +30,17 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_city")
-@ApiModel(value="SystemCity对象", description="城市表")
+@Schema(name ="SystemCity对象", description="城市表")
 public class SystemCityRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "父级id", required = true, example= "0")
+    @Schema(name  = "父级id", required = true, example= "0")
     @NotNull(message = "父级id不能为空")  //不可为空
     @DecimalMin(value = "0", message = "父级id必须大于等于0") //数字最小值为0
     private Integer parentId;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(name  = "名称")
     @NotNull(message = "城市名称不能为空")
     @Length(max = 100, message = "城市名称不能超过100个字符")
     private String name;

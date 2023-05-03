@@ -8,9 +8,11 @@ import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.vo.ArticleVo;
 import com.zbkj.service.service.ArticleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +35,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/article")
-@Api(tags = "文章管理")
+@Tag(name ="文章管理")
 public class ArticleController {
 
     @Autowired
@@ -45,9 +47,9 @@ public class ArticleController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:article:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ApiImplicitParam(name="keywords", value="搜索关键字")
+     @Parameter(name="keywords", description="搜索关键字")
     public CommonResult<CommonPage<ArticleVo>> getList(@Validated ArticleSearchRequest request,
                                                        @Validated PageParamRequest pageParamRequest) {
         return CommonResult.success(CommonPage.restPage(articleService.getAdminList(request, pageParamRequest)));
@@ -58,7 +60,7 @@ public class ArticleController {
      * @param articleRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:article:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated ArticleRequest articleRequest) {
         if (articleService.create(articleRequest)) {
@@ -73,9 +75,9 @@ public class ArticleController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:article:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    @ApiImplicitParam(name="id", value="文章ID")
+     @Parameter(name="id", description="文章ID")
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (articleService.deleteById(id)) {
             return CommonResult.success();
@@ -90,9 +92,9 @@ public class ArticleController {
      * @param articleRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:article:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ApiImplicitParam(name="id", value="文章ID")
+     @Parameter(name="id", description="文章ID")
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated ArticleRequest articleRequest) {
         if (articleService.updateArticle(id, articleRequest)) {
             return CommonResult.success();
@@ -106,9 +108,9 @@ public class ArticleController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:article:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @ApiImplicitParam(name="id", value="文章ID")
+     @Parameter(name="id", description="文章ID")
     public CommonResult<Article> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(articleService.getDetail(id));
    }

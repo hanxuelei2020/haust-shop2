@@ -1,7 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,30 +22,30 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SystemConfigFormItemVo对象", description="item对象")
+@Schema(name ="SystemConfigFormItemVo对象", description="item对象")
 public class SystemConfigFormItemVo implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "配置")
+    @Schema(name  = "配置")
     private SystemConfigFormItemConfigVo __config__;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String placeholder;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String step;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String stepStrictly;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String controlsPosition;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String disabled;
 
-    @ApiModelProperty(value = "")
+    @Schema(name  = "")
     private String __vModel__;
 
 

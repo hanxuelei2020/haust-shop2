@@ -1,7 +1,8 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+ 
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -22,11 +23,11 @@ import javax.validation.constraints.NotNull;
 @Data
 public class GetProductReply {
 
-    @ApiModelProperty(value = "商品attrid")
+    @Schema(name  = "商品attrid")
     @NotBlank(message = "商品uniId不能为空")
     private String uni;
 
-    @ApiModelProperty(value = "订单id")
+    @Schema(name  = "订单id")
     @NotNull(message = "订单id不能为空")
     private Integer orderId;
 }

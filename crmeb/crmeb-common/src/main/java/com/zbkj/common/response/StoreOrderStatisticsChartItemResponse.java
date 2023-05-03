@@ -1,6 +1,6 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.Api;
+
 import lombok.Data;
 
 /**

@@ -3,10 +3,12 @@ package com.zbkj.admin.pub;
 import com.alibaba.fastjson.JSONObject;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.utils.RestTemplateUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +34,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/public/wechat")
-@Api(tags = "企业微信消息推送")
+@Tag(name ="企业微信消息推送")
 public class WeChatPushController {
 
     private static String url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=";
@@ -47,11 +49,11 @@ public class WeChatPushController {
      * @author Mr.Zhang
      * @since 2020-04-13
      */
-    @ApiOperation(value = "gitlab钩子")
+    @Operation(summary = "gitlab钩子")
     @RequestMapping(value = "/gitlab", method = RequestMethod.POST)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="message", value="推送消息内容"),
-            @ApiImplicitParam(name="token", value="企业微信群token"),
+     @Parameters({
+             @Parameter(name="message", description="推送消息内容"),
+             @Parameter(name="token", description="企业微信群token"),
     })
     public CommonResult<Object> gitlab(@RequestBody String message,
                                        @RequestParam(name = "token", required = true) String token){
@@ -125,11 +127,11 @@ public class WeChatPushController {
      * @author Mr.Zhang
      * @since 2020-04-13
      */
-    @ApiOperation(value = "消息推送")
+    @Operation(summary = "消息推送")
     @RequestMapping(value = "/push", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="message", value="推送消息内容"),
-            @ApiImplicitParam(name="token", value="企业微信群token"),
+     @Parameters({
+             @Parameter(name="message", description="推送消息内容"),
+             @Parameter(name="token", description="企业微信群token"),
     })
     public CommonResult<Object> push(@RequestParam(name = "message") String message,
                                     @RequestParam(name = "token") String token){

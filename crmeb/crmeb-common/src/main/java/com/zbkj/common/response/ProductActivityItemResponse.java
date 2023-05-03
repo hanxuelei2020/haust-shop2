@@ -1,6 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -18,12 +19,12 @@ import lombok.Data;
 @Data
 public class ProductActivityItemResponse {
 
-    @ApiModelProperty(value = "参与活动id")
+    @Schema(name  = "参与活动id")
     private Integer id;
 
-    @ApiModelProperty(value = "活动结束时间")
+    @Schema(name  = "活动结束时间")
     private Integer time;
 
-    @ApiModelProperty(value = "活动参与类型:1=秒杀，2=砍价，3=拼团")
+    @Schema(name  = "活动参与类型:1=秒杀，2=砍价，3=拼团")
     private String type;
 }

@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,32 +24,32 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreBargainDetailResponse对象", description="砍价商品详情响应对象（列表）")
+@Schema(name ="StoreBargainDetailResponse对象", description="砍价商品详情响应对象（列表）")
 public class StoreBargainDetailResponse implements Serializable {
 
     private static final long serialVersionUID = 969438774401700566L;
 
-    @ApiModelProperty(value = "砍价商品ID")
+    @Schema(name  = "砍价商品ID")
     private Integer id;
 
-    @ApiModelProperty(value = "关联商品ID")
+    @Schema(name  = "关联商品ID")
     private Integer productId;
 
-    @ApiModelProperty(value = "砍价活动名称")
+    @Schema(name  = "砍价活动名称")
     private String title;
 
-    @ApiModelProperty(value = "砍价活动图片")
+    @Schema(name  = "砍价活动图片")
     private String image;
 
-    @ApiModelProperty(value = "砍价开启时间")
+    @Schema(name  = "砍价开启时间")
     private Long startTime;
 
-    @ApiModelProperty(value = "砍价结束时间")
+    @Schema(name  = "砍价结束时间")
     private Long stopTime;
 
-    @ApiModelProperty(value = "砍价商品最低价")
+    @Schema(name  = "砍价商品最低价")
     private BigDecimal minPrice;
 
-    @ApiModelProperty(value = "限购总数")
+    @Schema(name  = "限购总数")
     private Integer quota;
 }

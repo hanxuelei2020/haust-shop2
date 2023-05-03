@@ -3,8 +3,7 @@ package com.zbkj.admin.vo;
 
 import java.io.Serializable;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,7 +24,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ValidateCode对象", description="验证码类")
+@Schema(name ="ValidateCode对象", description="验证码类")
 public class ValidateCode implements Serializable {
 
     public ValidateCode(String key, String code) {
@@ -33,10 +32,10 @@ public class ValidateCode implements Serializable {
         this.code = code;
     }
 
-    @ApiModelProperty(value = "key", required = true)
+    @Schema(name  = "key", required = true)
     private String key;
 
-    @ApiModelProperty(value = "code", required = true)
+    @Schema(name  = "code", required = true)
     private String code;
 
 }

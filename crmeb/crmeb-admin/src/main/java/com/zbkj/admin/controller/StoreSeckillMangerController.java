@@ -7,10 +7,12 @@ import com.zbkj.common.request.StoreSeckillMangerRequest;
 import com.zbkj.common.request.StoreSeckillMangerSearchRequest;
 import com.zbkj.common.response.StoreSeckillManagerResponse;
 import com.zbkj.service.service.StoreSeckillMangerService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +35,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/store/seckill/manger")
-@Api(tags = "商品 -- 秒杀 -- 配置") //配合swagger使用
+@Tag(name ="商品 -- 秒杀 -- 配置") //配合swagger使用
 public class StoreSeckillMangerController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class StoreSeckillMangerController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:list')")
-    @ApiOperation(value = "分页列表") //配合swagger使用
+    @Operation(summary = "分页列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreSeckillManagerResponse>>  getList(
             @Validated StoreSeckillMangerSearchRequest request, @Validated PageParamRequest pageParamRequest) {
@@ -57,7 +59,7 @@ public class StoreSeckillMangerController {
      * @param storeSeckillMangerRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated StoreSeckillMangerRequest storeSeckillMangerRequest) {
         if (storeSeckillMangerService.saveManger(storeSeckillMangerRequest)) {
@@ -73,7 +75,7 @@ public class StoreSeckillMangerController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (storeSeckillMangerService.deleteLogicById(id)) {
@@ -89,7 +91,7 @@ public class StoreSeckillMangerController {
      * @param storeSeckillMangerRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated StoreSeckillMangerRequest storeSeckillMangerRequest) {
         return storeSeckillMangerService.update(id, storeSeckillMangerRequest) ? CommonResult.success() : CommonResult.failed();
@@ -100,7 +102,7 @@ public class StoreSeckillMangerController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<StoreSeckillManagerResponse> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(storeSeckillMangerService.detail(id));
@@ -113,11 +115,11 @@ public class StoreSeckillMangerController {
      * @return  更新结果
      */
     @PreAuthorize("hasAuthority('admin:seckill:manger:update:status')")
-   @ApiOperation(value = "秒杀配置状态更新")
+   @Operation(summary = "秒杀配置状态更新")
    @RequestMapping(value = "/update/status/{id}", method = RequestMethod.POST)
-   @ApiImplicitParams({
-           @ApiImplicitParam(name = "id", value = "商品id", dataType = "int", required = true),
-           @ApiImplicitParam(name = "status", value = "状态", dataType = "boolean", required = true)
+    @Parameters({
+            @Parameter(name = "id", description = "商品id",  required = true),
+            @Parameter(name = "status", description = "状态",  required = true)
    })
    public CommonResult<Object> updateStatus(@PathVariable(value = "id") Integer id, Boolean status) {
         return CommonResult.success(storeSeckillMangerService.updateStatus(id,status));

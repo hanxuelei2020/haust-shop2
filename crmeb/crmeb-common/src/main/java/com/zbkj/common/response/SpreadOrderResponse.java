@@ -2,8 +2,8 @@ package com.zbkj.common.response;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,24 +26,24 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SpreadOrderResponse对象", description="推广订单响应体")
+@Schema(name ="SpreadOrderResponse对象", description="推广订单响应体")
 public class SpreadOrderResponse {
 
-    @ApiModelProperty(value = "订单ID")
+    @Schema(name  = "订单ID")
     private Integer id;
 
-    @ApiModelProperty(value = "订单号")
+    @Schema(name  = "订单号")
     private String orderId;
 
-    @ApiModelProperty(value = "用户姓名")
+    @Schema(name  = "用户姓名")
     private String realName;
 
-    @ApiModelProperty(value = "用户电话")
+    @Schema(name  = "用户电话")
     private String userPhone;
 
-    @ApiModelProperty(value = "佣金金额")
+    @Schema(name  = "佣金金额")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name  = "更新时间")
     private Date updateTime;
 }

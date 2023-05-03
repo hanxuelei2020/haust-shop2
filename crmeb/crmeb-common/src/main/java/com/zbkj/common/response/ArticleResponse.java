@@ -3,8 +3,8 @@ package com.zbkj.common.response;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,34 +27,34 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ArticleResponse对象", description="文章响应对象")
+@Schema(name ="ArticleResponse对象", description="文章响应对象")
 public class ArticleResponse implements Serializable {
 
     private static final long serialVersionUID = -4585094537501770138L;
 
-    @ApiModelProperty(value = "文章管理ID")
+    @Schema(name  = "文章管理ID")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "文章标题")
+    @Schema(name  = "文章标题")
     private String title;
 
-    @ApiModelProperty(value = "文章作者")
+    @Schema(name  = "文章作者")
     private String author;
 
-    @ApiModelProperty(value = "文章图片 前端用")
+    @Schema(name  = "文章图片 前端用")
     private String imageInput;
 
-    @ApiModelProperty(value = "文章简介")
+    @Schema(name  = "文章简介")
     private String synopsis;
 
-    @ApiModelProperty(value = "浏览次数")
+    @Schema(name  = "浏览次数")
     private String visit;
 
-    @ApiModelProperty(value = "文章内容")
+    @Schema(name  = "文章内容")
     private String content;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date createTime;
 }

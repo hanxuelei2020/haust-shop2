@@ -7,8 +7,10 @@ import com.zbkj.common.model.system.SystemStoreStaff;
 import com.zbkj.common.request.SystemStoreStaffRequest;
 import com.zbkj.common.response.SystemStoreStaffResponse;
 import com.zbkj.service.service.SystemStoreStaffService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/store/staff")
-@Api(tags = "设置 -- 提货点 -- 核销员")
+@Tag(name ="设置 -- 提货点 -- 核销员")
 public class SystemStoreStaffController {
 
     @Autowired
@@ -42,7 +44,7 @@ public class SystemStoreStaffController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:staff:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<SystemStoreStaffResponse>>  getList(@RequestParam(name = "storeId", required = false, defaultValue = "0") Integer storeId,
                                                                        @ModelAttribute PageParamRequest pageParamRequest) {
@@ -56,7 +58,7 @@ public class SystemStoreStaffController {
      * @param systemStoreStaffRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:system:staff:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @ModelAttribute SystemStoreStaffRequest systemStoreStaffRequest) {
         if (systemStoreStaffService.saveUnique(systemStoreStaffRequest)) {
@@ -70,7 +72,7 @@ public class SystemStoreStaffController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:staff:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (systemStoreStaffService.removeById(id)) {
@@ -85,7 +87,7 @@ public class SystemStoreStaffController {
      * @param systemStoreStaffRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:staff:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @ModelAttribute SystemStoreStaffRequest systemStoreStaffRequest) {
         if (systemStoreStaffService.edit(id, systemStoreStaffRequest)) {
@@ -100,7 +102,7 @@ public class SystemStoreStaffController {
      * @param status 状态
      */
     @PreAuthorize("hasAuthority('admin:system:staff:update:status')")
-    @ApiOperation(value = "修改状态")
+    @Operation(summary = "修改状态")
     @RequestMapping(value = "/update/status", method = RequestMethod.GET)
     public CommonResult<String> updateStatus(@RequestParam Integer id, @RequestParam Integer status) {
         if (systemStoreStaffService.updateStatus(id, status)) {
@@ -114,7 +116,7 @@ public class SystemStoreStaffController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:staff:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<SystemStoreStaff> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(systemStoreStaffService.getById(id));

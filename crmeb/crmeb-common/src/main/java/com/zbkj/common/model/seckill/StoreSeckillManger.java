@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_store_seckill_manger")
-@ApiModel(value="StoreSeckillManger对象", description="商品秒杀管理表")
+@Schema(name ="StoreSeckillManger对象", description="商品秒杀管理表")
 public class StoreSeckillManger implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -35,34 +35,34 @@ public class StoreSeckillManger implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "秒杀名称")
+    @Schema(name  = "秒杀名称")
     private String name;
 
-    @ApiModelProperty(value = "秒杀开始时间段")
+    @Schema(name  = "秒杀开始时间段")
     private Integer startTime;
 
-    @ApiModelProperty(value = "秒杀结束时间段")
+    @Schema(name  = "秒杀结束时间段")
     private Integer endTime;
 
-    @ApiModelProperty(value = "主图")
+    @Schema(name  = "主图")
     private String img;
 
-    @ApiModelProperty(value = "轮播图")
+    @Schema(name  = "轮播图")
     private String silderImgs;
 
-    @ApiModelProperty(value = "排序")
+    @Schema(name  = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "状态 0=关闭 1=开启")
+    @Schema(name  = "状态 0=关闭 1=开启")
     private Integer status;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name  = "更新时间")
     private Date updateTime;
 
-    @ApiModelProperty(value = "0未删除1已删除")
+    @Schema(name  = "0未删除1已删除")
     private Boolean isDel;
 
 

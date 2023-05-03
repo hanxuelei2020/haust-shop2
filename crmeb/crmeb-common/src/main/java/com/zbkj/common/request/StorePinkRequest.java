@@ -3,8 +3,8 @@ package com.zbkj.common.request;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,14 +28,14 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_store_pink")
-@ApiModel(value="StorePink对象", description="拼团表")
+@Schema(name ="StorePink对象", description="拼团表")
 public class StorePinkRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "拼团ID")
+    @Schema(name  = "拼团ID")
     private Integer id;
 
-    @ApiModelProperty(value = "拼团商品id")
+    @Schema(name  = "拼团商品id")
     private Integer cid;
 }

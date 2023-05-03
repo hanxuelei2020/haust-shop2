@@ -30,6 +30,8 @@
 
         <java.version>17</java.version>
         <springfox.version>2.9.2</springfox.version>
+<!--        整合 spring boot3 的时候不可以再使用 Springfox了-->
+        <springdoc.version>2.0.2</springdoc.version>
         <swagger-models.version>1.5.22</swagger-models.version>
         <swagger-bootstrap-ui.version>1.9.3</swagger-bootstrap-ui.version>
 <!--        兼容个别 mav 环境 GBK问题-->
@@ -38,6 +40,7 @@
         <spring.version>6.0.8</spring.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <mybatis.version>3.0.1</mybatis.version>
+        <springframework.plugin.version>3.0.0</springframework.plugin.version>
     </properties>
 
     <repositories>
@@ -139,35 +142,17 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-models.version}</version>
-        </dependency>
-
         <!-- doc -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-models</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>${swagger-models.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger-bootstrap-ui.version}</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <dependency>

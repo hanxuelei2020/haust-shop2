@@ -1,6 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -18,13 +19,13 @@ import lombok.Data;
 @Data
 public class SystemAdminLoginCaptchaRequest {
 
-    @ApiModelProperty(required = true)
+    @Schema(required = true)
     String captchaVerification;
 
-    @ApiModelProperty(required = true)
+    @Schema(required = true)
     String token;
 
-    @ApiModelProperty(required = true)
+    @Schema(required = true)
     String secretKey;
 
 

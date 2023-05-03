@@ -1,6 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
 import lombok.Data;
 
 import java.math.BigDecimal;

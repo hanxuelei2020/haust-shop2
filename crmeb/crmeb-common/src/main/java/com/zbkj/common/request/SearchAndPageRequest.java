@@ -1,7 +1,8 @@
 package com.zbkj.common.request;
 
 import com.zbkj.common.constants.Constants;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -19,15 +20,15 @@ import lombok.Data;
 @Data
 public class SearchAndPageRequest {
 
-    @ApiModelProperty(value = "搜索关键字")
+    @Schema(name  = "搜索关键字")
     private String keywords;
 
-    @ApiModelProperty(value = "页码", example= Constants.DEFAULT_PAGE + "")
+    @Schema(name  = "页码", example= Constants.DEFAULT_PAGE + "")
     private int page = Constants.DEFAULT_PAGE;
 
-    @ApiModelProperty(value = "每页数量", example = Constants.DEFAULT_LIMIT + "")
+    @Schema(name  = "每页数量", example = Constants.DEFAULT_LIMIT + "")
     private int limit = Constants.DEFAULT_LIMIT;
 
-    @ApiModelProperty(value = "优惠券类型:1-手动领取,3-赠送券")
+    @Schema(name  = "优惠券类型:1-手动领取,3-赠送券")
     private Integer type;
 }

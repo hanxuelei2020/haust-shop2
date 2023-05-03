@@ -3,8 +3,8 @@ package com.zbkj.common.request;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,12 +28,12 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_form_temp")
-@ApiModel(value="SystemFormTempSearchRequest对象", description="表单模板")
+@Schema(name ="SystemFormTempSearchRequest对象", description="表单模板")
 public class SystemFormTempSearchRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "搜索关键字")
+    @Schema(name  = "搜索关键字")
     private String keywords;
 
 }

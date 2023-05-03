@@ -1,8 +1,8 @@
 package com.zbkj.common.response;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,32 +25,32 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="WeChatJsSdkConfigResponse对象", description="微信公众号js-sdk响应对象对象")
+@Schema(name ="WeChatJsSdkConfigResponse对象", description="微信公众号js-sdk响应对象对象")
 public class WeChatJsSdkConfigResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "url")
+    @Schema(name  = "url")
     private String url;
 
-    @ApiModelProperty(value = "jsApiTicket")
+    @Schema(name  = "jsApiTicket")
     private String jsApiTicket;
 
-    @ApiModelProperty(value = "nonceStr")
+    @Schema(name  = "nonceStr")
     private String nonceStr;
 
-    @ApiModelProperty(value = "timestamp")
+    @Schema(name  = "timestamp")
     private Long timestamp;
 
-    @ApiModelProperty(value = "signature")
+    @Schema(name  = "signature")
     private String signature;
 
-    @ApiModelProperty(value = "jsApiList")
+    @Schema(name  = "jsApiList")
     private List<String> jsApiList;
 
-    @ApiModelProperty(value = "debug")
+    @Schema(name  = "debug")
     private Boolean debug;
 
-    @ApiModelProperty(value = "appid")
+    @Schema(name  = "appid")
     private String appId;
 }

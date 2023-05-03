@@ -7,10 +7,12 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.response.LoginResponse;
 import com.zbkj.front.service.LoginService;
 import com.zbkj.service.service.SmsService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +35,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController("FrontLoginController")
 @RequestMapping("api/front")
-@Api(tags = "用户 -- 登录注册")
+@Tag(name ="用户 -- 登录注册")
 public class LoginController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class LoginController {
     /**
      * 手机号登录接口
      */
-    @ApiOperation(value = "手机号登录接口")
+    @Operation(summary = "手机号登录接口")
     @RequestMapping(value = "/login/mobile", method = RequestMethod.POST)
     public CommonResult<LoginResponse> phoneLogin(@RequestBody @Validated LoginMobileRequest loginRequest) {
         return CommonResult.success(loginService.phoneLogin(loginRequest));
@@ -54,7 +56,7 @@ public class LoginController {
     /**
      * 账号密码登录
      */
-    @ApiOperation(value = "账号密码登录")
+    @Operation(summary = "账号密码登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public CommonResult<LoginResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
         return CommonResult.success(loginService.login(loginRequest));
@@ -64,7 +66,7 @@ public class LoginController {
     /**
      * 退出登录
      */
-    @ApiOperation(value = "退出")
+    @Operation(summary = "退出")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public CommonResult<String> loginOut(HttpServletRequest request){
         loginService.loginOut(request);
@@ -76,10 +78,10 @@ public class LoginController {
      * @param phone 手机号码
      * @return 发送是否成功
      */
-    @ApiOperation(value = "发送短信登录验证码")
+    @Operation(summary = "发送短信登录验证码")
     @RequestMapping(value = "/sendCode", method = RequestMethod.POST)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="phone", value="手机号码", required = true)
+     @Parameters({
+             @Parameter(name="phone", description="手机号码", required = true)
     })
     public CommonResult<Object> sendCode(@RequestParam String phone){
         if(smsService.sendCommonCode(phone)){

@@ -7,8 +7,10 @@ import com.zbkj.common.model.combination.StoreCombination;
 import com.zbkj.common.request.StorePinkRequest;
 import com.zbkj.common.response.*;
 import com.zbkj.service.service.StoreCombinationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/front/combination")
-@Api(tags = "拼团商品")
+@Tag(name ="拼团商品")
 public class CombinationController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class CombinationController {
     /**
      * 拼团首页
      */
-    @ApiOperation(value = "拼团首页数据")
+    @Operation(summary = "拼团首页数据")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public CommonResult<CombinationIndexResponse> index() {
         return CommonResult.success(storeCombinationService.getIndexInfo());
@@ -47,7 +49,7 @@ public class CombinationController {
     /**
      * 拼团商品列表header
      */
-    @ApiOperation(value = "拼团商品列表header")
+    @Operation(summary = "拼团商品列表header")
     @RequestMapping(value = "/header", method = RequestMethod.GET)
     public CommonResult<CombinationHeaderResponse> header() {
         return CommonResult.success(storeCombinationService.getHeader());
@@ -56,7 +58,7 @@ public class CombinationController {
     /**
      * 拼团商品列表
      */
-    @ApiOperation(value = "拼团商品列表")
+    @Operation(summary = "拼团商品列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreCombinationH5Response>> list(@ModelAttribute PageParamRequest pageParamRequest) {
         return CommonResult.success(CommonPage.restPage(storeCombinationService.getH5List(pageParamRequest)));
@@ -65,7 +67,7 @@ public class CombinationController {
     /**
      * 拼团商品详情
      */
-    @ApiOperation(value = "拼团商品详情")
+    @Operation(summary = "拼团商品详情")
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public CommonResult<CombinationDetailResponse> detail(@PathVariable(value = "id") Integer id) {
         CombinationDetailResponse h5Detail = storeCombinationService.getH5Detail(id);
@@ -76,7 +78,7 @@ public class CombinationController {
      * 去拼团
      * @param pinkId 拼团团长单id
      */
-    @ApiOperation(value = "去拼团")
+    @Operation(summary = "去拼团")
     @RequestMapping(value = "/pink/{pinkId}", method = RequestMethod.GET)
     public CommonResult<GoPinkResponse> goPink(@PathVariable(value = "pinkId") Integer pinkId) {
         GoPinkResponse goPinkResponse = storeCombinationService.goPink(pinkId);
@@ -86,7 +88,7 @@ public class CombinationController {
     /**
      * 更多拼团
      */
-    @ApiOperation(value = "更多拼团")
+    @Operation(summary = "更多拼团")
     @RequestMapping(value = "/more", method = RequestMethod.GET)
     public CommonResult<PageInfo<StoreCombination>> getMore(@RequestParam Integer comId, @Validated PageParamRequest pageParamRequest) {
         PageInfo<StoreCombination> more = storeCombinationService.getMore(pageParamRequest, comId);
@@ -96,7 +98,7 @@ public class CombinationController {
     /**
      * 取消拼团
      */
-    @ApiOperation(value = "取消拼团")
+    @Operation(summary = "取消拼团")
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public CommonResult<Object> remove(@RequestBody @Validated StorePinkRequest storePinkRequest) {
         if (storeCombinationService.removePink(storePinkRequest)) {

@@ -1,7 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,14 +23,14 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="IosBindingPhoneRequest", description="Ios绑定手机号请求对象")
+@Schema(name ="IosBindingPhoneRequest", description="Ios绑定手机号请求对象")
 public class IosBindingPhoneRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "手机号", required = true)
+    @Schema(name  = "手机号", required = true)
     private String phone;
 
-    @ApiModelProperty(value = "验证码", required = true)
+    @Schema(name  = "验证码", required = true)
     private String captcha;
 }

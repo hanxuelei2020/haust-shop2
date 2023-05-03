@@ -1,6 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -18,13 +19,13 @@ import lombok.Data;
 @Data
 public class StoreSeckillSearchRequest {
 
-    @ApiModelProperty(value = "搜索关键字 商品id或者名称")
+    @Schema(name  = "搜索关键字 商品id或者名称")
     private String keywords;
 
-    @ApiModelProperty(value = "秒杀时段")
+    @Schema(name  = "秒杀时段")
     private Integer timeId;
 
-    @ApiModelProperty(value = "是否显示关键字 0/1")
+    @Schema(name  = "是否显示关键字 0/1")
     private Integer status;
 }
 

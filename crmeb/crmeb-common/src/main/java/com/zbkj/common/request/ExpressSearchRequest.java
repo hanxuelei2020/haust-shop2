@@ -1,7 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,12 +23,12 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ExpressSearchRequest对象", description="快递公司")
+@Schema(name ="ExpressSearchRequest对象", description="快递公司")
 public class ExpressSearchRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "搜索关键字", required = true)
+    @Schema(name  = "搜索关键字", required = true)
     private String keywords;
 
 }

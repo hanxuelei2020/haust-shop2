@@ -3,9 +3,11 @@ package com.zbkj.admin.controller;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.response.WeChatJsSdkConfigResponse;
 import com.zbkj.service.service.WechatNewService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController("WeChatAdminController")
 @RequestMapping("api/admin/wechat")
-@Api(tags = "微信 -- 开放平台 admin")
+@Tag(name ="微信 -- 开放平台 admin")
 public class WeChatAdminController {
 
     @Autowired
@@ -39,9 +41,9 @@ public class WeChatAdminController {
      * 获取微信公众号js配置
      */
     @PreAuthorize("hasAuthority('admin:wechat:config')")
-    @ApiOperation(value = "获取微信公众号js配置")
+    @Operation(summary = "获取微信公众号js配置")
     @RequestMapping(value = "/config", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "url", value = "页面地址url")
+     @Parameter(name = "url", description = "页面地址url")
     public CommonResult<WeChatJsSdkConfigResponse> configJs(@RequestParam(value = "url") String url) {
         return CommonResult.success(wechatNewService.getJsSdkConfig(url));
     }

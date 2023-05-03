@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SecKillResponse对象", description="秒杀Header时间header响应对象")
+@Schema(name ="SecKillResponse对象", description="秒杀Header时间header响应对象")
 public class SecKillResponse {
 
     public SecKillResponse() {
@@ -36,24 +36,24 @@ public class SecKillResponse {
         this.timeSwap = timeSwap;
     }
 
-    @ApiModelProperty(value = "秒杀时段id")
+    @Schema(name  = "秒杀时段id")
     private Integer id;
 
-    @ApiModelProperty(value = "秒杀时段轮播图")
+    @Schema(name  = "秒杀时段轮播图")
     private String slide;
 
-    @ApiModelProperty(value = "秒杀时段状态名称")
+    @Schema(name  = "秒杀时段状态名称")
     private String statusName; // 已结束 抢购中 即将开始
 
-    @ApiModelProperty(value = "秒杀时段状态")
+    @Schema(name  = "秒杀时段状态")
     private int status;
 
-    @ApiModelProperty(value = "秒杀时段时间信息")
+    @Schema(name  = "秒杀时段时间信息")
     private String time;
 
-    @ApiModelProperty(value = "秒杀时段结束时间")
+    @Schema(name  = "秒杀时段结束时间")
     private String timeSwap;
 
-    @ApiModelProperty(value = "是否选中")
+    @Schema(name  = "是否选中")
     private Boolean isCheck = false;
 }

@@ -5,12 +5,14 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.request.UserTagRequest;
 import com.zbkj.service.service.UserTagService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
 import org.springframework.web.bind.annotation.*;
 import com.zbkj.common.model.user.UserTag;
 
@@ -30,7 +32,7 @@ import com.zbkj.common.model.user.UserTag;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/user/tag")
-@Api(tags = "会员 -- 标签") //配合swagger使用
+@Tag(name ="会员 -- 标签") //配合swagger使用
 public class UserTagController {
 
     @Autowired
@@ -41,7 +43,7 @@ public class UserTagController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:user:tag:list')")
-    @ApiOperation(value = "分页列表") //配合swagger使用
+    @Operation(summary = "分页列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<UserTag>>  getList(@Validated PageParamRequest pageParamRequest) {
         CommonPage<UserTag> userTagCommonPage = CommonPage.restPage(userTagService.getList(pageParamRequest));
@@ -53,7 +55,7 @@ public class UserTagController {
      * @param userTagRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:user:tag:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated UserTagRequest userTagRequest) {
         if (userTagService.create(userTagRequest)) {
@@ -67,7 +69,7 @@ public class UserTagController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:user:tag:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (userTagService.delete(id)) {
@@ -82,7 +84,7 @@ public class UserTagController {
      * @param userTagRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:user:tag:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated UserTagRequest userTagRequest) {
         if (userTagService.updateTag(id, userTagRequest)) {
@@ -96,7 +98,7 @@ public class UserTagController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:user:tag:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<UserTag> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(userTagService.getById(id));

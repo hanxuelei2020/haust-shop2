@@ -3,7 +3,8 @@ package com.zbkj.common.response;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.zbkj.common.utils.DateUtil;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.Date;
@@ -69,41 +70,41 @@ public class StoreSeckillManagerResponse {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "秒杀名称")
+    @Schema(name  = "秒杀名称")
     private String name;
 
-    @ApiModelProperty(value = "秒杀开始时间段")
+    @Schema(name  = "秒杀开始时间段")
     private Integer startTime;
 
-    @ApiModelProperty(value = "秒杀结束时间段")
+    @Schema(name  = "秒杀结束时间段")
     private Integer endTime;
 
     private String time;
 
-    @ApiModelProperty(value = "主图")
+    @Schema(name  = "主图")
     private String img;
 
-    @ApiModelProperty(value = "轮播图")
+    @Schema(name  = "轮播图")
     private String silderImgs;
 
-    @ApiModelProperty(value = "秒杀状态，前端用")
+    @Schema(name  = "秒杀状态，前端用")
     private Integer killStatus;
 
-    @ApiModelProperty(value = "排序")
+    @Schema(name  = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "状态 0=关闭 1=开启")
+    @Schema(name  = "状态 0=关闭 1=开启")
     private Integer status;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name  = "更新时间")
     private Date updateTime;
 
-    @ApiModelProperty(value = "0未删除1已删除")
+    @Schema(name  = "0未删除1已删除")
     private Boolean isDel;
 
-    @ApiModelProperty(value = "秒杀状态String 未开始/进行中/活动已结束")
+    @Schema(name  = "秒杀状态String 未开始/进行中/活动已结束")
     private String statusName;
 }

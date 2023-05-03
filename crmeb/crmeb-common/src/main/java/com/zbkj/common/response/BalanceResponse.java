@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BalanceResponse对象", description="提现金额")
+@Schema(name ="BalanceResponse对象", description="提现金额")
 public class BalanceResponse implements Serializable {
 
     public BalanceResponse() {}
@@ -36,16 +36,16 @@ public class BalanceResponse implements Serializable {
     }
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "已提现")
+    @Schema(name  = "已提现")
     private BigDecimal withdrawn;
 
-    @ApiModelProperty(value = "未提现")
+    @Schema(name  = "未提现")
     private BigDecimal unDrawn;
 
-    @ApiModelProperty(value = "佣金总金额")
+    @Schema(name  = "佣金总金额")
     private BigDecimal commissionTotal;
 
-    @ApiModelProperty(value = "待提现")
+    @Schema(name  = "待提现")
     private BigDecimal ToBeWithdrawn;
 
 }

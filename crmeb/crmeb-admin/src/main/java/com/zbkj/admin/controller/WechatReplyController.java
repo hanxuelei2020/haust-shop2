@@ -7,8 +7,10 @@ import com.zbkj.common.model.wechat.WechatReply;
 import com.zbkj.common.request.WechatReplyRequest;
 import com.zbkj.common.request.WechatReplySearchRequest;
 import com.zbkj.service.service.WechatReplyService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/wechat/keywords/reply")
-@Api(tags = "微信开放平台 -- 微信关键字回复")
+@Tag(name ="微信开放平台 -- 微信关键字回复")
 public class WechatReplyController {
 
     @Autowired
@@ -44,7 +46,7 @@ public class WechatReplyController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:list')")
-    @ApiOperation(value = "分页列表")
+    @Operation(summary = "分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<WechatReply>>  getList(@Validated WechatReplySearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<WechatReply> wechatReplyCommonPage = CommonPage.restPage(wechatReplyService.getList(request, pageParamRequest));
@@ -56,7 +58,7 @@ public class WechatReplyController {
      * @param wechatReplyRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated WechatReplyRequest wechatReplyRequest) {
         WechatReply wechatReply = new WechatReply();
@@ -73,7 +75,7 @@ public class WechatReplyController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (wechatReplyService.removeById(id)) {
@@ -87,7 +89,7 @@ public class WechatReplyController {
      * @param wechatReplyRequest 修改参数
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestBody @Validated WechatReplyRequest wechatReplyRequest) {
         if (wechatReplyService.updateReply(wechatReplyRequest)) {
@@ -102,7 +104,7 @@ public class WechatReplyController {
      * @param status boolean 状态
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:status')")
-    @ApiOperation(value = "状态")
+    @Operation(summary = "状态")
     @RequestMapping(value = "/status", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam(value = "id") Integer id, @RequestParam(value = "status") Boolean status) {
         if (wechatReplyService.updateStatus(id, status)) {
@@ -116,7 +118,7 @@ public class WechatReplyController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<WechatReply> info(@RequestParam(value = "id") Integer id) {
         WechatReply wechatReply = wechatReplyService.getInfo(id);
@@ -128,7 +130,7 @@ public class WechatReplyController {
      * @param keywords String 关键字
      */
     @PreAuthorize("hasAuthority('admin:wechat:keywords:reply:info:keywords')")
-    @ApiOperation(value = "根据关键字查询数据")
+    @Operation(summary = "根据关键字查询数据")
     @RequestMapping(value = "/info/keywords", method = RequestMethod.GET)
     public CommonResult<WechatReply> info(@RequestParam(value = "keywords") String keywords) {
         WechatReply wechatReply = wechatReplyService.getVoByKeywords(keywords);

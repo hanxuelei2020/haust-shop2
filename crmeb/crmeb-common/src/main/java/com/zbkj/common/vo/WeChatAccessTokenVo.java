@@ -1,8 +1,7 @@
 package com.zbkj.common.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,24 +23,24 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="WeChatAccessTokenVo", description="微信accessTokenVo对象")
+@Schema(name ="WeChatAccessTokenVo", description="微信accessTokenVo对象")
 public class WeChatAccessTokenVo implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "获取到的凭证")
+    @Schema(name  = "获取到的凭证")
     @TableField(value = "access_token")
     private String accessToken;
 
-    @ApiModelProperty(value = "凭证有效时间，单位：秒。目前是7200秒之内的值。")
+    @Schema(name  = "凭证有效时间，单位：秒。目前是7200秒之内的值。")
     @TableField(value = "expires_in")
     private Integer expiresIn;
 
-    @ApiModelProperty(value = "错误码")
+    @Schema(name  = "错误码")
     @TableField(value = "errcode")
     private Integer errCode;
 
-    @ApiModelProperty(value = "错误信息")
+    @Schema(name  = "错误信息")
     @TableField(value = "errmsg")
     private String errMsg;
 

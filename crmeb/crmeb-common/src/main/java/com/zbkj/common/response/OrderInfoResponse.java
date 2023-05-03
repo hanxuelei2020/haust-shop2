@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,41 +24,41 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="OrderInfoResponse对象", description="订单详情响应对象")
+@Schema(name ="OrderInfoResponse对象", description="订单详情响应对象")
 public class OrderInfoResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-//    @ApiModelProperty(value = "订单id")
+//    @Schema(name  = "订单id")
 //    private Integer orderId;
-    @ApiModelProperty(value = "attrId")
+    @Schema(name  = "attrId")
     private Integer attrId;
 
-    @ApiModelProperty(value = "商品ID")
+    @Schema(name  = "商品ID")
     private Integer productId;
 
-//    @ApiModelProperty(value = "购买东西的详细信息")
+//    @Schema(name  = "购买东西的详细信息")
 //    private StoreCartResponse info;
 
-    @ApiModelProperty(value = "商品数量")
+    @Schema(name  = "商品数量")
     private Integer cartNum;
 
-//    @ApiModelProperty(value = "唯一id")
+//    @Schema(name  = "唯一id")
 //    @TableField(value = "`unique`")
 //    private String unique;
 
-    @ApiModelProperty(value = "商品图片")
+    @Schema(name  = "商品图片")
     private String image;
 
-    @ApiModelProperty(value = "商品名称")
+    @Schema(name  = "商品名称")
     private String storeName;
 
-    @ApiModelProperty(value = "商品价格")
+    @Schema(name  = "商品价格")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "是否评价")
+    @Schema(name  = "是否评价")
     private Integer isReply;
 
-    @ApiModelProperty(value = "规格属性值")
+    @Schema(name  = "规格属性值")
     private String sku;
 }

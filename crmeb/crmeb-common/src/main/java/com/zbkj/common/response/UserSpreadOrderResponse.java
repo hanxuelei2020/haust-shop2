@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,14 +24,14 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="UserSpreadOrderResponse对象", description="推广订单")
+@Schema(name ="UserSpreadOrderResponse对象", description="推广订单")
 public class UserSpreadOrderResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "累计推广订单")
+    @Schema(name  = "累计推广订单")
     private Long count = 0L;
 
-    @ApiModelProperty(value = "推广人列表")
+    @Schema(name  = "推广人列表")
     private List<UserSpreadOrderItemResponse> list;
 }

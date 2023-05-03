@@ -8,8 +8,8 @@ import com.zbkj.common.response.*;
 import com.zbkj.service.service.StoreBargainService;
 import com.zbkj.service.service.StoreBargainUserHelpService;
 import com.zbkj.service.service.StoreBargainUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +32,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("api/front/bargain")
-@Api(tags = "砍价商品")
+@Tag(name ="砍价商品")
 public class BargainController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class BargainController {
     /**
      * 砍价首页信息
      */
-    @ApiOperation(value = "砍价首页信息")
+    @Operation(summary = "砍价首页信息")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public CommonResult<BargainIndexResponse> index(){
         return CommonResult.success(storeBargainService.getIndexInfo());
@@ -56,7 +56,7 @@ public class BargainController {
     /**
      * 砍价商品列表header
      */
-    @ApiOperation(value = "砍价商品列表header")
+    @Operation(summary = "砍价商品列表header")
     @RequestMapping(value = "/header", method = RequestMethod.GET)
     public CommonResult<BargainHeaderResponse> header(){
         return CommonResult.success(storeBargainService.getHeader());
@@ -66,7 +66,7 @@ public class BargainController {
      * 砍价商品列表
      * @return 砍价商品列表
      */
-    @ApiOperation(value = "砍价商品列表")
+    @Operation(summary = "砍价商品列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<PageInfo<StoreBargainDetailResponse>> list(@ModelAttribute PageParamRequest pageParamRequest){
         return CommonResult.success(storeBargainService.getH5List(pageParamRequest));
@@ -75,7 +75,7 @@ public class BargainController {
     /**
      * 获取用户砍价信息
      */
-    @ApiOperation(value = "获取用户砍价信息")
+    @Operation(summary = "获取用户砍价信息")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public CommonResult<BargainUserInfoResponse> getBargainUserInfo(@ModelAttribute @Validated BargainFrontRequest bargainFrontRequest) {
         return CommonResult.success(storeBargainUserService.getBargainUserInfo(bargainFrontRequest));
@@ -84,7 +84,7 @@ public class BargainController {
     /**
      * 砍价商品详情
      */
-    @ApiOperation(value = "砍价商品详情")
+    @Operation(summary = "砍价商品详情")
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public CommonResult<BargainDetailH5Response> detail(@PathVariable(value = "id") Integer id) {
         BargainDetailH5Response h5Detail = storeBargainService.getH5Detail(id);
@@ -94,7 +94,7 @@ public class BargainController {
     /**
      * 创建砍价活动
      */
-    @ApiOperation(value = "创建砍价活动")
+    @Operation(summary = "创建砍价活动")
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> start(@RequestBody @Validated BargainFrontRequest bargainFrontRequest) {
         return CommonResult.success(storeBargainService.start(bargainFrontRequest));
@@ -103,7 +103,7 @@ public class BargainController {
     /**
      * 砍价
      */
-    @ApiOperation(value = "砍价")
+    @Operation(summary = "砍价")
     @RequestMapping(value = "/help", method = RequestMethod.POST)
     public CommonResult<Map<String, Object>> help(@RequestBody @Validated BargainFrontRequest bargainFrontRequest) {
         return CommonResult.success(storeBargainUserHelpService.help(bargainFrontRequest));
@@ -112,7 +112,7 @@ public class BargainController {
     /**
      * 砍价记录
      */
-    @ApiOperation(value = "砍价记录")
+    @Operation(summary = "砍价记录")
     @RequestMapping(value = "/record", method = RequestMethod.GET)
     public CommonResult<CommonPage<BargainRecordResponse>> recordList(@ModelAttribute PageParamRequest pageParamRequest) {
         return CommonResult.success(CommonPage.restPage(storeBargainUserService.getRecordList(pageParamRequest)));

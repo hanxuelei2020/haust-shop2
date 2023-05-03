@@ -1,8 +1,8 @@
 package com.zbkj.common.request;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,24 +29,24 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_shipping_templates_free")
-@ApiModel(value="ShippingTemplatesFreeRequest对象", description="免费")
+@Schema(name ="ShippingTemplatesFreeRequest对象", description="免费")
 public class ShippingTemplatesFreeRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "城市ID, 多个逗号分割。 全国 all", required = true, example = "1,2,3,4")
+    @Schema(name  = "城市ID, 多个逗号分割。 全国 all", required = true, example = "1,2,3,4")
     @NotNull(message = "请选择城市")
     private String cityId;
 
-    @ApiModelProperty(value = "城市名称描述")
+    @Schema(name  = "城市名称描述")
     private String title;
 
-    @ApiModelProperty(value = "包邮件数", required = true, example = "1")
+    @Schema(name  = "包邮件数", required = true, example = "1")
 //    @Min(value = 1, message = "请填写包邮件数")
     @DecimalMin(value = "0.1", message = "包邮不能低于0.1")
     private BigDecimal number;
 
-    @ApiModelProperty(value = "包邮金额", required = true, example = "0.1")
+    @Schema(name  = "包邮金额", required = true, example = "0.1")
     @NotNull(message = "请填写包邮金额")
     @DecimalMin(value = "0", message = "包邮金额不能低于0")
     private BigDecimal price;

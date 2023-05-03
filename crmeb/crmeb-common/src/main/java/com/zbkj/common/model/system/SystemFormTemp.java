@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,28 +27,28 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("eb_system_form_temp")
-@ApiModel(value="SystemFormTemp对象", description="表单模板")
+@Schema(name ="SystemFormTemp对象", description="表单模板")
 public class SystemFormTemp implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "表单模板id")
+    @Schema(name  = "表单模板id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "表单名称")
+    @Schema(name  = "表单名称")
     private String name;
 
-    @ApiModelProperty(value = "表单简介")
+    @Schema(name  = "表单简介")
     private String info;
 
-    @ApiModelProperty(value = "表单内容")
+    @Schema(name  = "表单内容")
     private String content;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name  = "更新时间")
     private Date updateTime;
 
 

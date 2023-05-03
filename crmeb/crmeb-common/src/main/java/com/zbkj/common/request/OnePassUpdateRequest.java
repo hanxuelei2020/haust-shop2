@@ -1,8 +1,8 @@
 package com.zbkj.common.request;
 
 import com.zbkj.common.constants.RegularConstants;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -26,24 +26,24 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "OnePassUpdateRequest对象", description = "一号通账号修改")
+@Schema(name  = "OnePassUpdateRequest对象", description = "一号通账号修改")
 public class OnePassUpdateRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "账号", required = true)
+    @Schema(name  = "账号", required = true)
     @NotNull(message = "账号不能为空")
     private String account;
 
-    @ApiModelProperty(value = "手机号", required = true)
+    @Schema(name  = "手机号", required = true)
     @NotNull(message = "手机号不能为空")
     @Pattern(regexp = RegularConstants.PHONE_TWO, message = "请填写正确的手机号")
     private String phone;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(name  = "密码")
     private String password;
 
-    @ApiModelProperty(value = "验证码", required = true)
+    @Schema(name  = "验证码", required = true)
     @NotNull(message = "验证码不能为空")
     private String code;
 }

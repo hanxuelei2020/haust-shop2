@@ -1,7 +1,6 @@
 package com.zbkj.admin.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,18 +20,18 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="MessageReplyDataVo对象", description="数据存储回复消息内容对象")
+@Schema(name ="MessageReplyDataVo对象", description="数据存储回复消息内容对象")
 public class MessageReplyDataVo{
 
-    @ApiModelProperty(value = "文本消息内容")
+    @Schema(name  = "文本消息内容")
     private String Content;
 
-    @ApiModelProperty(value = "图片/音频链接")
+    @Schema(name  = "图片/音频链接")
     private String src;
 
-    @ApiModelProperty(value = "图片/音频媒体ID")
+    @Schema(name  = "图片/音频媒体ID")
     private String mediaId;
 
-    @ApiModelProperty(value = "文本消息内容")
+    @Schema(name  = "文本消息内容")
     private Integer articleId;
 }

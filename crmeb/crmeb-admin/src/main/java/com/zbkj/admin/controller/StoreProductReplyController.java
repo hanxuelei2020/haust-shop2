@@ -9,8 +9,10 @@ import com.zbkj.common.request.StoreProductReplyCommentRequest;
 import com.zbkj.common.request.StoreProductReplySearchRequest;
 import com.zbkj.common.response.StoreProductReplyResponse;
 import com.zbkj.service.service.StoreProductReplyService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +35,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/store/product/reply")
-@Api(tags = "商品 -- 评论") //配合swagger使用
+@Tag(name ="商品 -- 评论") //配合swagger使用
 public class StoreProductReplyController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class StoreProductReplyController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:product:reply:list')")
-    @ApiOperation(value = "分页列表") //配合swagger使用
+    @Operation(summary = "分页列表") //配合swagger使用
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<StoreProductReplyResponse>>  getList(@Validated StoreProductReplySearchRequest request,
             @Validated PageParamRequest pageParamRequest) {
@@ -59,7 +61,7 @@ public class StoreProductReplyController {
      * @param request 新增参数
      */
     @PreAuthorize("hasAuthority('admin:product:reply:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated StoreProductReplyAddRequest request) {
         if (storeProductReplyService.virtualCreate(request)) {
@@ -74,7 +76,7 @@ public class StoreProductReplyController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:product:reply:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public CommonResult<String> delete(@PathVariable Integer id) {
         if (storeProductReplyService.delete(id)) {
@@ -89,7 +91,7 @@ public class StoreProductReplyController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:product:reply:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public CommonResult<StoreProductReply> info(@PathVariable Integer id) {
         StoreProductReply storeProductReply = storeProductReplyService.getById(id);
@@ -101,7 +103,7 @@ public class StoreProductReplyController {
      * @param request  StoreProductReplyCommentRequest 回复参数
      */
     @PreAuthorize("hasAuthority('admin:product:reply:comment')")
-   @ApiOperation(value = "回复")
+   @Operation(summary = "回复")
    @RequestMapping(value = "/comment", method = RequestMethod.POST)
    public CommonResult<String> comment(@RequestBody StoreProductReplyCommentRequest request) {
        if (storeProductReplyService.comment(request)) {

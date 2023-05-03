@@ -3,8 +3,10 @@ package com.zbkj.admin.controller;
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.admin.service.ValidateCodeService;
 import com.zbkj.admin.vo.ValidateCode;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/validate/code")
-@Api(tags = "验证码服务")
+@Tag(name ="验证码服务")
 public class ValidateCodeController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class ValidateCodeController {
      * @return CommonResult
      */
 //    @PreAuthorize("hasAuthority('admin:validate:code:get')")
-    @ApiOperation(value="获取验证码")
+    @Operation(summary ="获取验证码")
     @GetMapping(value = "/get")
     public CommonResult<ValidateCode> get() {
         ValidateCode validateCode = validateCodeService.get();

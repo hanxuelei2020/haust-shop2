@@ -2,8 +2,10 @@ package com.zbkj.admin.controller;
 
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.service.service.TemplateMessageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/wechat/template")
-@Api(tags = "微信 -- 消息模版") //配合swagger使用
+@Tag(name ="微信 -- 消息模版") //配合swagger使用
 public class TemplateMessageController {
 
     @Autowired
@@ -37,7 +39,7 @@ public class TemplateMessageController {
      * 公众号模板消息同步
      */
     @PreAuthorize("hasAuthority('admin:wechat:whcbqhn:sync')")
-    @ApiOperation(value = "公众号模板消息同步")
+    @Operation(summary = "公众号模板消息同步")
     @RequestMapping(value = "/whcbqhn/sync", method = RequestMethod.POST)
     public CommonResult<String> whcbqhnSync() {
         if (templateMessageService.whcbqhnSync()) {
@@ -50,7 +52,7 @@ public class TemplateMessageController {
      * 小程序订阅消息同步
      */
     @PreAuthorize("hasAuthority('admin:wechat:routine:sync')")
-    @ApiOperation(value = "小程序订阅消息同步")
+    @Operation(summary = "小程序订阅消息同步")
     @RequestMapping(value = "/routine/sync", method = RequestMethod.POST)
     public CommonResult<String> routineSync() {
         if (templateMessageService.routineSync()) {

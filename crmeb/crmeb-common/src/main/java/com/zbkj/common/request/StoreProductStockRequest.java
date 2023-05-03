@@ -1,8 +1,8 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,12 +28,12 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreProductStockRequest对象", description="库存修改")
+@Schema(name ="StoreProductStockRequest对象", description="库存修改")
 public class StoreProductStockRequest implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "商品ID", required = true)
+    @Schema(name  = "商品ID", required = true)
     @NotEmpty(message = "请选择商品")
     private Integer productId;
 
@@ -43,21 +43,21 @@ public class StoreProductStockRequest implements Serializable {
 
     private Integer combinationId;
 
-    @ApiModelProperty(value = "商品属性ID集合", required = true)
+    @Schema(name  = "商品属性ID集合", required = true)
     @NotEmpty(message = "请选择商品属性id集合")
     private Integer attrId;
 
-    @ApiModelProperty(value = "类型， 增加 add | 减少 diff", required = true)
+    @Schema(name  = "类型， 增加 add | 减少 diff", required = true)
     @NotBlank(message = "请选择类型")
     private String operationType;
 
-    @ApiModelProperty(value = "数量", required = true)
+    @Schema(name  = "数量", required = true)
     @Min(value = 0, message = "请填写数量")
     private Integer num;
 
-    @ApiModelProperty(value = "商品类型 0=普通 1=秒杀", required = false)
+    @Schema(name  = "商品类型 0=普通 1=秒杀", required = false)
     private Integer type;
 
-    @ApiModelProperty(value = "商品SKU信息")
+    @Schema(name  = "商品SKU信息")
     private String suk;
 }

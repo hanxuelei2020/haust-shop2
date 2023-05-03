@@ -2,8 +2,10 @@ package com.zbkj.admin.controller;
 
 import com.zbkj.common.response.CommonResult;
 import com.zbkj.service.service.YlyPrintService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/yly")
-@Api(tags = "易联云 打印订单小票") //配合swagger使用
+@Tag(name ="易联云 打印订单小票") //配合swagger使用
 public class YlyPrintController {
 
 
@@ -32,7 +34,7 @@ public class YlyPrintController {
     private YlyPrintService ylyPrintService;
 
     @PreAuthorize("hasAuthority('admin:yly:print')")
-    @ApiOperation(value = "打印小票")
+    @Operation(summary = "打印小票")
     @RequestMapping(value = "/print/{ordid}", method = RequestMethod.GET)
     public CommonResult<String> updateStatus(@PathVariable  String ordid) {
         ylyPrintService.YlyPrint(ordid,false);

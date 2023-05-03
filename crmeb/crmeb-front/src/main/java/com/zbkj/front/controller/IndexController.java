@@ -8,9 +8,11 @@ import com.zbkj.common.model.system.SystemConfig;
 import com.zbkj.common.response.IndexInfoResponse;
 import com.zbkj.common.response.IndexProductResponse;
 import com.zbkj.front.service.IndexService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +39,7 @@ import java.util.Map;
 @Slf4j
 @RestController("IndexController")
 @RequestMapping("api/front")
-@Api(tags = "首页")
+@Tag(name ="首页")
 public class IndexController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class IndexController {
     /**
      * 首页数据
      */
-    @ApiOperation(value = "首页数据")
+    @Operation(summary = "首页数据")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public CommonResult<IndexInfoResponse> getIndexInfo() {
         return CommonResult.success(indexService.getIndexInfo());
@@ -55,9 +57,9 @@ public class IndexController {
     /**
      * 首页商品列表
      */
-    @ApiOperation(value = "首页商品列表")
+    @Operation(summary = "首页商品列表")
     @RequestMapping(value = "/index/product/{type}", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "type", value = "类型 【1 精品推荐 2 热门榜单 3首发新品 4促销单品】", dataType = "int", required = true)
+     @Parameter(name = "type", description = "类型 【1 精品推荐 2 热门榜单 3首发新品 4促销单品】",  required = true)
     public CommonResult<CommonPage<IndexProductResponse>> getProductList(@PathVariable(value = "type") Integer type, PageParamRequest pageParamRequest) {
 
         return CommonResult.success(indexService.findIndexProductList(type, pageParamRequest));
@@ -66,7 +68,7 @@ public class IndexController {
     /**
      * 热门搜索
      */
-    @ApiOperation(value = "热门搜索")
+    @Operation(summary = "热门搜索")
     @RequestMapping(value = "/search/keyword", method = RequestMethod.GET)
     public CommonResult<List<HashMap<String, Object>>> hotKeywords() {
         return CommonResult.success(indexService.hotKeywords());
@@ -75,7 +77,7 @@ public class IndexController {
     /**
      * 分享配置
      */
-    @ApiOperation(value = "分享配置")
+    @Operation(summary = "分享配置")
     @RequestMapping(value = "/share", method = RequestMethod.GET)
     public CommonResult<HashMap<String, String>> share() {
         return CommonResult.success(indexService.getShareConfig());
@@ -84,7 +86,7 @@ public class IndexController {
     /**
      * 颜色配置
      */
-    @ApiOperation(value = "颜色配置")
+    @Operation(summary = "颜色配置")
     @RequestMapping(value = "/index/color/config", method = RequestMethod.GET)
     public CommonResult<SystemConfig> getColorConfig() {
         return CommonResult.success(indexService.getColorConfig());
@@ -93,7 +95,7 @@ public class IndexController {
     /**
      * 版本信息
      */
-    @ApiOperation(value = "获取版本信息")
+    @Operation(summary = "获取版本信息")
     @RequestMapping(value = "/index/get/version", method = RequestMethod.GET)
     public CommonResult<Map<String, Object>> getVersion() {
         return CommonResult.success(indexService.getVersion());
@@ -102,7 +104,7 @@ public class IndexController {
     /**
      * 全局本地图片域名
      */
-    @ApiOperation(value = "全局本地图片域名")
+    @Operation(summary = "全局本地图片域名")
     @RequestMapping(value = "/image/domain", method = RequestMethod.GET)
     public CommonResult<String> getImageDomain() {
         return CommonResult.success(indexService.getImageDomain(), "成功");

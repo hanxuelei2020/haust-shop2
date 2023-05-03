@@ -2,8 +2,8 @@ package com.zbkj.common.response;
 
 import com.zbkj.common.vo.StoreOrderInfoOldVo;
 import com.zbkj.common.model.system.SystemStore;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -29,116 +29,116 @@ import java.util.Map;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="StoreOrderInfoResponse对象", description="订单详情响应对象")
+@Schema(name ="StoreOrderInfoResponse对象", description="订单详情响应对象")
 public class StoreOrderInfoResponse implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "订单ID")
+    @Schema(name  = "订单ID")
     private Integer id;
 
-    @ApiModelProperty(value = "订单号")
+    @Schema(name  = "订单号")
     private String orderId;
 
-    @ApiModelProperty(value = "用户id")
+    @Schema(name  = "用户id")
     private Integer uid;
 
-    @ApiModelProperty(value = "用户姓名")
+    @Schema(name  = "用户姓名")
     private String realName;
 
-    @ApiModelProperty(value = "用户电话")
+    @Schema(name  = "用户电话")
     private String userPhone;
 
-    @ApiModelProperty(value = "详细地址")
+    @Schema(name  = "详细地址")
     private String userAddress;
 
-    @ApiModelProperty(value = "订单商品总数")
+    @Schema(name  = "订单商品总数")
     private Integer totalNum;
 
-    @ApiModelProperty(value = "订单总价")
+    @Schema(name  = "订单总价")
     private BigDecimal totalPrice;
 
-    @ApiModelProperty(value = "实际支付金额")
+    @Schema(name  = "实际支付金额")
     private BigDecimal payPrice;
 
-    @ApiModelProperty(value = "支付邮费")
+    @Schema(name  = "支付邮费")
     private BigDecimal payPostage;
 
-    @ApiModelProperty(value = "优惠券金额")
+    @Schema(name  = "优惠券金额")
     private BigDecimal couponPrice;
 
-    @ApiModelProperty(value = "抵扣金额")
+    @Schema(name  = "抵扣金额")
     private BigDecimal deductionPrice;
 
-    @ApiModelProperty(value = "支付方式")
+    @Schema(name  = "支付方式")
     private String payType;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name  = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "订单状态（-1 : 申请退款 -2 : 退货成功 0：待发货；1：待收货；2：已收货；3：待评价；-1：已退款）")
+    @Schema(name  = "订单状态（-1 : 申请退款 -2 : 退货成功 0：待发货；1：待收货；2：已收货；3：待评价；-1：已退款）")
     private Integer status;
 
-    @ApiModelProperty(value = "0 未退款 1 申请中 2 已退款")
+    @Schema(name  = "0 未退款 1 申请中 2 已退款")
     private Integer refundStatus;
 
-    @ApiModelProperty(value = "快递名称/送货人姓名")
+    @Schema(name  = "快递名称/送货人姓名")
     private String deliveryName;
 
-    @ApiModelProperty(value = "发货类型")
+    @Schema(name  = "发货类型")
     private String deliveryType;
 
-    @ApiModelProperty(value = "快递单号/手机号")
+    @Schema(name  = "快递单号/手机号")
     private String deliveryId;
 
-    @ApiModelProperty(value = "备注")
+    @Schema(name  = "备注")
     private String mark;
 
-    @ApiModelProperty(value = "是否删除")
+    @Schema(name  = "是否删除")
     private Boolean isDel;
 
-    @ApiModelProperty(value = "管理员备注")
+    @Schema(name  = "管理员备注")
     private String remark;
 
-    @ApiModelProperty(value = "退款金额")
+    @Schema(name  = "退款金额")
     private BigDecimal refundPrice;
 
-    @ApiModelProperty(value = "使用积分")
+    @Schema(name  = "使用积分")
     private Integer useIntegral;
 
-    @ApiModelProperty(value = "给用户退了多少积分")
+    @Schema(name  = "给用户退了多少积分")
     private Integer backIntegral;
 
-    @ApiModelProperty(value = "核销码")
+    @Schema(name  = "核销码")
     private String verifyCode;
 
-    @ApiModelProperty(value = "配送方式 1=快递 ，2=门店自提")
+    @Schema(name  = "配送方式 1=快递 ，2=门店自提")
     private Integer shippingType;
 
-    @ApiModelProperty(value = "订单状态")
+    @Schema(name  = "订单状态")
     private Map<String, String> statusStr;
 
-    @ApiModelProperty(value = "支付方式")
+    @Schema(name  = "支付方式")
     private String payTypeStr;
 
-    @ApiModelProperty(value = "用户昵称")
+    @Schema(name  = "用户昵称")
     private String nikeName;
 
-    @ApiModelProperty(value = "用户电话")
+    @Schema(name  = "用户电话")
     private String phone;
 
-    @ApiModelProperty(value = "订单商品详情")
+    @Schema(name  = "订单商品详情")
     List<StoreOrderInfoOldVo> orderInfo;
 
-    @ApiModelProperty(value = "提货点")
+    @Schema(name  = "提货点")
     private SystemStore systemStore;
 
-    @ApiModelProperty(value = "推广人名称")
+    @Schema(name  = "推广人名称")
     private String spreadName;
 
-    @ApiModelProperty(value = "商品总价")
+    @Schema(name  = "商品总价")
     private BigDecimal proTotalPrice;
 
-    @ApiModelProperty(value = "退款时间")
+    @Schema(name  = "退款时间")
     private Date refundReasonTime;
 }

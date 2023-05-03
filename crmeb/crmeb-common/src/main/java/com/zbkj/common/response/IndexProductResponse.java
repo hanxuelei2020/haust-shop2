@@ -1,7 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,46 +23,46 @@ import java.math.BigDecimal;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="IndexProductResponse对象", description="首页商品对象")
+@Schema(name ="IndexProductResponse对象", description="首页商品对象")
 public class IndexProductResponse {
 
 
-    @ApiModelProperty(value = "商品id")
+    @Schema(name  = "商品id")
     private Integer id;
 
-    @ApiModelProperty(value = "商品图片")
+    @Schema(name  = "商品图片")
     private String image;
 
-    @ApiModelProperty(value = "商品名称")
+    @Schema(name  = "商品名称")
     private String storeName;
 
-    @ApiModelProperty(value = "商品价格")
+    @Schema(name  = "商品价格")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "市场价")
+    @Schema(name  = "市场价")
     private BigDecimal otPrice;
 
-    @ApiModelProperty(value = "销量")
+    @Schema(name  = "销量")
     private Integer sales;
 
-    @ApiModelProperty(value = "虚拟销量")
+    @Schema(name  = "虚拟销量")
     private Integer ficti;
 
-    @ApiModelProperty(value = "单位名")
+    @Schema(name  = "单位名")
     private String unitName;
 
-    @ApiModelProperty(value = "活动显示排序0=默认，1=秒杀，2=砍价，3=拼团")
+    @Schema(name  = "活动显示排序0=默认，1=秒杀，2=砍价，3=拼团")
     private String activity;
 
-    @ApiModelProperty(value = "为移动端特定参数")
+    @Schema(name  = "为移动端特定参数")
     private ProductActivityItemResponse activityH5;
 
-    @ApiModelProperty(value = "购物车商品数量")
+    @Schema(name  = "购物车商品数量")
     private Integer cartNum;
 
-    @ApiModelProperty(value = "库存")
+    @Schema(name  = "库存")
     private Integer stock;
 
-    @ApiModelProperty(value = "展示图")
+    @Schema(name  = "展示图")
     private String flatPattern;
 }

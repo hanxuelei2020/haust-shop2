@@ -7,8 +7,10 @@ import com.zbkj.common.model.system.SystemStore;
 import com.zbkj.common.request.SystemStoreRequest;
 import com.zbkj.common.request.SystemStoreSearchRequest;
 import com.zbkj.service.service.SystemStoreService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +35,7 @@ import java.util.HashMap;
 @Slf4j
 @RestController
 @RequestMapping("api/admin/system/store")
-@Api(tags = "设置 -- 提货点 -- 提货点")
+@Tag(name ="设置 -- 提货点 -- 提货点")
 public class SystemStoreController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class SystemStoreController {
      * @param pageParamRequest 分页参数
      */
     @PreAuthorize("hasAuthority('admin:system:store:list')")
-    @ApiOperation(value = "门店自提分页列表")
+    @Operation(summary = "门店自提分页列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public CommonResult<CommonPage<SystemStore>>  getList(@Validated SystemStoreSearchRequest request, @Validated PageParamRequest pageParamRequest) {
         CommonPage<SystemStore> expressCommonPage = CommonPage.restPage(systemStoreService.getList(request.getKeywords(), request.getStatus(), pageParamRequest));
@@ -56,7 +58,7 @@ public class SystemStoreController {
      * 数量
      */
     @PreAuthorize("hasAuthority('admin:system:store:count')")
-    @ApiOperation(value = "数量")
+    @Operation(summary = "数量")
     @RequestMapping(value = "/getCount", method = RequestMethod.GET)
     public CommonResult<HashMap<String, Integer>>  getCount() {
         return CommonResult.success(systemStoreService.getCount());
@@ -67,7 +69,7 @@ public class SystemStoreController {
      * @param request SystemStoreRequest 新增参数
      */
     @PreAuthorize("hasAuthority('admin:system:store:save')")
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResult<String> save(@RequestBody @Validated SystemStoreRequest request) {
         if (systemStoreService.create(request)) {
@@ -82,7 +84,7 @@ public class SystemStoreController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:store:delete')")
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public CommonResult<String> delete(@RequestParam(value = "id") Integer id) {
         if (systemStoreService.delete(id)) {
@@ -97,7 +99,7 @@ public class SystemStoreController {
      * @param request 修改参数
      */
     @PreAuthorize("hasAuthority('admin:system:store:update')")
-    @ApiOperation(value = "修改")
+    @Operation(summary = "修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public CommonResult<String> update(@RequestParam Integer id, @RequestBody @Validated SystemStoreRequest request) {
         if (systemStoreService.update(id, request)) {
@@ -112,7 +114,7 @@ public class SystemStoreController {
      * @param status 状态
      */
     @PreAuthorize("hasAuthority('admin:system:store:update:status')")
-    @ApiOperation(value = "修改门店显示状态")
+    @Operation(summary = "修改门店显示状态")
     @RequestMapping(value = "/update/status", method = RequestMethod.GET)
     public CommonResult<String> updateStatus(@RequestParam Integer id, @RequestParam Boolean status) {
         if (systemStoreService.updateStatus(id, status)) {
@@ -126,7 +128,7 @@ public class SystemStoreController {
      * @param id Integer
      */
     @PreAuthorize("hasAuthority('admin:system:store:info')")
-    @ApiOperation(value = "详情")
+    @Operation(summary = "详情")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public CommonResult<SystemStore> info(@RequestParam(value = "id") Integer id) {
         return CommonResult.success(systemStoreService.getInfo(id));
@@ -136,7 +138,7 @@ public class SystemStoreController {
      * 彻底删除
      */
     @PreAuthorize("hasAuthority('admin:system:store:completely:delete')")
-    @ApiOperation(value = "彻底删除")
+    @Operation(summary = "彻底删除")
     @RequestMapping(value = "/completely/delete", method = RequestMethod.GET)
     public CommonResult<Object> completeLyDelete(@RequestParam(value = "id") Integer id) {
         if (systemStoreService.completeLyDelete(id)) {
@@ -149,7 +151,7 @@ public class SystemStoreController {
      * 恢复
      */
     @PreAuthorize("hasAuthority('admin:system:store:recovery')")
-    @ApiOperation(value = "提货点恢复")
+    @Operation(summary = "提货点恢复")
     @RequestMapping(value = "/recovery", method = RequestMethod.GET)
     public CommonResult<Object> recovery(@RequestParam(value = "id") Integer id) {
         if (systemStoreService.recovery(id)) {

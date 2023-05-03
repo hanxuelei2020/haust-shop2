@@ -1,7 +1,7 @@
 package com.zbkj.common.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,25 +25,25 @@ import javax.validation.constraints.NotNull;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="OrderComputedPriceRequest对象", description="计算订单价格请求对象")
+@Schema(name ="OrderComputedPriceRequest对象", description="计算订单价格请求对象")
 public class OrderComputedPriceRequest {
 
-    @ApiModelProperty(value = "预下单订单号")
+    @Schema(name  = "预下单订单号")
     @NotBlank(message = "预下单订单号不能为空")
     private String preOrderNo;
 
-    @ApiModelProperty(value = "地址id")
+    @Schema(name  = "地址id")
     private Integer addressId;
 
-    @ApiModelProperty(value = "优惠券id")
+    @Schema(name  = "优惠券id")
     private Integer couponId;
 
-    @ApiModelProperty(value = "快递类型: 1-快递配送，2-到店自提")
+    @Schema(name  = "快递类型: 1-快递配送，2-到店自提")
     @NotNull(message = "快递类型不能为空")
     @Range(min = 1, max = 2, message = "未知的快递类型")
     private Integer shippingType;
 
-    @ApiModelProperty(value = "是否使用积分")
+    @Schema(name  = "是否使用积分")
     @NotNull(message = "是否使用积分不能为空")
     private Boolean useIntegral;
 

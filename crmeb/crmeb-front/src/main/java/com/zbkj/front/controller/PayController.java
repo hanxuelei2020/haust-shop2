@@ -6,8 +6,10 @@ import com.zbkj.common.response.OrderPayResultResponse;
 import com.zbkj.common.utils.CrmebUtil;
 import com.zbkj.service.service.OrderPayService;
 import com.zbkj.service.service.WeChatPayService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +32,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController
 @RequestMapping("api/front/pay")
-@Api(tags = "支付管理")
+@Tag(name ="支付管理")
 public class PayController {
 
     @Autowired
@@ -42,7 +44,7 @@ public class PayController {
     /**
      * 订单支付
      */
-    @ApiOperation(value = "订单支付")
+    @Operation(summary = "订单支付")
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
     public CommonResult<OrderPayResultResponse> payment(@RequestBody @Validated OrderPayRequest orderPayRequest, HttpServletRequest request) {
         String ip = CrmebUtil.getClientIp(request);
@@ -54,7 +56,7 @@ public class PayController {
      *
      * @param orderNo |订单编号|String|必填
      */
-    @ApiOperation(value = "查询支付结果")
+    @Operation(summary = "查询支付结果")
     @RequestMapping(value = "/queryPayResult", method = RequestMethod.GET)
     public CommonResult<Boolean> queryPayResult(@RequestParam String orderNo) {
         return CommonResult.success(weChatPayService.queryPayResult(orderNo));

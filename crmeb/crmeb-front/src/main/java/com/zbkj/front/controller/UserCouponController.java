@@ -6,10 +6,12 @@ import com.zbkj.common.response.CommonResult;
 import com.zbkj.common.request.PageParamRequest;
 import com.zbkj.common.response.StoreCouponUserResponse;
 import com.zbkj.service.service.StoreCouponUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("api/front/coupon")
-@Api(tags = "营销 -- 优惠券")
+@Tag(name ="营销 -- 优惠券")
 public class UserCouponController {
 
     @Autowired
@@ -39,12 +41,12 @@ public class UserCouponController {
     /**
      * 我的优惠券
      */
-    @ApiOperation(value = "我的优惠券")
+    @Operation(summary = "我的优惠券")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="type", value="类型，usable-可用，unusable-不可用", required = true),
-            @ApiImplicitParam(name="page", value="页码", required = true),
-            @ApiImplicitParam(name="limit", value="每页数量", required = true)
+     @Parameters({
+             @Parameter(name="type", description="类型，usable-可用，unusable-不可用", required = true),
+             @Parameter(name="page", description="页码", required = true),
+             @Parameter(name="limit", description="每页数量", required = true)
     })
     public CommonResult<CommonPage<StoreCouponUserResponse>> getList(@RequestParam(value = "type") String type,
                                                                      @Validated PageParamRequest pageParamRequest) {
@@ -55,7 +57,7 @@ public class UserCouponController {
      * 领券
      * @param request UserCouponReceiveRequest 新增参数
      */
-    @ApiOperation(value = "领券")
+    @Operation(summary = "领券")
     @RequestMapping(value = "/receive", method = RequestMethod.POST)
     public CommonResult<String> receive(@RequestBody @Validated UserCouponReceiveRequest request) {
         if (storeCouponUserService.receiveCoupon(request)) {

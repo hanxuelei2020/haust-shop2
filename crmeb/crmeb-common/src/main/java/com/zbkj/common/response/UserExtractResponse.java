@@ -1,6 +1,7 @@
 package com.zbkj.common.response;
 
-import io.swagger.annotations.ApiModelProperty;
+ 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -20,10 +21,10 @@ import java.math.BigDecimal;
 @Data
 public class UserExtractResponse {
     // 提现数据总额
-    @ApiModelProperty(value = "体现数据总额")
+    @Schema(name  = "体现数据总额")
     private BigDecimal extractCountPrice;
     // 提现次数
-    @ApiModelProperty(value = "提现次数")
+    @Schema(name  = "提现次数")
     private Integer extractCountNum;
     // 提现用户id
 //    private Integer euid;

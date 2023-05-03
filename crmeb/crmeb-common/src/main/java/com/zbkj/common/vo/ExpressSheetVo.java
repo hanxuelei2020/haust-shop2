@@ -1,7 +1,6 @@
 package com.zbkj.common.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,7 +20,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ExpressSheetVo对象", description="系统电子面单对象")
+@Schema(name ="ExpressSheetVo对象", description="系统电子面单对象")
 public class ExpressSheetVo {
 
     public ExpressSheetVo() {
@@ -38,28 +37,28 @@ public class ExpressSheetVo {
         this.exportOpen = exportOpen;
     }
 
-    @ApiModelProperty(value = "快递公司简称，物流、电子面单开通必填")
+    @Schema(name  = "快递公司简称，物流、电子面单开通必填")
     private Integer exportId;
 
-    @ApiModelProperty(value = "快递公司简称，物流、电子面单开通必填")
+    @Schema(name  = "快递公司简称，物流、电子面单开通必填")
     private String exportCom;
 
-    @ApiModelProperty(value = "快递公司模板Id、电子面单开通必填")
+    @Schema(name  = "快递公司模板Id、电子面单开通必填")
     private String exportTempId;
 
-    @ApiModelProperty(value = "快递面单发货人姓名，物流、电子面单开通必填")
+    @Schema(name  = "快递面单发货人姓名，物流、电子面单开通必填")
     private String exportToName;
 
-    @ApiModelProperty(value = "快递面单发货人电话，物流、电子面单开通必填")
+    @Schema(name  = "快递面单发货人电话，物流、电子面单开通必填")
     private String exportToTel;
 
-    @ApiModelProperty(value = "发货人详细地址，物流、电子面单开通必填")
+    @Schema(name  = "发货人详细地址，物流、电子面单开通必填")
     private String exportToAddress;
 
-    @ApiModelProperty(value = "电子面单打印机编号，物流、电子面单开通必填")
+    @Schema(name  = "电子面单打印机编号，物流、电子面单开通必填")
     private String exportSiid;
 
-    @ApiModelProperty(value = "电子面单是否开启")
+    @Schema(name  = "电子面单是否开启")
     private Integer exportOpen;
 
 }
