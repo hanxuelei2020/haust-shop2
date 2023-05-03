@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * 图片合成详情

@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 

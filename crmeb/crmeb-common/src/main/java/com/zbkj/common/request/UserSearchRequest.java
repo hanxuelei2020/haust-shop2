@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 

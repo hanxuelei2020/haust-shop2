@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import java.io.Serializable;
 
 /**

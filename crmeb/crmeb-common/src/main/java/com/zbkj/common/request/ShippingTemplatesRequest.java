@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;

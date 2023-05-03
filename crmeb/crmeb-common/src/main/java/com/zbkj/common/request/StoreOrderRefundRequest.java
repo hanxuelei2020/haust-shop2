@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 import java.math.BigDecimal;
 
 /**
