@@ -42,6 +42,15 @@
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <!-- imageName用于设置生成的二进制文件名称 -->
+                    <imageName>${project.artifactId}</imageName>
+                    <!-- mainClass用于指定main方法类路径 -->
+                    <mainClass>com.zbkj.admin.CrmebAdminApplication</mainClass>
+                    <buildArgs>
+                        --no-fallback
+                    </buildArgs>
+                </configuration>
             </plugin>
 
             <plugin>
