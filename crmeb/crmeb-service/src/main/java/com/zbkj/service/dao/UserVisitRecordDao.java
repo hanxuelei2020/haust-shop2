@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.record.UserVisitRecord;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -17,7 +18,7 @@ import org.apache.ibatis.annotations.Param;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface UserVisitRecordDao extends BaseMapper<UserVisitRecord> {
 
     /**

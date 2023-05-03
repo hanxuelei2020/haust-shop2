@@ -2,6 +2,7 @@ package com.zbkj.service.dao;
 
 import com.zbkj.common.model.system.SystemAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -16,6 +17,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface SystemAdminDao extends BaseMapper<SystemAdmin> {
 }

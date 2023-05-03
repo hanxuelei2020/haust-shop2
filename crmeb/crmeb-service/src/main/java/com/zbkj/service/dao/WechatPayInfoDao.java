@@ -2,6 +2,7 @@ package com.zbkj.service.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.wechat.WechatPayInfo;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -16,7 +17,7 @@ import com.zbkj.common.model.wechat.WechatPayInfo;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface WechatPayInfoDao extends BaseMapper<WechatPayInfo> {
 
 }

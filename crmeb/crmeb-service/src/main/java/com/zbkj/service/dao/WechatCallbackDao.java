@@ -2,6 +2,7 @@ package com.zbkj.service.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.wechat.WechatCallback;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -12,7 +13,7 @@ import com.zbkj.common.model.wechat.WechatCallback;
  * @author HZW
  * @since 2021-05-19
  */
-
+@Mapper
 public interface WechatCallbackDao extends BaseMapper<WechatCallback> {
 
 }

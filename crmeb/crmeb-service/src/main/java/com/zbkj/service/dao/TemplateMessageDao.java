@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.model.wechat.TemplateMessage;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -17,7 +18,7 @@ import com.zbkj.common.model.wechat.TemplateMessage;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface TemplateMessageDao extends BaseMapper<TemplateMessage> {
 
 }

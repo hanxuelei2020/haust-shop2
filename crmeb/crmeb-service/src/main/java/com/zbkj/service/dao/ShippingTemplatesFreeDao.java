@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.express.ShippingTemplatesFree;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zbkj.common.request.ShippingTemplatesFreeRequest;
+import org.apache.ibatis.annotations.Mapper;
 
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  *  | Author: CRMEB Team <admin@crmeb.com>
  *  +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface ShippingTemplatesFreeDao extends BaseMapper<ShippingTemplatesFree> {
 
     List<ShippingTemplatesFreeRequest> getListGroup(Integer tempId);

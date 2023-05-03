@@ -2,6 +2,7 @@ package com.zbkj.service.dao;
 
 import com.zbkj.common.model.system.SystemGroupData;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -17,6 +18,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * +----------------------------------------------------------------------
  */
 
+@Mapper
 public interface SystemGroupDataDao extends BaseMapper<SystemGroupData> {
 
 }

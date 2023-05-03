@@ -3,6 +3,7 @@ package com.zbkj.service.dao;
 import com.zbkj.common.model.order.StoreOrderStatus;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -19,7 +20,7 @@ import java.math.BigDecimal;
  * | Author: CRMEB Team <admin@crmeb.com>
  * +----------------------------------------------------------------------
  */
-
+@Mapper
 public interface StoreOrderStatusDao extends BaseMapper<StoreOrderStatus> {
 
     /**
