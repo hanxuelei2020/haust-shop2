@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.UUID;
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class FrontTokenComponent {
 
-    @Resource
+    @Autowired
     private RedisUtil redisUtil;
 
     private static final Long MILLIS_MINUTE_TEN = 20 * 60 * 1000L;

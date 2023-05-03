@@ -8,7 +8,7 @@ import com.zbkj.service.dao.StoreProductAttrResultDao;
 import com.zbkj.service.service.StoreProductAttrResultService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ import java.util.List;
 public class StoreProductAttrResultServiceImpl extends ServiceImpl<StoreProductAttrResultDao, StoreProductAttrResult>
         implements StoreProductAttrResultService {
 
-    @Resource
+    @Autowired
     private StoreProductAttrResultDao dao;
 
     /**

@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * 微信小程序回调Service
@@ -29,7 +29,7 @@ public class WechatCallbackServiceImpl extends ServiceImpl<WechatCallbackDao, We
 
     private static final Logger logger = LoggerFactory.getLogger(WechatCallbackServiceImpl.class);
 
-    @Resource
+    @Autowired
     private WechatCallbackDao dao;
 
     /**

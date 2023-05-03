@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import javax.annotation.Resource;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 @Service
 public class ExpressServiceImpl extends ServiceImpl<ExpressDao, Express> implements ExpressService {
 
-    @Resource
+    @Autowired
     private ExpressDao dao;
 
     @Autowired

@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
 @Service
 public class StoreBargainUserHelpServiceImpl extends ServiceImpl<StoreBargainUserHelpDao, StoreBargainUserHelp> implements StoreBargainUserHelpService {
 
-    @Resource
+    @Autowired
     private StoreBargainUserHelpDao dao;
 
     @Autowired

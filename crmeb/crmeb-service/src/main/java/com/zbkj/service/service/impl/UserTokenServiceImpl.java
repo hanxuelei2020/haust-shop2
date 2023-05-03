@@ -7,7 +7,7 @@ import com.zbkj.service.dao.UserTokenDao;
 import com.zbkj.service.service.UserTokenService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * UserTokenServiceImpl 接口实现
@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 @Service
 public class UserTokenServiceImpl extends ServiceImpl<UserTokenDao, UserToken> implements UserTokenService {
 
-    @Resource
+    @Autowired
     private UserTokenDao dao;
 
     /**

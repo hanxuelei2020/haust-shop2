@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -39,7 +39,7 @@ import java.util.List;
 @Service
 public class ShippingTemplatesServiceImpl extends ServiceImpl<ShippingTemplatesDao, ShippingTemplates> implements ShippingTemplatesService {
 
-    @Resource
+    @Autowired
     private ShippingTemplatesDao dao;
 
     @Autowired

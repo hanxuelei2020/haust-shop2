@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class WeChatPushController {
 
     private static String url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=";
 
-    @Resource
+    @Autowired
     private RestTemplateUtil restTemplateUtil;
 
 

@@ -6,7 +6,7 @@ import com.zbkj.service.dao.SmsRecordDao;
 import com.zbkj.service.service.SmsRecordService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * SmsRecordServiceImpl 接口实现
@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 @Service
 public class SmsRecordServiceImpl extends ServiceImpl<SmsRecordDao, SmsRecord> implements SmsRecordService {
 
-    @Resource
+    @Autowired
     private SmsRecordDao dao;
 
     /**

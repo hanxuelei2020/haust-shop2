@@ -11,7 +11,7 @@ import com.zbkj.admin.vo.ValidateCode;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ValidateCodeServiceImpl implements ValidateCodeService {
 
-    @Resource
+    @Autowired
     private RedisUtil redisAdminUtil;
 
     /**

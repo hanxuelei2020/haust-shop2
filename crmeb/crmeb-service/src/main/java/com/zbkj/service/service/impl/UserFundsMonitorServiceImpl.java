@@ -17,7 +17,7 @@ import com.zbkj.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserFundsMonitorServiceImpl extends ServiceImpl<UserFundsMonitorDao, UserFundsMonitor> implements UserFundsMonitorService {
 
-    @Resource
+    @Autowired
     private UserFundsMonitorDao dao;
 
     @Autowired

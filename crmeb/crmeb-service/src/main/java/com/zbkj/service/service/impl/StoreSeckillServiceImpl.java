@@ -38,7 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,7 +60,7 @@ public class StoreSeckillServiceImpl extends ServiceImpl<StoreSeckillDao, StoreS
 
     private static final Logger logger = LoggerFactory.getLogger(StoreSeckillServiceImpl.class);
 
-    @Resource
+    @Autowired
     private StoreSeckillDao dao;
 
     @Autowired

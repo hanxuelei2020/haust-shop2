@@ -7,7 +7,7 @@ import com.zbkj.service.dao.UserVisitRecordDao;
 import com.zbkj.service.service.UserVisitRecordService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * UserVisitRecordServiceImpl 接口实现
@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 @Service
 public class UserVisitRecordServiceImpl extends ServiceImpl<UserVisitRecordDao, UserVisitRecord> implements UserVisitRecordService {
 
-    @Resource
+    @Autowired
     private UserVisitRecordDao dao;
 
     /**

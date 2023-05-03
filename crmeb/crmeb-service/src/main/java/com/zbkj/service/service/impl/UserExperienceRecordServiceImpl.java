@@ -11,7 +11,7 @@ import com.zbkj.service.dao.UserExperienceRecordDao;
 import com.zbkj.service.service.UserExperienceRecordService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -29,7 +29,7 @@ import java.util.List;
 @Service
 public class UserExperienceRecordServiceImpl extends ServiceImpl<UserExperienceRecordDao, UserExperienceRecord> implements UserExperienceRecordService {
 
-    @Resource
+    @Autowired
     private UserExperienceRecordDao dao;
 
     /**

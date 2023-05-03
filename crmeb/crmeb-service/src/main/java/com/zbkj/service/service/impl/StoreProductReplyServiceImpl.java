@@ -39,7 +39,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +61,7 @@ import java.util.stream.Collectors;
 public class StoreProductReplyServiceImpl extends ServiceImpl<StoreProductReplyDao, StoreProductReply>
         implements StoreProductReplyService {
 
-    @Resource
+    @Autowired
     private StoreProductReplyDao dao;
 
     @Autowired

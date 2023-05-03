@@ -8,7 +8,7 @@ import com.zbkj.service.dao.SmsTemplateDao;
 import com.zbkj.service.service.SmsTemplateService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * SmsTemplateServiceImpl 接口实现
@@ -25,7 +25,7 @@ import javax.annotation.Resource;
 @Service
 public class SmsTemplateServiceImpl extends ServiceImpl<SmsTemplateDao, SmsTemplate> implements SmsTemplateService {
 
-    @Resource
+    @Autowired
     private SmsTemplateDao dao;
 
     /**

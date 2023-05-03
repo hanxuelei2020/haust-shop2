@@ -6,7 +6,7 @@ import com.zbkj.service.dao.StoreProductLogDao;
 import com.zbkj.service.service.StoreProductLogService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 
 /**
  * StoreProductLogServiceImpl 接口实现
@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 @Service
 public class StoreProductLogServiceImpl extends ServiceImpl<StoreProductLogDao, StoreProductLog> implements StoreProductLogService {
 
-    @Resource
+    @Autowired
     private StoreProductLogDao dao;
 
 }

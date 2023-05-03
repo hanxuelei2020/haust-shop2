@@ -12,7 +12,7 @@ import com.zbkj.service.service.UserGroupService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserGroupServiceImpl extends ServiceImpl<UserGroupDao, UserGroup> implements UserGroupService {
 
-    @Resource
+    @Autowired
     private UserGroupDao dao;
 
     /**

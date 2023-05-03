@@ -12,7 +12,7 @@ import com.zbkj.service.dao.WechatExceptionsDao;
 import com.zbkj.service.service.WechatExceptionsService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.Date;
 
 /**
@@ -30,7 +30,7 @@ import java.util.Date;
 @Service
 public class WechatExceptionsServiceImpl extends ServiceImpl<WechatExceptionsDao, WechatExceptions> implements WechatExceptionsService {
 
-    @Resource
+    @Autowired
     private WechatExceptionsDao dao;
 
     /**

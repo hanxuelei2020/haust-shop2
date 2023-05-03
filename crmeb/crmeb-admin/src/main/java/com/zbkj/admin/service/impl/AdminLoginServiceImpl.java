@@ -32,7 +32,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,10 +54,10 @@ import java.util.stream.Stream;
 @Service
 public class AdminLoginServiceImpl implements AdminLoginService {
 
-    @Resource
+    @Autowired
     private TokenComponent tokenComponent;
 
-    @Resource
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired

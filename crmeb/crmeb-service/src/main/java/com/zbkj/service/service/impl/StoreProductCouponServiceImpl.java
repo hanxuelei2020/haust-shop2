@@ -7,7 +7,7 @@ import com.zbkj.service.dao.StoreProductCouponDao;
 import com.zbkj.service.service.StoreProductCouponService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -26,7 +26,7 @@ import java.util.List;
 public class StoreProductCouponServiceImpl extends ServiceImpl<StoreProductCouponDao, StoreProductCoupon>
         implements StoreProductCouponService {
 
-    @Resource
+    @Autowired
     private StoreProductCouponDao dao;
     /**
      *

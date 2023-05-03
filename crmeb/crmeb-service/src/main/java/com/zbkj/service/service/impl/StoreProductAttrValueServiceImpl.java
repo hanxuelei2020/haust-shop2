@@ -14,7 +14,7 @@ import com.zbkj.service.service.SystemConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -33,7 +33,7 @@ import java.util.List;
 public class StoreProductAttrValueServiceImpl extends ServiceImpl<StoreProductAttrValueDao, StoreProductAttrValue>
         implements StoreProductAttrValueService {
 
-    @Resource
+    @Autowired
     private StoreProductAttrValueDao dao;
 
     @Autowired

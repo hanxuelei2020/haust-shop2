@@ -31,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +52,7 @@ public class UserIntegralRecordServiceImpl extends ServiceImpl<UserIntegralRecor
 
     private static final Logger logger = LoggerFactory.getLogger(UserIntegralRecordServiceImpl.class);
 
-    @Resource
+    @Autowired
     private UserIntegralRecordDao dao;
 
     @Autowired
