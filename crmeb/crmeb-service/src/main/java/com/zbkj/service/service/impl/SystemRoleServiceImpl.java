@@ -184,7 +184,7 @@ public class SystemRoleServiceImpl extends ServiceImpl<SystemRoleDao, SystemRole
             lqw.ne(SystemRole::getId, id);
         }
         lqw.last(" limit 1");
-        Integer count = dao.selectCount(lqw);
+        int count = Math.toIntExact(dao.selectCount(lqw));
         return count > 0;
     }
 

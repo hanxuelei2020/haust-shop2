@@ -368,7 +368,7 @@ public class UserSignServiceImpl extends ServiceImpl<UserSignDao, UserSign> impl
     private Integer getCount(Integer userId) {
         LambdaQueryWrapper<UserSign> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserSign::getUid, userId).eq(UserSign::getType, 1);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**
@@ -396,7 +396,7 @@ public class UserSignServiceImpl extends ServiceImpl<UserSignDao, UserSign> impl
     private Integer signCount(Integer userId) {
         LambdaQueryWrapper<UserSign> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserSign::getUid, userId);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**

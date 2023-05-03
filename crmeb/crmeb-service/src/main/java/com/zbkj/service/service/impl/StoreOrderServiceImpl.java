@@ -730,7 +730,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
         LambdaQueryWrapper<StoreOrder> lqw = new LambdaQueryWrapper<>();
         orderUtils.statusApiByWhere(lqw, status);
         lqw.eq(StoreOrder::getUid,userId);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -1011,7 +1011,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
         lqw.eq(StoreOrder::getIsDel, false);
         lqw.eq(StoreOrder::getUid, uid);
         lqw.lt(StoreOrder::getRefundStatus, 2);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -1047,7 +1047,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
             dateLimitUtilVo dateLimit = DateUtil.getDateLimit(date);
             lqw.between(StoreOrder::getCreateTime, dateLimit.getStartTime(), dateLimit.getEndTime());
         }
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -1197,7 +1197,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
         wrapper.select("id");
         wrapper.eq("paid", 1);
         wrapper.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(wrapper);
+        return Math.toIntExact(dao.selectCount(wrapper));
     }
 
     /**
@@ -1211,7 +1211,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
         wrapper.select("id");
         wrapper.eq("paid", 1);
         wrapper.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(wrapper);
+        return Math.toIntExact(dao.selectCount(wrapper));
     }
 
     /**
@@ -1770,7 +1770,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
             queryWrapper.between("create_time", dateLimitUtilVo.getStartTime(), dateLimitUtilVo.getEndTime());
         }
         getStatusWhereNew(queryWrapper, status);
-        return dao.selectCount(queryWrapper);
+        return Math.toIntExact(dao.selectCount(queryWrapper));
     }
 
     /**
@@ -1790,7 +1790,7 @@ public class StoreOrderServiceImpl extends ServiceImpl<StoreOrderDao, StoreOrder
         if (ObjectUtil.isNotNull(type)) {
             queryWrapper.eq("type", type);
         }
-        return dao.selectCount(queryWrapper);
+        return Math.toIntExact(dao.selectCount(queryWrapper));
     }
 
     /**

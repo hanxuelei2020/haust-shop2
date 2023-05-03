@@ -1352,7 +1352,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public Integer getCountByPayCount(int minPayCount, int maxPayCount) {
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.between(User::getPayCount, minPayCount, maxPayCount);
-        return userDao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(userDao.selectCount(lambdaQueryWrapper));
     }
 
     /**
@@ -1671,7 +1671,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public Integer getTotalNum() {
         LambdaQueryWrapper<User> lqw = Wrappers.lambdaQuery();
         lqw.select(User::getUid);
-        return userDao.selectCount(lqw);
+        return Math.toIntExact(userDao.selectCount(lqw));
     }
 
     /**
@@ -1685,7 +1685,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         QueryWrapper<User> wrapper = Wrappers.query();
         wrapper.select("uid");
         wrapper.apply("date_format(create_time, '%Y-%m-%d') between {0} and {1}", startDate, endDate);
-        return userDao.selectCount(wrapper);
+        return Math.toIntExact(userDao.selectCount(wrapper));
     }
 
     /**
@@ -1758,7 +1758,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         QueryWrapper<User> wrapper = Wrappers.query();
         wrapper.select("uid");
         wrapper.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return userDao.selectCount(wrapper);
+        return Math.toIntExact(userDao.selectCount(wrapper));
     }
 
     /**

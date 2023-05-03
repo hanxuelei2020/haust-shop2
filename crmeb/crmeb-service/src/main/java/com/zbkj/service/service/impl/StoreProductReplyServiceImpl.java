@@ -425,7 +425,7 @@ public class StoreProductReplyServiceImpl extends ServiceImpl<StoreProductReplyD
                 lqw.apply( " (product_score + service_score) <= 4");
                 break;
         }
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -503,7 +503,7 @@ public class StoreProductReplyServiceImpl extends ServiceImpl<StoreProductReplyD
             lambdaQueryWrapper.eq(StoreProductReply::getProductId, request.getProductId());
 
         }
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
 }

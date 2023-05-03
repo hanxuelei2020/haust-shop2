@@ -162,7 +162,7 @@ public class UserRechargeServiceImpl extends ServiceImpl<UserRechargeDao, UserRe
         wrapper.select("id");
         wrapper.eq("paid", 1);
         wrapper.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(wrapper);
+        return Math.toIntExact(dao.selectCount(wrapper));
     }
 
     /**

@@ -439,7 +439,7 @@ public class UserExtractServiceImpl extends ServiceImpl<UserExtractDao, UserExtr
     public Integer getNotAuditNum() {
         LambdaQueryWrapper<UserExtract> lqw = Wrappers.lambdaQuery();
         lqw.eq(UserExtract::getStatus, 0);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 }
 

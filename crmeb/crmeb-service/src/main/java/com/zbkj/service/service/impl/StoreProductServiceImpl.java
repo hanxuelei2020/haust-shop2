@@ -1265,7 +1265,7 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         lqw.select(StoreProduct::getId);
         lqw.eq(StoreProduct::getIsDel, 0);
         lqw.apply("date_format(add_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -1305,7 +1305,7 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         lambdaQueryWrapper.le(StoreProduct::getStock, stock);
         lambdaQueryWrapper.eq(StoreProduct::getIsRecycle, false);
         lambdaQueryWrapper.eq(StoreProduct::getIsDel, false);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**
@@ -1318,7 +1318,7 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         lambdaQueryWrapper.eq(StoreProduct::getIsShow, true);
         lambdaQueryWrapper.eq(StoreProduct::getIsRecycle, false);
         lambdaQueryWrapper.eq(StoreProduct::getIsDel, false);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**
@@ -1331,7 +1331,7 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         lambdaQueryWrapper.eq(StoreProduct::getIsShow, false);
         lambdaQueryWrapper.eq(StoreProduct::getIsRecycle, false);
         lambdaQueryWrapper.eq(StoreProduct::getIsDel, false);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**
@@ -1347,7 +1347,7 @@ public class StoreProductServiceImpl extends ServiceImpl<StoreProductDao, StoreP
         queryWrapper.eq("is_recycle", false);
         queryWrapper.eq("is_del", false);
         queryWrapper.last("limit 10");
-        Integer count = dao.selectCount(queryWrapper);
+        Integer count = Math.toIntExact(dao.selectCount(queryWrapper));
         if (count < 4) {
             return CollUtil.newArrayList();
         }

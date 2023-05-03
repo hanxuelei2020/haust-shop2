@@ -38,7 +38,7 @@ public class UserVisitRecordServiceImpl extends ServiceImpl<UserVisitRecordDao, 
         QueryWrapper<UserVisitRecord> wrapper = new QueryWrapper<>();
         wrapper.select("id");
         wrapper.eq("date", date);
-        return dao.selectCount(wrapper);
+        return Math.toIntExact(dao.selectCount(wrapper));
     }
 
     /**
@@ -52,7 +52,7 @@ public class UserVisitRecordServiceImpl extends ServiceImpl<UserVisitRecordDao, 
         QueryWrapper<UserVisitRecord> wrapper = new QueryWrapper<>();
         wrapper.select("id");
         wrapper.between("date", startDate, endDate);
-        return dao.selectCount(wrapper);
+        return Math.toIntExact(dao.selectCount(wrapper));
     }
 
     /**

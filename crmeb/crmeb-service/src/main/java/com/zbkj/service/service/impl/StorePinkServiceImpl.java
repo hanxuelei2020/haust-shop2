@@ -185,7 +185,7 @@ public class StorePinkServiceImpl extends ServiceImpl<StorePinkDao, StorePink> i
         lqw.select(StorePink::getId);
         lqw.eq(StorePink::getIsRefund, false);
         lqw.and(i -> i.eq(StorePink::getKId, pinkId).or().eq(StorePink::getId, pinkId));
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -383,7 +383,7 @@ public class StorePinkServiceImpl extends ServiceImpl<StorePinkDao, StorePink> i
         LambdaQueryWrapper<StorePink> lqw = new LambdaQueryWrapper<>();
         lqw.eq(StorePink::getIsRefund, false);
         lqw.in(StorePink::getStatus, 1, 2);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     private Integer getCountByKidAndCid(Integer cid, Integer kid) {
@@ -392,7 +392,7 @@ public class StorePinkServiceImpl extends ServiceImpl<StorePinkDao, StorePink> i
         lqw.eq(StorePink::getCid, cid);
         lqw.and(i -> i.eq(StorePink::getKId, kid).or().eq(StorePink::getId, kid));
         lqw.eq(StorePink::getIsRefund, false);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 }
 

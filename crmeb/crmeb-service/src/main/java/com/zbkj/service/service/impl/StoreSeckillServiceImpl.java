@@ -690,7 +690,7 @@ public class StoreSeckillServiceImpl extends ServiceImpl<StoreSeckillDao, StoreS
         lqw.le(StoreSeckill::getStartTime, currentDate);
         lqw.ge(StoreSeckill::getStopTime, currentDate);
         lqw.orderByDesc(StoreSeckill::getId);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**

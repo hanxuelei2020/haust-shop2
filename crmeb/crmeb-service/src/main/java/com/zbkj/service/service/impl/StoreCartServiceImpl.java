@@ -355,7 +355,7 @@ public class StoreCartServiceImpl extends ServiceImpl<StoreCartDao, StoreCart> i
         lambdaQueryWrapper.eq(StoreCart::getUid, userId);
         lambdaQueryWrapper.eq(StoreCart::getStatus, status);
         lambdaQueryWrapper.eq(StoreCart::getIsNew, false);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**

@@ -165,7 +165,7 @@ public class StoreProductRelationServiceImpl extends ServiceImpl<StoreProductRel
         LambdaQueryWrapper<StoreProductRelation> lqr = Wrappers.lambdaQuery();
         lqr.eq(StoreProductRelation::getUid, uid);
         lqr.eq(StoreProductRelation::getType,"collect");
-        return dao.selectCount(lqr);
+        return Math.toIntExact(dao.selectCount(lqr));
     }
 
     /**
@@ -206,7 +206,7 @@ public class StoreProductRelationServiceImpl extends ServiceImpl<StoreProductRel
         LambdaQueryWrapper<StoreProductRelation> lqw = Wrappers.lambdaQuery();
         lqw.select(StoreProductRelation::getId);
         lqw.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -221,7 +221,7 @@ public class StoreProductRelationServiceImpl extends ServiceImpl<StoreProductRel
         lqw.select(StoreProductRelation::getId);
         lqw.eq(StoreProductRelation::getProductId, proId);
         lqw.apply("date_format(create_time, '%Y-%m-%d') = {0}", date);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**

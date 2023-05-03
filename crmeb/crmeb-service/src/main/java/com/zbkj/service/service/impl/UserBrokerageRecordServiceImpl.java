@@ -187,7 +187,7 @@ public class UserBrokerageRecordServiceImpl extends ServiceImpl<UserBrokerageRec
         lqw.eq(UserBrokerageRecord::getUid, uid);
         lqw.eq(UserBrokerageRecord::getLinkType, BrokerageRecordConstants.BROKERAGE_RECORD_LINK_TYPE_ORDER);
         lqw.eq(UserBrokerageRecord::getStatus, BrokerageRecordConstants.BROKERAGE_RECORD_STATUS_COMPLETE);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**

@@ -146,7 +146,7 @@ public class SystemStoreServiceImpl extends ServiceImpl<SystemStoreDao, SystemSt
             lambdaQueryWrapper.eq(SystemStore::getIsShow, status).eq(SystemStore::getIsDel, false);
         }
         lambdaQueryWrapper.orderByDesc(SystemStore::getUpdateTime).orderByDesc(SystemStore::getId);
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**

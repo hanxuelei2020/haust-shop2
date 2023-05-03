@@ -200,7 +200,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
         //查看是否有子类
         QueryWrapper<Category> objectQueryWrapper = new QueryWrapper<>();
         objectQueryWrapper.like("path", "/"+pid+"/");
-        return dao.selectCount(objectQueryWrapper);
+        return Math.toIntExact(dao.selectCount(objectQueryWrapper));
     }
 
     /**
@@ -366,7 +366,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
         if (ObjectUtil.isNotNull(type)) {
             lambdaQueryWrapper.eq(Category::getType, type);
         }
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 
     /**

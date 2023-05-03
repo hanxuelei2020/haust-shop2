@@ -292,7 +292,7 @@ public class StoreBargainUserHelpServiceImpl extends ServiceImpl<StoreBargainUse
     public Integer getCount() {
         LambdaQueryWrapper<StoreBargainUserHelp> lqw = new LambdaQueryWrapper<>();
         lqw.select(StoreBargainUserHelp::getId);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -339,7 +339,7 @@ public class StoreBargainUserHelpServiceImpl extends ServiceImpl<StoreBargainUse
         lqw.eq(StoreBargainUserHelp::getBargainId, bargainId);
         lqw.eq(StoreBargainUserHelp::getUid, uid);
         lqw.notIn(StoreBargainUserHelp::getBargainUserId, bargainUserIdList);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
     /**
@@ -421,7 +421,7 @@ public class StoreBargainUserHelpServiceImpl extends ServiceImpl<StoreBargainUse
         if (CollUtil.isNotEmpty(tempUserIdList)) {
             lambdaQueryWrapper.notIn(StoreBargainUserHelp::getBargainUserId, tempUserIdList);
         }
-        return dao.selectCount(lambdaQueryWrapper);
+        return Math.toIntExact(dao.selectCount(lambdaQueryWrapper));
     }
 }
 

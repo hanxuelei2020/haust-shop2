@@ -600,7 +600,7 @@ public class StoreBargainUserServiceImpl extends ServiceImpl<StoreBargainUserDao
         lqw.eq(StoreBargainUser::getUid, uid);
         lqw.eq(StoreBargainUser::getIsDel, false);
         lqw.eq(StoreBargainUser::getStatus, 3);
-        return dao.selectCount(lqw);
+        return Math.toIntExact(dao.selectCount(lqw));
     }
 
 }
