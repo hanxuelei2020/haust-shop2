@@ -2,6 +2,7 @@ package com.zbkj.admin.vo;
 
 import com.zbkj.common.utils.DateUtil;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

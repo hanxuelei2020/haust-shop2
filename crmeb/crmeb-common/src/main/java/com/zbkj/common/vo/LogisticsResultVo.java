@@ -1,7 +1,8 @@
 package com.zbkj.common.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
- 
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

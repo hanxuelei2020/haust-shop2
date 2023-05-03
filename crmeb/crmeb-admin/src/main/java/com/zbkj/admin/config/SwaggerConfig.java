@@ -1,24 +1,15 @@
 package com.zbkj.admin.config;
 
 import com.zbkj.common.constants.Constants;
-import com.google.common.base.Predicate;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.*;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Swagger配置组件
@@ -33,7 +24,6 @@ import static com.google.common.collect.Lists.newArrayList;
  * +----------------------------------------------------------------------
  */
 @Configuration
-@EnableSwagger2
 @ConfigurationProperties(prefix = "api.doc")
 public class SwaggerConfig{
 
@@ -46,84 +36,28 @@ public class SwaggerConfig{
     @Value("${crmeb.domain}")
     private String domain;
 
-    @Bean("admin")
-    public Docket createRestApis() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("admin")
-                .host(domain)
-                .apiInfo(apiInfo())
-                // 是否开启
-                .enable(swaggerEnabled)
-                .select()
-                // 扫描的路径包
-                .apis(RequestHandlerSelectors.basePackage("com.zbkj.admin"))
-                // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(adminPathsAnt())
-                .build()
-                .securitySchemes(security())
-                .securityContexts(securityContexts())
-//                .globalOperationParameters(pars) // 针对单个url的验证 如果需要的话
-                .pathMapping("/");
+    @Bean
+    public OpenAPI openAPI(){
+        return new OpenAPI()
+                .info(apiInfo())
+                .externalDocs(new ExternalDocumentation()
+                        .description("SpringDoc Wiki Documentation")
+                        .url("https://springdoc.org/v2"));
     }
 
-    @Bean("public")
-    public Docket create2RestApis() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("public")
-                .host(domain)
-                .apiInfo(apiInfo())
-                // 是否开启
-                .enable(swaggerEnabled)
-                .select()
-                // 扫描的路径包
-                .apis(RequestHandlerSelectors.basePackage("com.zbkj.admin"))
-                // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(publicPathsAnt()) //只监听
-                .build()
-                .securitySchemes(security())
-                .securityContexts(securityContexts())
-//                .globalOperationParameters(pars) // 针对单个url的验证 如果需要的话
-                .pathMapping("/");
-    }
-
-    private Predicate<String> adminPathsAnt() {
-        return PathSelectors.ant("/api/admin/**");
-    }
-
-    private Predicate<String> publicPathsAnt() {
-        return PathSelectors.ant("/api/public/**");
-    }
-
-    private List<ApiKey> security() {
-        return newArrayList(
-                new ApiKey(Constants.HEADER_AUTHORIZATION_KEY, Constants.HEADER_AUTHORIZATION_KEY, "header")
-        );
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Crmeb Java")
-                .description("Crmeb")
-                .termsOfServiceUrl("http://host:port")
-                .version("1.0.0").build();
-    }
-
-
-    private List<SecurityContext> securityContexts() {
-        List<SecurityContext> res = new ArrayList<>();
-        res.add(SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/.*"))
-                .build());
-        return res;
-    }
-
-    private List<SecurityReference> defaultAuth() {
-        List<SecurityReference> res = new ArrayList<>();
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", Constants.HEADER_AUTHORIZATION_KEY);
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        res.add(new SecurityReference(Constants.HEADER_AUTHORIZATION_KEY, authorizationScopes));
-        return res;
+    private Info apiInfo() {
+        return new Info()
+                .title("haust-shop admin")
+                .description("springfox swagger 3.0 demo")
+                .version("1.0.0")
+                .contact(new Contact()
+                        .name("hanxuelei")
+                        .url("/api/admin/**")
+                        .email("2407411399")
+                )
+                .license(new License()
+                        .name("Apache 2.0")
+                        .url("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                );
     }
 }

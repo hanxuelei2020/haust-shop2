@@ -2,6 +2,7 @@ package com.zbkj.common.vo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

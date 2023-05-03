@@ -1,7 +1,8 @@
 package com.zbkj.common.request;
 
 import com.zbkj.common.constants.Constants;
- 
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**

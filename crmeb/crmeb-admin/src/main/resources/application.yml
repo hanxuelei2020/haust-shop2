@@ -88,3 +88,18 @@ swagger:
     check: false #是否打开验证
     username: #访问swagger的账号
     password: #访问swagger的密码
+
+# spring doc
+springdoc:
+  packages-to-scan: ##需要扫描的包,可以配置多个
+    - com.zbkj.front.controller
+  paths-to-exclude:  ##配置不包含在swagger文档中的api
+    - /api/test/**
+    - /api/mockito/data
+  swagger-ui:
+    enabled: true  #开启/禁止swagger,prod可以设置为false
+    path: /swagger-ui.html  #swagger页面
+  api-docs:
+    enabled: true #开启/禁止api-docs, prod可以设置为false
+    path: /api-docs #api的json文档
+  use-management-port: false
