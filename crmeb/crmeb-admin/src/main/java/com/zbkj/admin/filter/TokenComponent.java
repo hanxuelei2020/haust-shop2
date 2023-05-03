@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.zbkj.common.constants.Constants;
 import com.zbkj.common.utils.RedisUtil;
 import com.zbkj.common.vo.LoginUserVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 

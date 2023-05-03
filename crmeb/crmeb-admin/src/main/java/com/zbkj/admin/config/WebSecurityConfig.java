@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.filter.CorsFilter;
@@ -35,10 +35,10 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
     /**
-     * 跨域过滤器
+     * 跨域过滤器 WebSecurityConfigurerAdapter
      */
     @Autowired
     private CorsFilter corsFilter;
@@ -67,18 +67,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomAccessDeniedHandler();
     }
 
-    /**
-     * 这里将Spring Security自带的authenticationManager声明成Bean，声明它的作用是用它帮我们进行认证操作，
-     * 调用这个Bean的authenticate方法会由Spring Security自动帮我们做认证。
-     */
-//    @Bean
-//    public AuthenticationManager authenticationManager() throws Exception {
-//        return new CusAuthenticationManager(customAuthenticationProvider);
-//    }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(new CustomAuthenticationProvider(new UserDetailServiceImpl()));
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        // DaoAuthenticationProvider 从自定义的 userDetailsService.loadUserByUsername 方法获取UserDetails
+        // 设置密码编辑器
+        return new CustomAuthenticationProvider(new UserDetailServiceImpl());
     }
 
     /**
@@ -96,8 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * rememberMe          |   允许通过remember-me登录的用户访问
      * authenticated       |   用户登录后可访问
      */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain  configure(HttpSecurity http) throws Exception {
 
         // CRSF禁用，因为不使用session
         http.cors().and().csrf().disable()
@@ -111,36 +104,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // 跨域预检请求
 //            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // 对于登录login 验证码captchaImage 和其他放行的目录 允许匿名访问"/citylife/front/**"
-                .antMatchers("/api/admin/login", "/api/admin/validate/code/get").permitAll()
-                .antMatchers("/api/admin/getLoginPic").permitAll()
+                .requestMatchers("/api/admin/login", "/api/admin/validate/code/get").permitAll()
+                .requestMatchers("/api/admin/getLoginPic").permitAll()
                 // 放行资源路径
-                .antMatchers("/"+ Constants.UPLOAD_TYPE_IMAGE +"/**").anonymous()
+                .requestMatchers("/"+ Constants.UPLOAD_TYPE_IMAGE +"/**").anonymous()
                 // 放行图片、文件上传
-                .antMatchers("/api/admin/upload/image").permitAll()
-                .antMatchers("/api/admin/upload/file").permitAll()
+                .requestMatchers("/api/admin/upload/image").permitAll()
+                .requestMatchers("/api/admin/upload/file").permitAll()
                 // 代码生成器
-                .antMatchers("/api/codegen/code").permitAll()
+                .requestMatchers("/api/codegen/code").permitAll()
 //            .antMatchers("/wx/user/*/login","/citylife/nocheck/**").anonymous()
-            .antMatchers(
+            .requestMatchers(
                     HttpMethod.GET,
                     "/*.html",
                     "/**/*.html",
                     "/**/*.css",
                     "/**/*.js"
             ).permitAll()
-            .antMatchers("/profile/**").anonymous()
-            .antMatchers("/common/download**").anonymous()
-            .antMatchers("/common/download/resource**").anonymous()
-            .antMatchers("/doc.html").permitAll()
-            .antMatchers("/swagger-resources/**").permitAll()
-            .antMatchers("/webjars/**").permitAll()
-            .antMatchers("/v2/**").permitAll()
-            .antMatchers("/swagger-ui.html/**").permitAll()
-            .antMatchers("/*/api-docs").anonymous()
-            .antMatchers("/druid/**").anonymous()
-            .antMatchers("/captcha/get", "/captcha/check").anonymous()
-            .antMatchers("/api/admin/payment/callback/**").anonymous()
-            .antMatchers("/api/public/**").anonymous()
+            .requestMatchers("/profile/**").anonymous()
+            .requestMatchers("/common/download**").anonymous()
+            .requestMatchers("/common/download/resource**").anonymous()
+            .requestMatchers("/doc.html").permitAll()
+            .requestMatchers("/swagger-resources/**").permitAll()
+            .requestMatchers("/webjars/**").permitAll()
+            .requestMatchers("/v2/**").permitAll()
+            .requestMatchers("/swagger-ui.html/**").permitAll()
+            .requestMatchers("/*/api-docs").anonymous()
+            .requestMatchers("/druid/**").anonymous()
+            .requestMatchers("/captcha/get", "/captcha/check").anonymous()
+            .requestMatchers("/api/admin/payment/callback/**").anonymous()
+            .requestMatchers("/api/public/**").anonymous()
             // 除上面外的所有请求全部需要鉴权认证
             .anyRequest().authenticated()
             .and()
@@ -152,6 +145,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 添加CORS filter
         http.addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);
         http.addFilterBefore(corsFilter, LogoutFilter.class);
+        return http.build();
     }
 
 }

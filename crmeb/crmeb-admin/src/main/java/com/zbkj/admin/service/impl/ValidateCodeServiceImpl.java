@@ -9,6 +9,7 @@ import com.zbkj.common.utils.ValidateCodeUtil;
 import com.zbkj.admin.service.ValidateCodeService;
 import com.zbkj.admin.vo.ValidateCode;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
