@@ -22,6 +22,7 @@ import java.text.NumberFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Base64;
 
 /**
  * Crmeb工具类
@@ -45,7 +46,7 @@ public class CrmebUtil {
             cipher.init(Cipher.ENCRYPT_MODE, _key);
             byte[] data = pwd.getBytes(StandardCharsets.UTF_8);
             byte[] result = cipher.doFinal(data);
-            return new sun.misc.BASE64Encoder().encode(result);
+            return new String(Base64.getEncoder().encode(result));
         }catch (Exception e){
             throw new CrmebException("密码处理异常");
         }
@@ -61,7 +62,7 @@ public class CrmebUtil {
         Cipher cipher = Cipher.getInstance("DES");
         cipher.init(Cipher.DECRYPT_MODE, aKey);
 
-        byte[] data = new sun.misc.BASE64Decoder().decodeBuffer(pwd);
+        byte[] data = Base64.getDecoder().decode(pwd);
         byte[] result = cipher.doFinal(data);
 
         return new String(result, StandardCharsets.UTF_8);
