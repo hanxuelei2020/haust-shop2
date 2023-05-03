@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbkj.common.model.product.StoreProductAttrResult;
 import com.zbkj.service.dao.StoreProductAttrResultDao;
 import com.zbkj.service.service.StoreProductAttrResultService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

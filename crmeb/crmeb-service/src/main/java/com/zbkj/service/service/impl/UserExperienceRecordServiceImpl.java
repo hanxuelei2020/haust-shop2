@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.zbkj.common.model.user.UserExperienceRecord;
 import com.zbkj.service.dao.UserExperienceRecordDao;
 import com.zbkj.service.service.UserExperienceRecordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

@@ -10,6 +10,7 @@ import com.zbkj.common.constants.Constants;
 import com.zbkj.common.model.wechat.WechatExceptions;
 import com.zbkj.service.dao.WechatExceptionsDao;
 import com.zbkj.service.service.WechatExceptionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

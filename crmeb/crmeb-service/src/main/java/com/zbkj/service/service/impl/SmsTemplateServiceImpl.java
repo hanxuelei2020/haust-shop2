@@ -6,6 +6,7 @@ import com.zbkj.common.exception.CrmebException;
 import com.zbkj.common.model.sms.SmsTemplate;
 import com.zbkj.service.dao.SmsTemplateDao;
 import com.zbkj.service.service.SmsTemplateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

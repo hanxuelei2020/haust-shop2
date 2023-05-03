@@ -8,6 +8,7 @@ import com.zbkj.service.dao.WechatCallbackDao;
 import com.zbkj.service.service.WechatCallbackService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

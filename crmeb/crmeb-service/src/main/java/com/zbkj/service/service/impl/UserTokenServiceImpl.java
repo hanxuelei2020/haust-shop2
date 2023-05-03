@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbkj.common.model.user.UserToken;
 import com.zbkj.service.dao.UserTokenDao;
 import com.zbkj.service.service.UserTokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

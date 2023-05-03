@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbkj.common.model.product.StoreProductCoupon;
 import com.zbkj.service.dao.StoreProductCouponDao;
 import com.zbkj.service.service.StoreProductCouponService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbkj.common.model.wechat.WechatPayInfo;
 import com.zbkj.service.dao.WechatPayInfoDao;
 import com.zbkj.service.service.WechatPayInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

@@ -10,6 +10,7 @@ import com.zbkj.common.model.user.UserGroup;
 import com.zbkj.service.dao.UserGroupDao;
 import com.zbkj.service.service.UserGroupService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

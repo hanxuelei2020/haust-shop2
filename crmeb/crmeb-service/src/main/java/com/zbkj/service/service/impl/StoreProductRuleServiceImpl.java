@@ -12,6 +12,7 @@ import com.zbkj.service.dao.StoreProductRuleDao;
 import com.zbkj.service.service.StoreProductRuleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 

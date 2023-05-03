@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbkj.common.model.system.SystemRoleMenu;
 import com.zbkj.service.dao.SystemRoleMenuDao;
 import com.zbkj.service.service.SystemRoleMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
