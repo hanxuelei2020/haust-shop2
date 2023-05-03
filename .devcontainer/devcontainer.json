@@ -8,6 +8,9 @@
             "mavenVersion": "3.8.6",
             "jdkDistro": "open"
         },
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        },
         "ghcr.io/devcontainers-contrib/features/springboot-sdkman:2": {
             "jdkVersion": "latest",
             "jdkDistro": "open"
