@@ -73,10 +73,10 @@ public class UrlUtil {
      *
      * @param args
      */
-    public static void main(String[] args) {
-        UrlEntity entity = parse(null);
-        entity = parse("http://www.123.com?id=1&name=小明");
-        System.out.println(entity.baseUrl + "\n" + entity.params);
-        System.out.println(entity.params.get("id"));
-    }
+    //public static void main(String[] args) {
+    //    UrlEntity entity = parse(null);
+    //    entity = parse("http://www.123.com?id=1&name=小明");
+    //    System.out.println(entity.baseUrl + "\n" + entity.params);
+    //    System.out.println(entity.params.get("id"));
+    //}
 }

@@ -626,10 +626,10 @@ public final class DateUtil {
         return parse.getTime();
     }
 
-    public static void main(String[] args) {
-        dateLimitUtilVo dateLimit = getDateLimit(Constants.SEARCH_DATE_LATELY_7);
-        System.out.println(dateLimit.getStartTime());
-        System.out.println(dateLimit.getEndTime());
-    }
+    //public static void main(String[] args) {
+    //    dateLimitUtilVo dateLimit = getDateLimit(Constants.SEARCH_DATE_LATELY_7);
+    //    System.out.println(dateLimit.getStartTime());
+    //    System.out.println(dateLimit.getEndTime());
+    //}
 
 }

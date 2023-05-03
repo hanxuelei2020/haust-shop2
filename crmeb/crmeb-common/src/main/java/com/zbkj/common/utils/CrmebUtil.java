@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.sun.crypto.provider.SunJCE;
 import com.zbkj.common.constants.Constants;
 import com.zbkj.common.exception.CrmebException;
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +41,7 @@ public class CrmebUtil {
 
     public static String encryptPassword(String pwd, String key){
         try {
-            Security.addProvider(new com.sun.crypto.provider.SunJCE());
+            Security.addProvider(new SunJCE());
             Key _key = getDESSercretKey(key);
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.ENCRYPT_MODE, _key);
@@ -57,7 +58,7 @@ public class CrmebUtil {
      */
     public static String decryptPassowrd(String pwd, String key)
             throws Exception {
-        Security.addProvider(new com.sun.crypto.provider.SunJCE());
+        Security.addProvider(new SunJCE());
         Key aKey = getDESSercretKey(key);
         Cipher cipher = Cipher.getInstance("DES");
         cipher.init(Cipher.DECRYPT_MODE, aKey);
@@ -134,10 +135,10 @@ public class CrmebUtil {
      * 密码工具
      * @param args String[] 字符串数组
      */
-    public static void main(String[] args) throws Exception {
-        System.out.println(encryptPassword("crmeb@123456", "18292417675"));
-//		System.out.println(decryptPassowrd("Ffg0LtOQNyWU1//Y16+72A==", "18292417675"));
-    }
+//    public static void main(String[] args) throws Exception {
+//        System.out.println(encryptPassword("crmeb@123456", "18292417675"));
+////		System.out.println(decryptPassowrd("Ffg0LtOQNyWU1//Y16+72A==", "18292417675"));
+//    }
 
     /**
      * map合并
