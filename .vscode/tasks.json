@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "java (build)",
+			"paths": [
+				"${workspace}/haust-shop2/crmeb"
+			],
+			"isFullBuild": true,
+			"group": "build",
+			"problemMatcher": [],
+			"label": "java (build): Build Workspace",
+			"detail": "$(tools) Build all the Java projects in workspace."
+		},
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "cd /workspaces/haust-shop2/crmeb && mvn clean package",
+			"group": {
+                "kind": "build",
+                "isDefault": true
+            }
+		}
+	]
+}

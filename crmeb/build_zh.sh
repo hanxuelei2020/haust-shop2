@@ -35,7 +35,13 @@ for dir in "${dirs[@]}"; do
 done
 
 # #!/bin/bash
+mvn native:build
+mvn clean package -Pnative
 
+# 
+mvn native:build
+mvn native:compile-no-fork
+mvn clean package -Pnative
 # function build_and_push {
 #     for d in "$1"*/ ; do
 #         doc_name=$(basename "$d")

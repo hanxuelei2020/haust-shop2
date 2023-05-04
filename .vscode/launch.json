@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Spring Boot App",
+            "request": "launch",
+            "mainClass": "com.zbkj.front.CrmebFrontApplication",
+            "args": [],
+            // "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}/crmeb/crmeb-front"
+        }
+    ],
+    "tasks": {
+        "build": {
+            "type": "shell",
+            "command": "mvn clean package",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    }
+}
