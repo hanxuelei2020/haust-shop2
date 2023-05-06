@@ -42,6 +42,8 @@ mvn clean package -Pnative
 mvn native:build
 mvn native:compile-no-fork
 mvn clean package -Pnative
+mvn -Pnative native:compile
+mvn -Pnative spring-boot:build-image
 # function build_and_push {
 #     for d in "$1"*/ ; do
 #         doc_name=$(basename "$d")
